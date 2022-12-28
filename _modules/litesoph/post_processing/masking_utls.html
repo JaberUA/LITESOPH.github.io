@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -82,7 +84,7 @@
 
 
 
-<div class="viewcode-block" id="timeperiod_by_maxima"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_maxima">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_maxima</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span><span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="timeperiod_by_maxima"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_maxima">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_maxima</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span><span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; function to calculate timeperiod thorough maxima method&quot;&quot;&quot;</span>
 
     <span class="n">time</span> <span class="o">=</span> <span class="n">input_envelope_data</span><span class="p">[:,</span><span class="n">timeaxis</span><span class="p">]</span> 
@@ -94,7 +96,7 @@
         
     <span class="k">return</span> <span class="n">timeperiod</span></div>
 
-<div class="viewcode-block" id="timeperiod_by_fit_sin"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_fit_sin">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_fit_sin</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span> <span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="timeperiod_by_fit_sin"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_fit_sin">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_fit_sin</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span> <span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 
     <span class="sd">&#39;&#39;&#39;Fit sin to the input time sequence, and return  &quot;time period&quot; &#39;&#39;&#39;</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">input_envelope_data</span><span class="p">[:,</span><span class="n">timeaxis</span><span class="p">]</span> 
@@ -117,7 +119,7 @@
     
     <span class="k">return</span> <span class="n">time_period_for_envelope</span></div>
 
-<div class="viewcode-block" id="timeperiod_by_fourier_transform"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_fourier_transform">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_fourier_transform</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span> <span class="n">time_window</span><span class="p">,</span> <span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="timeperiod_by_fourier_transform"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.timeperiod_by_fourier_transform">[docs]</a><span class="k">def</span> <span class="nf">timeperiod_by_fourier_transform</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">,</span> <span class="n">time_window</span><span class="p">,</span> <span class="n">directionaxis</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">timeaxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; function to calculate timeperiod thorough fourier transformation &quot;&quot;&quot;</span>
 
         <span class="n">total_timestep</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">input_envelope_data</span><span class="p">)</span> 
@@ -145,12 +147,12 @@
         <span class="k">return</span> <span class="n">time_period_for_envelope</span></div>
 
 
-<div class="viewcode-block" id="get_direction"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.get_direction">[docs]</a><span class="k">def</span> <span class="nf">get_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
+<div class="viewcode-block" id="get_direction"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.get_direction">[docs]</a><span class="k">def</span> <span class="nf">get_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
     <span class="n">pol_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span> <span class="p">:</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span> <span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;z&#39;</span><span class="p">}</span>
     <span class="n">index</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">index</span> <span class="p">,</span> <span class="n">pol_map</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="MaskedDipoleAnaylsis"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis">[docs]</a><span class="k">class</span> <span class="nc">MaskedDipoleAnaylsis</span><span class="p">:</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis">[docs]</a><span class="k">class</span> <span class="nc">MaskedDipoleAnaylsis</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sim_total_dm</span> <span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">task_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sim_total_dm</span> <span class="o">=</span> <span class="n">sim_total_dm</span>
@@ -161,7 +163,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">energy_coupling_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="s1">&#39;energy_coupling.dat&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">energy_coupling_data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span> <span class="s1">&#39;Direction&#39;</span><span class="p">,</span> <span class="s1">&#39;Energy Coupling&#39;</span><span class="p">]]</span>
 
-<div class="viewcode-block" id="MaskedDipoleAnaylsis.extract_dipolemoment_data"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.extract_dipolemoment_data">[docs]</a>    <span class="k">def</span> <span class="nf">extract_dipolemoment_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis.extract_dipolemoment_data"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.extract_dipolemoment_data">[docs]</a>    <span class="k">def</span> <span class="nf">extract_dipolemoment_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     
         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim_total_dm</span><span class="p">),</span><span class="n">comments</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
 
@@ -174,7 +176,7 @@
         <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">masked_dm_file</span><span class="p">),</span> <span class="n">dm_masked</span><span class="p">)</span>
         <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unmasked_dm_file</span><span class="p">),</span> <span class="n">dm_unmasked</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MaskedDipoleAnaylsis.get_region_dm_file"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.get_region_dm_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_region_dm_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis.get_region_dm_file"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.get_region_dm_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_region_dm_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="s1">&#39;masked&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">masked_dm_file</span>
@@ -184,7 +186,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_dm_file</span></div>
 
 
-<div class="viewcode-block" id="MaskedDipoleAnaylsis.cal_energy_coupling_constant"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.cal_energy_coupling_constant">[docs]</a>    <span class="k">def</span> <span class="nf">cal_energy_coupling_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span><span class="n">timeperiodmethod</span><span class="o">=</span><span class="s2">&quot;fourier_method&quot;</span><span class="p">,</span> <span class="n">time_window</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis.cal_energy_coupling_constant"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.cal_energy_coupling_constant">[docs]</a>    <span class="k">def</span> <span class="nf">cal_energy_coupling_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span><span class="n">timeperiodmethod</span><span class="o">=</span><span class="s2">&quot;fourier_method&quot;</span><span class="p">,</span> <span class="n">time_window</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         
         <span class="n">datafile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_region_dm_file</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
         <span class="n">index</span><span class="p">,</span> <span class="n">pol</span> <span class="o">=</span> <span class="n">get_direction</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
@@ -216,7 +218,7 @@
         <span class="k">return</span> <span class="n">coupling_constant_in_eV</span></div>
         
     
-<div class="viewcode-block" id="MaskedDipoleAnaylsis.get_energy_coupling"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.get_energy_coupling">[docs]</a>    <span class="k">def</span> <span class="nf">get_energy_coupling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis.get_energy_coupling"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.get_energy_coupling">[docs]</a>    <span class="k">def</span> <span class="nf">get_energy_coupling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
         <span class="n">energy_coupling</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cal_energy_coupling_constant</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
         <span class="n">_</span> <span class="p">,</span> <span class="n">pol</span> <span class="o">=</span> <span class="n">get_direction</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_coupling_data</span><span class="p">:</span>
@@ -232,7 +234,7 @@
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">txt</span></div>
 
-<div class="viewcode-block" id="MaskedDipoleAnaylsis.plot"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MaskedDipoleAnaylsis.plot"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.masking_utls.MaskedDipoleAnaylsis.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">region</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
         <span class="n">datafile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_region_dm_file</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
         <span class="n">index</span><span class="p">,</span> <span class="n">pol</span> <span class="o">=</span> <span class="n">get_direction</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
@@ -276,7 +278,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -71,43 +73,55 @@
 <span></span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">font</span>
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 
-<div class="viewcode-block" id="myfont1"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.visual_parameter.myfont1">[docs]</a><span class="k">def</span> <span class="nf">myfont1</span><span class="p">():</span>
+<div class="viewcode-block" id="myfont1"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.myfont1">[docs]</a><span class="k">def</span> <span class="nf">myfont1</span><span class="p">():</span>
     <span class="n">myFont15</span><span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="n">l</span><span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span><span class="s1">&#39;Courier&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> 
     <span class="k">return</span> <span class="n">myFont15</span>  </div>
 
-<div class="viewcode-block" id="myfont"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.visual_parameter.myfont">[docs]</a><span class="k">def</span> <span class="nf">myfont</span><span class="p">():</span>
+<div class="viewcode-block" id="myfont"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.myfont">[docs]</a><span class="k">def</span> <span class="nf">myfont</span><span class="p">():</span>
     <span class="n">myFont</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="n">l</span><span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span><span class="s1">&#39;Courier&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> 
     <span class="n">font5</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Times New Roman&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">font5</span></div>
 
-<div class="viewcode-block" id="myfont2"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.visual_parameter.myfont2">[docs]</a><span class="k">def</span> <span class="nf">myfont2</span><span class="p">():</span>
+<div class="viewcode-block" id="myfont2"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.myfont2">[docs]</a><span class="k">def</span> <span class="nf">myfont2</span><span class="p">():</span>
     <span class="n">myfont2</span><span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">font3</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Comic Sans MS&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">font4</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Times New Roman&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span> <span class="p">)</span>
     <span class="n">font5</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Times New Roman&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">myfont2</span></div>
 
-<div class="viewcode-block" id="myfont15"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.visual_parameter.myfont15">[docs]</a><span class="k">def</span> <span class="nf">myfont15</span><span class="p">():</span>
+<div class="viewcode-block" id="myfont15"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.myfont15">[docs]</a><span class="k">def</span> <span class="nf">myfont15</span><span class="p">():</span>
     <span class="n">myFont</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="n">l</span><span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span><span class="s1">&#39;Courier&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> 
     <span class="n">font15</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">font15</span></div>
 
+<div class="viewcode-block" id="config_widget"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.config_widget">[docs]</a><span class="k">def</span> <span class="nf">config_widget</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span><span class="n">config_dict</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; config dict : wrt the available parameters of the widget&quot;&quot;&quot;</span>
+    <span class="n">widget</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span></div>
 
 <span class="n">f1</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Noto sans&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">)</span>
 <span class="n">mygreen</span> <span class="o">=</span> <span class="s2">&quot;#d2ffd2&quot;</span>
 <span class="n">myred</span> <span class="o">=</span> <span class="s2">&quot;#dd0202&quot;</span>   
 
-<span class="n">label_design</span><span class="o">=</span><span class="p">{</span>
+<span class="n">label_design</span><span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">work_flow_ui_design</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="create_design_feature"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.visual_parameter.create_design_feature">[docs]</a><span class="k">def</span> <span class="nf">create_design_feature</span><span class="p">():</span>
+
+    <span class="n">label_design</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
     <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="s2">&quot;navy blue&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span>
-<span class="p">}</span>
+    <span class="s2">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;font&quot;</span><span class="p">:</span> <span class="n">myfont</span><span class="p">()</span>
+    <span class="p">})</span>
+    
+    <span class="n">work_flow_ui_design</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;highlightbackground&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;background&#39;</span><span class="p">:</span><span class="s1">&#39;light blue&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;font&#39;</span><span class="p">:</span> <span class="n">myfont</span><span class="p">()})</span></div>
+<span class="n">button_design</span><span class="o">=</span><span class="p">{}</span>
 
-<span class="n">button_design</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">}</span>
        
 </pre></div>
 
@@ -119,7 +133,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

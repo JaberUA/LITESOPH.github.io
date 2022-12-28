@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -73,7 +75,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<div class="viewcode-block" id="plot_spectra"><a class="viewcode-back" href="../../../litesoph/litesoph.visualization.html#litesoph.visualization.spec_plot.plot_spectra">[docs]</a><span class="k">def</span> <span class="nf">plot_spectra</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">imgfile</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">conversion</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_spectra"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.visualization.html#litesoph.visualization.spec_plot.plot_spectra">[docs]</a><span class="k">def</span> <span class="nf">plot_spectra</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">imgfile</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">conversion</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">data_ej</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>    
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -96,7 +98,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="plot_files"><a class="viewcode-back" href="../../../litesoph/litesoph.visualization.html#litesoph.visualization.spec_plot.plot_files">[docs]</a><span class="k">def</span> <span class="nf">plot_files</span><span class="p">(</span><span class="n">file1</span><span class="p">,</span> <span class="n">file2</span><span class="p">,</span> <span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_files"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.visualization.html#litesoph.visualization.spec_plot.plot_files">[docs]</a><span class="k">def</span> <span class="nf">plot_files</span><span class="p">(</span><span class="n">file1</span><span class="p">,</span> <span class="n">file2</span><span class="p">,</span> <span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">litesoph.utilities.units</span> <span class="kn">import</span> <span class="n">au_to_fs</span>
     <span class="n">array1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file1</span><span class="p">)</span>
     <span class="n">array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file2</span><span class="p">)</span>
@@ -122,7 +124,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

@@ -1,5 +1,7 @@
-Simulations of Photo-Physical Properties
-==============================================
+
+
+Simulations of Photo-Induced Properties using LITESOPH
+========================================================
 
 Photophysical processes are initiated by the absorption of light by the molecules. 
 After light irradiation molecules get promoted to the electronic excited state. 
@@ -40,11 +42,10 @@ because this method is more rigorous and applicable to all kinds of systems.
 
 Calculations of Absorption Spectrum
 #########################################
-The :ref:`absorption spectrum` is calculated based on these three :ref:`engines`. 
+The :ref:`absorption spectrum` is calculated based on these three :ref:`engines`. Here are the results of some molecular systems using LITESOPH-GUI.
 
-* :doc:`NWChem_Calculation`,
-* :doc:`GPAW_Calculation` and 
-* :doc:`Octopus_Calculation`. 
+   
+* :doc:`./GPAW/GPAW_Calculation` 
 
 Kohn-Sham Decomposition (KSD)
 -----------------------------------
@@ -252,76 +253,18 @@ The center of the pulse is obtained as
     \end{equation}
 
 
-LASER Masking  **TO STUDY ENERGY TRANSFER USING RT-TDDFT APPROACH**
+LASER Masking  **to study energy transfer using RT-TDDFT approach**
 #############
 Energy transfer is one of the most fundamental processes on the molecular scale, governing light-harvesting in biological
 systems and energy conversion in electronic devices such as organic solar cells or light-emitting diodes. The design principles
 of natural light-harvesting complexes have found considerable interest, as scientists believe that the principles realized in nature
-can be mimicked in the design of artificial organic devices.
-One standard method to interpret experimental data of excitation energy transfer between a donor (D) and an acceptor (A)
+can be mimicked in the design of artificial organic devices.One standard method to interpret experimental data of excitation energy transfer between a donor (D) and an acceptor (A)
 molecule separated by the distance R is the so-called Forster resonance energy transfer ( FRET_ ) theory. `Forster` theory describes ¨
 the nonradiative energy transfer mediated by a (quantum-mechanical) coupling between the transition dipoles of the donor and
-acceptor molecules (for example, see :ref:`Fig.2 <Fig.2>`). One of the central assumptions in FRET is that the coupling between D and A
-can be described by a (point)-dipole-dipole interaction, falling as 1/R3
-. Furthermore, FRET_ theory is formulated for the weak
+acceptor molecules. One of the central assumptions in FRET is that the coupling between D and A
+can be described by a (point)-dipole-dipole interaction, falling as 1/R3.
+Furthermore, FRET_ theory is formulated for the weak
 coupling regime (i.e., the isolated D and A excited states do not change significantly on coupling).
-
-.. _Fig.2:
-
-.. figure:: ./Image_laser/eet.png
-    :width: 400px
-    :align: center
-    :height: 250px
-    :alt: alternate text
-    :figclass: align-center
-
-    *Fig.2: Schematic of the non-radiative resonance energy transfer 
-    between the excited state donor and the ground state acceptor molecules.*
-
-
-Recently, TDDFT_ has been applied to Forster type excitation energy transfer questions in the Casida type linear response as
-well as in RT-TDDFT_. Nowadays, RT-TDDFT is finding an increasing attention due to its accuracy and favorable scaling, which
-allows one to apply it large systems. The RT-TDDFT_ solutions, particularly those based on the linear combination of atomic
-orbitals (LCAO) as basis sets, can provide insights into the electronically excited state dynamics for the large complex materials.
-To study the EET using RT-TDDFT_, it is convenient to start from an initially localized excitation of the molecular aggregates (for
-example, see :ref:`Fig.3 <maeet>`). However, such a feature is presently unavailable in most of the LCAO-basis RT-TDDFT codes. Motivated
-by this need, we have developed the LASER MASKING tool on the LCAO basis employing the GPAW code. This way, we can
-excite only the desired molecule in molecular or nanoparticle assemblies.
-
-.. _maeet:
-
-.. figure:: ./Image_laser/molecular_aggregate_eet.png
-    :width: 400px
-    :align: center
-    :height: 250px
-    :alt: alternate text
-    :figclass: align-center
-
-    **Fig.3: Schematic of the locally exciting a molecule in the molecular aggregate** 
-                     
-
-The Hamiltonian of the system in the presence of laser masking is given as
-
-.. math::
-    \mathbf H(\mathbf t) = - \frac{\nabla^2}{2} + \mathbf M(\mathbf r)\mathbf V_\text{ext}({\mathbf r}, t) + \mathbf V(\mathbf r)
-    \label{Eq:H(t)}
-    \tag{14}
-
-
-where `\mathbf V_{ext}` is the externally applied time-dependent potential and V is the internal potential energy due to electrons and ions.
-The masking function M(r) in Eq. :math:`\ref{Eq:H(t)}` is defined as
-
-.. math::
-    \begin{eqnarray}
-    M(\mathbf r) = 
-    \begin{cases}
-      1, & \text{Unmasked region} \\        
-      0, & \text{Masked region}
-    \end{cases}
-    \label{Eq:Mr}
-    \tag{15}
-    \end{eqnarray}
-    
 
 The energy transfer rate is written as
 
@@ -329,44 +272,12 @@ The energy transfer rate is written as
 .. math::
     \mathbf K^\text{ET} = 2\pi {\lvert V\rvert}^2\int_{0}^\infty\!\mathrm{d}\varepsilon {\mathbf J(\varepsilon)}
     \label{Eq:K^ET}
-    \tag{16}
+    \tag{14}
 
 where `\mathbf J(\varepsilon)` is the spectral overlap between the normalized donor emission and acceptor absorption spectra.
 
-The factor V in Eq. :math:`\ref{Eq:K^ET}` is the electronic coupling matrix element and is given as
-
-
-.. math::
-    \mathbf V = \langle D\mathbf A^{*}|\hat{\mathbf V}^{C}|D^*\mathbf A \rangle
-    \label{Eq:V}
-    \tag{17}
-
-where the Coulomb interaction  `\hat V^C` mediates between the initial and final wave functions. F¨orster theory is based on the assumption
-that the wave function of the total system can be separated into D and A parts due to negligible electronic coupling between
-D and A. Initially, the acceptor is in its ground state denoted by `|\mathbf A \rangle` and the donor is in an excited state `|D^⋆\rangle`.
-
-The coupling matrix element in Eq. :math:`\ref{Eq:V}` within the FRET theory is obtained as
-
-.. math::
-    V^\text{FRET} = \kappa^{DA} \frac{{\lvert \mu^A\rvert}{\lvert \mu^D \rvert}}{{\lvert {\mathbf R} \rvert}^3}
-    \label{Eq:V^F}
-    \tag{18}
-
-
-where κDA is the orientation factor and μA and μD are the transition dipole moments of acceptor and donor molecules, respectively
-(for more details, refer to [8]_ ).
-
-
-Together with Eq. :math:`\ref{Eq:K^ET}` the above equation yields the rate of the Forster type excitation energy transfer.
-
-
-**Evaluating the Coupling Matrix element from a real-time propagation**
-***************************************************************************
-
-The most important question to ask is how to extract the coupling constant matrix element as given in Eq. :math:`\ref{Eq:V}`. 
-In principle one could calculate the the initial and final states and evaluate Eq. :math:`\ref{Eq:V}` directly. As we know, the many-body states 
-are hard to compute from first principles and there is no solid reason to identify the KS Slater determinant with the true wave function.
-However, there exists an alternative approach to calculate them in terms of the Davydov splitting. In the case two same molecules, the
+The factor V in Eq. :math:`\ref{Eq:K^ET}` is the electronic coupling matrix element which is obtained using
+Davydov splitting. In the case two same molecules, the
 Davydov splitting `\Delta\Omega` equals the energy splitting `\Delta E` of the (nearly) degenerate excitation energies of the monomers 
 in the supermolecule.
 
@@ -374,15 +285,8 @@ in the supermolecule.
     \begin{equation}
     V = \frac{\Delta\Omega}{2}
     \label{eq:Davydov_splitting}
-    \tag{19}
+    \tag{15}
     \end{equation}
-
-This observation can be exploited in TDDFT_ by calculating the spectrum and extracting the coupling matrix element from the energy splitting.
-In the real-time approach to TDDFT spectra are usually determined by initially exciting
-the system with a momentum boost, propagating the time-dependent KS equations using the dipole moment as observable, and calculating the 
-dipole spectrum via a Fourier transformation. As the energy splitting is typically much smaller than the excitation energies themselves, 
-high resolution and thus comparably long propagation times are needed to resolve the splitting.
-
 
 There is however, an another alternative way of evaluating the required information by observing the `D` and `A` dipole moments separately. 
 It significantly reduces the computational cost. We note that the Davydov splitting and consequently also the coupling matrix element `V` 
@@ -393,13 +297,10 @@ a beat frequency `\omega_{beat}` of an oscillation between `D` and `A`.
     \begin{equation}
     V = \omega_{beat}
     \label{eq:V_beat}
-    \tag{20}
+    \tag{16}
     \end{equation}
 
-Apart from the beat the dipole moment of the system oscillates only at frequencies close to the laser frequency that was used for the excitation. 
-Hence the beat frequency can be determined easily from the `D` and `A` dipole moments. The essential observation now is that for doing so, the 
-dipole moment time evolution only has to be recorded long enough to capture one half cycle of the beat. This is a much shorter time than the time 
-needed to obtain an accurate spectrum from the Fourier transformation. Thus, the coupling strength can be determined with moderate simulation times.
+
 
 ##############################
 .. _TDDFT : https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.
@@ -414,8 +315,7 @@ needed to obtain an accurate spectrum from the Fourier transformation. Thus, the
 .. _envelope : https://en.wikipedia.org/wiki/Envelope_(waves)
 .. _TCM : http://allie.dbcls.jp/pair/TCM;transition+contribution+map.html
 
-Pump-probe Spectroscopy
-#############################
+
 
 .. _ref:
 
@@ -446,8 +346,6 @@ References
        theory: An efficient tool for analyzing plasmonic excitations, Journal of Chemical Theory and Computation 13, 4779 (2017),
        pMID: 28862851, `https://doi.org/10.1021/acs.jctc.7b00589 <https://doi.org/10.1021/acs.jctc.7b00589>`_ .
 
-.. [8] D. Hofmann, T. Korzdorfer, and S. Kummel, Energy transfer and forster’s dipole coupling approximation investigated in a real-time
-       kohn-sham scheme, Phys. Rev. A 82, 012509 (2010).
 
 
 

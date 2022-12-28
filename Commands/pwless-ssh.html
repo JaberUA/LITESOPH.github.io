@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technical Issues &mdash; LITESOPH 0.1 documentation</title>
+  <title>How to access passwordless SSH? &mdash; LITESOPH 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,9 +17,7 @@
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Developer Guideline" href="../Developer_Guideline.html" />
-    <link rel="prev" title="Issues" href="../Issues.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,18 +35,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../Issues.html">Issues</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Technical Issues</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#passwordless-ssh-log-in">Passwordless SSH log in</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -66,8 +60,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../Issues.html">Issues</a> &raquo;</li>
-      <li>Technical Issues</li>
+      <li>How to access passwordless SSH?</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Commands/pwless-ssh.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,10 +70,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="technical-issues">
-<h1>Technical Issues<a class="headerlink" href="#technical-issues" title="Permalink to this headline"></a></h1>
-<section id="passwordless-ssh-log-in">
-<h2>Passwordless SSH log in<a class="headerlink" href="#passwordless-ssh-log-in" title="Permalink to this headline"></a></h2>
+  <section id="how-to-access-passwordless-ssh">
+<h1>How to access passwordless SSH?<a class="headerlink" href="#how-to-access-passwordless-ssh" title="Permalink to this headline"></a></h1>
 <p>Step 1: Check or Create Authentication SSH-Keygen Keys on local machine</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; $ ls -al ~/.ssh/id_*.pub  #check existing key, if key exists goto step 2
 &gt;&gt;&gt; $ ssh-keygen -t rsa      # Keep pressing enter
@@ -100,21 +91,17 @@
 </pre></div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Issues.html" class="btn btn-neutral float-left" title="Issues" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Developer_Guideline.html" class="btn btn-neutral float-right" title="Developer Guideline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

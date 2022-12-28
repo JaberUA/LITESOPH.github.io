@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.gui.task_controller &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.gui.task_controller</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.gui.task_controller</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.user_data</span> <span class="kn">import</span> <span class="n">get_remote_profile</span><span class="p">,</span> <span class="n">update_proj_list</span><span class="p">,</span> <span class="n">update_remote_profile_list</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.workflow_manager</span> <span class="kn">import</span> <span class="n">WorkflowManager</span><span class="p">,</span> <span class="n">TaskSetupError</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_classes</span> <span class="kn">import</span> <span class="n">TaskInfo</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.task</span> <span class="kn">import</span> <span class="n">Task</span><span class="p">,</span> <span class="n">TaskFailed</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.task_data</span> <span class="kn">import</span> <span class="n">TaskTypes</span> <span class="k">as</span> <span class="n">tt</span>                                  
+<span class="kn">from</span> <span class="nn">litesoph.gui</span> <span class="kn">import</span> <span class="n">views</span> <span class="k">as</span> <span class="n">v</span>
+<span class="kn">from</span> <span class="nn">litesoph.common</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">m</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.models.gs_model</span> <span class="kn">import</span> <span class="n">choose_engine</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.decision_tree</span> <span class="kn">import</span> <span class="n">EngineDecisionError</span>
+
+<div class="viewcode-block" id="TaskController"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.TaskController">[docs]</a><span class="k">class</span> <span class="nc">TaskController</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_controller</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span> <span class="o">=</span> <span class="n">workflow_controller</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">main_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">view_panel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status_engine</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">status_engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="kc">None</span>
+        
+
+<div class="viewcode-block" id="TaskController.set_task"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.TaskController.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_manager</span><span class="p">:</span> <span class="n">WorkflowManager</span><span class="p">,</span> <span class="n">task_view</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="n">workflow_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span> <span class="o">=</span> <span class="n">workflow_manager</span><span class="o">.</span><span class="n">current_task_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="n">task_view</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">task_view</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Generate</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Script&gt;&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_input</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">set_sub_button_state</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">)</span> 
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="p">,</span> <span class="s1">&#39;set_parameters&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+    <span class="c1"># def create_task_view(self, view_class, *args, **kwargs):</span>
+    <span class="c1">#     self.task_view = view_class(self.app.task_input_frame, *args, **kwargs)</span>
+    <span class="c1">#     self.task_view.grid(row=0, column=0, sticky =&#39;NSEW&#39;)</span>
+    <span class="c1">#     self.task_view.tkraise()</span>
+
+<div class="viewcode-block" id="TaskController.generate_input"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.TaskController.generate_input">[docs]</a>    <span class="k">def</span> <span class="nf">generate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">inp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">inp_dict</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">tt</span><span class="o">.</span><span class="n">GROUND_STATE</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="p">:</span>
+            <span class="n">engine</span> <span class="o">=</span> <span class="n">choose_engine</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">))</span>   
+            <span class="k">if</span> <span class="n">engine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="o">.</span><span class="n">set_engine</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">EngineDecisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Engine Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="n">check</span> <span class="o">=</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askokcancel</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Input parameters selected&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span> <span class="n">dict2string</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="o">.</span><span class="n">get_engine_task</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">create_input</span><span class="p">()</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_engine_input</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">txt</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bind_task_events</span><span class="p">()</span></div>
+    
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_check_task_run_condition</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+           <span class="n">task</span><span class="o">.</span><span class="n">check_prerequisite</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>           
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+            
+<div class="viewcode-block" id="TaskController.view_input_file"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.TaskController.view_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">view_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span><span class="n">Task</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">template</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="TaskController.bind_task_events"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.TaskController.bind_task_events">[docs]</a>    <span class="k">def</span> <span class="nf">bind_task_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Save</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Script&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_save_button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;SubLocal</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_run_local_button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;SubNetwork</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_run_network_button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">))</span></div>
+    
+    <span class="k">def</span> <span class="nf">_on_save_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span><span class="n">Task</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">set_engine_input</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">save_input</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">task_name</span> <span class="o">==</span> <span class="n">tt</span><span class="o">.</span><span class="n">GROUND_STATE</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">status_engine</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">set_sub_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">set_label_msg</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_on_run_network_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span><span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_task_run_condition</span><span class="p">(</span><span class="n">task</span><span class="p">):</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Input not saved. Please save the input before job submission&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">JobSubPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">task_input_frame</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">task_name</span> <span class="p">,</span> <span class="s1">&#39;Network&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span> <span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">back2main</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">show_workmanager_page</span><span class="p">)</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">get_remote_profile</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">remote</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_network_profile</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Run</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Network&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_network</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;View</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">NetworkOutfile&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_out_remote_view_button</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Save</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Network&gt;&gt;&#39;</span><span class="p">,</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_save_job_script</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Create</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">NetworkScript&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_create_remote_job_script</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">_on_run_local_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span><span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_task_run_condition</span><span class="p">(</span><span class="n">task</span><span class="p">):</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Input not saved. Please save the input before job submission&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">JobSubPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">task_input_frame</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="p">,</span> <span class="s1">&#39;Local&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span> <span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">back2main</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">show_workmanager_page</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;disable&#39;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Run</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Local&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_local</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;View</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">LocalOutfile&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_out_local_view_button</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Save</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">Local&gt;&gt;&#39;</span><span class="p">,</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_save_job_script</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;&lt;Create</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="si">}</span><span class="s1">LocalScript&gt;&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_create_local_job_script</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">task_name</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">_on_plot_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        
+        <span class="n">param</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">get_param_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="p">,</span> <span class="s1">&#39;get_plot_parameters&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="n">get_param_func</span><span class="p">()</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">**</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Error occured during plotting&quot;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_run_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="n">np</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="p">:</span>
+            <span class="n">sub_job_type</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;bash&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">np</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">get_processors</span><span class="p">()</span>
+            <span class="n">sub_job_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">sub_job_type</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">sub_command</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            
+        <span class="k">if</span> <span class="n">sub_job_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cmd</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot; Please provide submit command for queue submission&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+           <span class="k">if</span> <span class="n">cmd</span> <span class="o">!=</span> <span class="s1">&#39;bash&#39;</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot; Only bash is used for command line execution&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="n">task</span><span class="o">.</span><span class="n">set_submit_local</span><span class="p">(</span><span class="n">np</span><span class="p">)</span>
+    
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">run_job_local</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;There was an error when trying to run the job&#39;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">local</span><span class="p">[</span><span class="s1">&#39;returncode&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Job exited with non-zero return code.&quot;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; Error: </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">local</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Well done!&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Job completed successfully!&#39;</span><span class="p">)</span>
+                
+
+    <span class="k">def</span> <span class="nf">_on_out_local_view_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">log_txt</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get_engine_log</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">TaskFailed</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Info&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Job not completed.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">log_txt</span><span class="p">,</span> <span class="s1">&#39;disabled&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_run_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">):</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">check_prerequisite</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">e</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">sub_job_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">sub_job_type</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">sub_command</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">sub_job_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cmd</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot; Please provide submit command for queue submission&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+           <span class="k">if</span> <span class="n">cmd</span> <span class="o">!=</span> <span class="s1">&#39;bash&#39;</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot; Only bash is used for command line execution&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        
+        <span class="n">login_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">get_network_dict</span><span class="p">()</span>
+        <span class="n">update_remote_profile_list</span><span class="p">(</span><span class="n">login_dict</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">connect_to_network</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="n">login_dict</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">],</span>
+                                    <span class="n">username</span><span class="o">=</span><span class="n">login_dict</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="n">login_dict</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+                                    <span class="n">port</span><span class="o">=</span><span class="n">login_dict</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span>
+                                    <span class="n">remote_path</span><span class="o">=</span><span class="n">login_dict</span><span class="p">[</span><span class="s1">&#39;remote_path&#39;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Unable to connect to the network&#39;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span> <span class="n">e</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">task</span><span class="o">.</span><span class="n">submit_network</span><span class="o">.</span><span class="n">run_job</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;There was an error when trying to run the job&#39;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="p">[</span><span class="s1">&#39;sub_returncode&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Error&quot;</span><span class="p">,</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Error occured during job submission.&quot;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; Error: </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                 <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Well done!&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Job submitted successfully!&#39;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;output:</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_get_remote_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">):</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">submit_network</span><span class="o">.</span><span class="n">download_output_files</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_on_create_local_job_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">np</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">processors</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">b_file</span> <span class="o">=</span>  <span class="n">task</span><span class="o">.</span><span class="n">create_job_script</span><span class="p">(</span><span class="n">np</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">b_file</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_create_remote_job_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">np</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">processors</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">rpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_sub_page</span><span class="o">.</span><span class="n">rpath</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">rpath</span><span class="p">:</span>
+            <span class="n">b_file</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">create_job_script</span><span class="p">(</span><span class="n">np</span><span class="p">,</span> <span class="n">remote_path</span><span class="o">=</span><span class="n">rpath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Please enter remote path&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">b_file</span><span class="p">,</span> <span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+       
+    <span class="k">def</span> <span class="nf">_on_save_job_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">task</span> <span class="p">:</span><span class="n">Task</span><span class="p">,</span><span class="n">view</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">set_run_button_state</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">write_job_script</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">job_script</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_on_out_remote_view_button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        
+        <span class="n">check</span> <span class="o">=</span>  <span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sub_returncode&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Warning&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The job is not submitted yet.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">check</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="s2">&quot;Warning&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Error occured during job submission.&quot;</span><span class="p">,</span> <span class="n">detail</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;output:</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking for job completion..&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">submit_network</span><span class="o">.</span><span class="n">check_job_status</span><span class="p">():</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;job Done.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_remote_output</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>   
+            <span class="n">log_txt</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get_engine_log</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">log_txt</span><span class="p">,</span> <span class="s1">&#39;disabled&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">calculation</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;data_downloaded&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">get</span> <span class="o">=</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Info&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Job not commpleted.&quot;</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span> <span class="s2">&quot;Do you what to download engine log file?&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">get</span><span class="p">:</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">submit_network</span><span class="o">.</span><span class="n">get_output_log</span><span class="p">()</span>
+                <span class="n">log_txt</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get_engine_log</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">log_txt</span><span class="p">,</span> <span class="s1">&#39;disabled&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span></div>
+
+<div class="viewcode-block" id="MaskingPageController"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.MaskingPageController">[docs]</a><span class="k">class</span> <span class="nc">MaskingPageController</span><span class="p">(</span><span class="n">TaskController</span><span class="p">):</span>
+
+<div class="viewcode-block" id="MaskingPageController.set_task"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.MaskingPageController.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_manager</span><span class="p">:</span> <span class="n">WorkflowManager</span><span class="p">,</span> <span class="n">task_view</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="n">workflow_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span> <span class="o">=</span> <span class="n">workflow_manager</span><span class="o">.</span><span class="n">current_task_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="n">task_view</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="o">.</span><span class="n">get_engine_task</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">TaskSetupError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">return</span>
+            
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">task_view</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">energy_coupling_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_masking_page_compute</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">plot_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_plot_dm_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">back_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">show_workmanager_page</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="p">,</span> <span class="s1">&#39;set_parameters&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">_on_masking_page_compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">inp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_energy_coupling_constant</span><span class="p">(</span><span class="o">**</span><span class="n">inp_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">text</span><span class="o">=</span> <span class="n">txt</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span> <span class="s1">&#39;disabled&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_on_plot_dm_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">inp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">**</span><span class="n">inp_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LaserPageController"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.LaserPageController">[docs]</a><span class="k">class</span> <span class="nc">LaserPageController</span><span class="p">(</span><span class="n">TaskController</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_controller</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">workflow_controller</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="LaserPageController.set_task"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.LaserPageController.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_manager</span><span class="p">:</span> <span class="n">WorkflowManager</span><span class="p">,</span> <span class="n">task_view</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_task</span><span class="p">(</span><span class="n">workflow_manager</span><span class="p">,</span> <span class="n">task_view</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;DesignLaser&gt;&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_design_laser</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LaserPageController.generate_input"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.LaserPageController.generate_input">[docs]</a>    <span class="k">def</span> <span class="nf">generate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_choose_laser</span><span class="p">():</span>
+            <span class="k">return</span>
+        <span class="c1"># self.task_view.set_laser_design_dict(self.laser_design.l_design)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">set_laser_design_dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">list_of_laser_param</span><span class="p">)</span>
+
+        <span class="n">inp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">inp_dict</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">check</span> <span class="o">=</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askokcancel</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Input parameters selected&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span> <span class="n">dict2string</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="o">.</span><span class="n">get_engine_task</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">create_input</span><span class="p">()</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_engine_input</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span><span class="o">.</span><span class="n">insert_text</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">txt</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bind_task_events</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_on_design_laser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="c1"># laser_desgin_inp = self.task_view.get_laser_pulse()</span>
+        <span class="n">laser_desgin_inp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_laser_details</span><span class="p">()</span>
+        <span class="n">laser_total_time</span> <span class="o">=</span> <span class="n">laser_desgin_inp</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># self.laser_design = m.LaserDesignModel(laser_desgin_inp)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">LaserDesignPlotModel</span><span class="p">(</span><span class="n">laser_inputs</span> <span class="o">=</span><span class="n">laser_desgin_inp</span><span class="p">,</span>
+        <span class="n">laser_profile_time</span><span class="o">=</span> <span class="n">laser_total_time</span><span class="p">)</span>
+        <span class="c1"># self.laser_design.create_pulse()</span>
+        <span class="c1"># self.laser_design.plot_time_strength()</span>
+        <span class="n">pulse_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">get_laser_pulse_list</span><span class="p">()</span>
+        <span class="p">(</span><span class="n">time_arr</span><span class="p">,</span> <span class="n">list_strength_arr</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">get_time_strength</span><span class="p">(</span><span class="n">pulse_list</span><span class="p">)</span>
+        <span class="c1"># self.laser_design.write(&#39;laser&#39;,time_arr, list_strength_arr)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">plot_laser</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_on_choose_laser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;Laser is not set. Please choose the laser&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askokcancel</span><span class="p">(</span><span class="n">message</span><span class="o">=</span> <span class="s2">&quot;Do you want to proceed with this laser set up?&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">path</span> <span class="o">/</span><span class="s1">&#39;laser.dat&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span><span class="o">.</span><span class="n">strengths</span><span class="p">)</span>
+            <span class="c1"># self.laser_design.write_laser(&quot;laser.dat&quot;)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">laser_design</span> <span class="o">=</span> <span class="kc">None</span> </div>
+
+
+<div class="viewcode-block" id="PostProcessTaskController"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.PostProcessTaskController">[docs]</a><span class="k">class</span> <span class="nc">PostProcessTaskController</span><span class="p">(</span><span class="n">TaskController</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PostProcessTaskController.set_task"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.PostProcessTaskController.set_task">[docs]</a>    <span class="k">def</span> <span class="nf">set_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_manager</span><span class="p">:</span> <span class="n">WorkflowManager</span><span class="p">,</span> <span class="n">task_view</span><span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="n">workflow_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span> <span class="o">=</span> <span class="n">workflow_manager</span><span class="o">.</span><span class="n">current_task_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="n">task_view</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">task_view</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">submit_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_task_serial</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">plot_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_plot_button</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">back_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">show_workmanager_page</span><span class="p">)</span>
+           
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="p">,</span> <span class="s1">&#39;set_parameters&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">_run_task_serial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        
+        <span class="n">inp_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_view</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="o">.</span><span class="n">get_engine_task</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">prepare_input</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="s1">&#39;done&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">engine_param</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">user_input</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_run_local</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">,</span> <span class="n">np</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="input_param_report"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.input_param_report">[docs]</a><span class="k">def</span> <span class="nf">input_param_report</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="n">input_param</span><span class="p">):</span>
+    <span class="k">pass</span>            </div>
+
+<div class="viewcode-block" id="dict2string"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.task_controller.dict2string">[docs]</a><span class="k">def</span> <span class="nf">dict2string</span><span class="p">(</span><span class="n">inp_dict</span><span class="p">):</span>
+
+    <span class="n">txt</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">inp_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">txt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> =  </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

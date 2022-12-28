@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.engines.octopus.octopus_manager &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../octopus.html">litesoph.engines.octopus</a> &raquo;</li>
+      <li>litesoph.engines.octopus.octopus_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.engines.octopus.octopus_manager</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_classes</span> <span class="kn">import</span> <span class="n">TaskInfo</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.task</span> <span class="kn">import</span> <span class="n">TaskNotImplementedError</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.task_data</span> <span class="kn">import</span> <span class="n">TaskTypes</span> <span class="k">as</span> <span class="n">tt</span>                    
+<span class="kn">from</span> <span class="nn">litesoph.common.workflows_data</span> <span class="kn">import</span> <span class="n">WorkflowTypes</span> <span class="k">as</span> <span class="n">wt</span>     
+<span class="kn">from</span> <span class="nn">litesoph.common.engine_manager</span> <span class="kn">import</span> <span class="n">EngineManager</span>
+<span class="kn">from</span> <span class="nn">litesoph.engines.octopus.octopus_task</span> <span class="kn">import</span> <span class="n">OctopusTask</span><span class="p">,</span> <span class="n">calc_td_range</span>
+<span class="kn">from</span> <span class="nn">litesoph.engines.octopus</span> <span class="kn">import</span> <span class="n">task_data</span> <span class="k">as</span> <span class="n">td</span>
+
+<div class="viewcode-block" id="OCTOPUSManager"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.octopus_manager.OCTOPUSManager">[docs]</a><span class="k">class</span> <span class="nc">OCTOPUSManager</span><span class="p">(</span><span class="n">EngineManager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all the engine.&quot;&quot;&quot;</span>
+
+    <span class="n">implemented_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt</span><span class="o">.</span><span class="n">GROUND_STATE</span><span class="p">,</span> <span class="n">tt</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">,</span> <span class="n">tt</span><span class="o">.</span><span class="n">COMPUTE_SPECTRUM</span><span class="p">,</span>
+                                    <span class="n">tt</span><span class="o">.</span><span class="n">TCM</span><span class="p">,</span> <span class="n">tt</span><span class="o">.</span><span class="n">MASKING</span><span class="p">,</span> <span class="n">tt</span><span class="o">.</span><span class="n">MO_POPULATION</span><span class="p">]</span>
+
+    <span class="n">implemented_workflows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">wt</span><span class="o">.</span><span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">wt</span><span class="o">.</span><span class="n">AVERAGED_SPECTRUM</span><span class="p">,</span> <span class="n">wt</span><span class="o">.</span><span class="n">KOHN_SHAM_DECOMPOSITION</span><span class="p">,</span> 
+                                        <span class="n">wt</span><span class="o">.</span><span class="n">MO_POPULATION_TRACKING</span><span class="p">]</span>
+
+<div class="viewcode-block" id="OCTOPUSManager.get_task"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.octopus_manager.OCTOPUSManager.get_task">[docs]</a>    <span class="k">def</span> <span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">task_info</span><span class="p">:</span> <span class="n">TaskInfo</span><span class="p">,</span> 
+                        <span class="n">dependent_tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TaskInfo</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_task</span><span class="p">(</span><span class="n">task_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">OctopusTask</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">task_info</span><span class="p">,</span> <span class="n">dependent_tasks</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="OCTOPUSManager.get_default_task_param"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.octopus_manager.OCTOPUSManager.get_default_task_param">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_task_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dependent_tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TaskInfo</span><span class="p">],</span> <span class="kc">None</span><span class="p">]):</span>
+        <span class="n">task_default_parameter_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">tt</span><span class="o">.</span><span class="n">GROUND_STATE</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">get_gs_default_param</span><span class="p">,</span>
+            <span class="n">tt</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">get_rt_tddft_default_param</span><span class="p">,</span>
+            <span class="n">tt</span><span class="o">.</span><span class="n">COMPUTE_SPECTRUM</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">get_compute_spec_param</span><span class="p">,</span>
+            <span class="n">tt</span><span class="o">.</span><span class="n">TCM</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">get_tcm_param</span><span class="p">,</span>
+            <span class="n">tt</span><span class="o">.</span><span class="n">MO_POPULATION</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">get_mo_pop_param</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_task</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">get_func</span> <span class="o">=</span> <span class="n">task_default_parameter_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">tt</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span>
+            <span class="n">gs_info</span> <span class="o">=</span> <span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">gs_info</span><span class="p">:</span>
+                <span class="n">gs_spacing</span> <span class="o">=</span> <span class="n">gs_info</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spacing&#39;</span><span class="p">)</span>
+            
+            <span class="n">task_default</span> <span class="o">=</span> <span class="n">get_func</span><span class="p">()</span>
+            <span class="n">task_default</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;time_step&#39;</span><span class="p">:</span> <span class="n">calc_td_range</span><span class="p">(</span><span class="n">gs_spacing</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">})</span>
+            <span class="k">return</span> <span class="n">task_default</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">get_func</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="OCTOPUSManager.get_workflow"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.octopus_manager.OCTOPUSManager.get_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">get_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+    
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

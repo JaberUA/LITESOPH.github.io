@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -70,23 +72,23 @@
   <h1>Source code for litesoph.gui.viewpanel</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 
-<div class="viewcode-block" id="ViewPanelManager"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager">[docs]</a><span class="k">class</span> <span class="nc">ViewPanelManager</span><span class="p">:</span>
+<div class="viewcode-block" id="ViewPanelManager"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager">[docs]</a><span class="k">class</span> <span class="nc">ViewPanelManager</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
         <span class="n">builder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s1">&#39;view_text&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ViewPanelManager.clear_text"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.clear_text">[docs]</a>    <span class="k">def</span> <span class="nf">clear_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ViewPanelManager.clear_text"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.clear_text">[docs]</a>    <span class="k">def</span> <span class="nf">clear_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ViewPanelManager.insert_text"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.insert_text">[docs]</a>    <span class="k">def</span> <span class="nf">insert_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="ViewPanelManager.insert_text"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.insert_text">[docs]</a>    <span class="k">def</span> <span class="nf">insert_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear_text</span><span class="p">()</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ViewPanelManager.get_text"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.get_text">[docs]</a>    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ViewPanelManager.get_text"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.viewpanel.ViewPanelManager.get_text">[docs]</a>    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">txt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_txt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">txt</span></div></div>
        
@@ -100,7 +102,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

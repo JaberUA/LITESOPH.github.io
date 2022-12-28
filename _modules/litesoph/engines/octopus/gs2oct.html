@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.engines.octopus.gs2oct &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../octopus.html">litesoph.engines.octopus</a> &raquo;</li>
+      <li>litesoph.engines.octopus.gs2oct</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.engines.octopus.gs2oct</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="create_oct_gs_inp"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.create_oct_gs_inp">[docs]</a><span class="k">def</span> <span class="nf">create_oct_gs_inp</span><span class="p">(</span><span class="n">gui_inp</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="c1"># Add Validation for available options</span>
+    <span class="n">key2key</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;XYZCoordinates&quot;</span><span class="p">:</span><span class="s2">&quot;XYZCoordinates&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="s2">&quot;Spacing&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="s2">&quot;MaximumIter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;energy_conv&quot;</span><span class="p">:</span> <span class="s2">&quot;ConvEnergy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;density_conv&quot;</span><span class="p">:</span> <span class="s2">&quot;ConvAbsDens&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;smearing&quot;</span><span class="p">:</span><span class="s2">&quot;Smearing&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mixing&quot;</span><span class="p">:</span><span class="s2">&quot;Mixing&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bands&quot;</span> <span class="p">:</span> <span class="s2">&quot;ExtraStates&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spin&quot;</span><span class="p">:</span> <span class="s2">&quot;SpinComponents&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="n">_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;CalculationMode&quot;</span><span class="p">:</span> <span class="s2">&quot;gs&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;UnitsOutput&quot;</span><span class="p">:</span> <span class="s2">&quot;ev_angstrom&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;FromScratch&quot;</span><span class="p">:</span> <span class="n">gui_inp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FromScratch&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">),</span>        
+    <span class="p">}</span>
+
+    <span class="n">boxshape</span> <span class="o">=</span> <span class="n">gui_inp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;boxshape&quot;</span><span class="p">)</span>
+    <span class="n">box_dim</span> <span class="o">=</span> <span class="n">gui_inp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;box_dim&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">box_dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">select_box</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">select_box</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">xc</span> <span class="o">=</span> <span class="n">gui_inp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;xc&quot;</span><span class="p">)</span>
+    <span class="n">copy_inp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">gui_inp</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gui_inp</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key2key</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">_key2key_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="p">[(</span><span class="n">key2key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)])</span> 
+                <span class="n">_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_key2key_dict</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;boxshape&quot;</span><span class="p">:</span>
+                    <span class="n">sim_box</span> <span class="o">=</span> <span class="n">get_box_dim</span><span class="p">(</span><span class="n">_boxshape</span><span class="o">=</span> <span class="n">boxshape</span><span class="p">,</span>
+                                    <span class="n">_from_vacuum</span><span class="o">=</span> <span class="ow">not</span> <span class="n">select_box</span><span class="p">,</span>
+                                <span class="o">**</span><span class="n">copy_inp</span><span class="p">)</span>
+                    <span class="n">_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sim_box</span><span class="p">)</span>               
+                <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;xc&quot;</span><span class="p">:</span>
+                    <span class="n">_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">get_xc_pseudo</span><span class="p">(</span><span class="n">xc_str</span><span class="o">=</span><span class="n">xc</span><span class="p">))</span> 
+    
+    <span class="n">spacing_value</span> <span class="o">=</span> <span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Spacing&quot;</span><span class="p">)</span>
+    <span class="n">_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;Spacing&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">spacing_value</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">_dict</span></div>
+
+<div class="viewcode-block" id="get_box_dim"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.get_box_dim">[docs]</a><span class="k">def</span> <span class="nf">get_box_dim</span><span class="p">(</span><span class="n">_boxshape</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span><span class="n">_from_vacuum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">_from_vacuum</span> <span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_geom_file</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;XYZCoordinates&quot;</span><span class="p">)</span>
+            <span class="n">_vacuum</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vacuum&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Geometry file not found&quot;</span><span class="p">)</span>
+        <span class="n">_cell</span> <span class="o">=</span> <span class="n">get_box_dim_from_vacuum</span><span class="p">(</span><span class="n">_geom_file</span><span class="p">,</span><span class="n">_vacuum</span><span class="p">,</span> <span class="n">_boxshape</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">_boxshape</span> <span class="o">==</span> <span class="s2">&quot;parallelepiped&quot;</span><span class="p">:</span>
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                                    <span class="s2">&quot;param&quot;</span><span class="p">:{</span><span class="s1">&#39;LSize&#39;</span><span class="p">:[[</span>
+                                        <span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;lx&quot;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                        <span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;ly&quot;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                        <span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;lz&quot;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">]]}}</span>
+                            <span class="p">}</span>
+        <span class="k">elif</span> <span class="n">_boxshape</span> <span class="o">==</span> <span class="s2">&quot;cylinder&quot;</span><span class="p">:</span>
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                                    <span class="s2">&quot;param&quot;</span><span class="p">:{</span>
+                                        <span class="s1">&#39;Xlength&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;lx&quot;</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;Radius&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;radius&quot;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">}</span>
+                                            <span class="p">}}</span>
+        <span class="k">elif</span> <span class="n">_boxshape</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;sphere&quot;</span><span class="p">,</span><span class="s2">&quot;minimum&quot;</span><span class="p">]:</span>
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                                    <span class="s2">&quot;param&quot;</span><span class="p">:{</span>
+                                        <span class="s1">&#39;Radius&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">_cell</span><span class="p">[</span><span class="s2">&quot;radius&quot;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">}</span>
+                                            <span class="p">}}</span>
+        <span class="k">return</span> <span class="n">_sim_box</span>
+
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">_from_vacuum</span><span class="p">:</span>
+        <span class="n">box_dict</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;box_dim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">box_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">_boxshape</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;minimum&#39;</span><span class="p">,</span><span class="s1">&#39;sphere&#39;</span><span class="p">]:</span>     
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                        <span class="s2">&quot;param&quot;</span><span class="p">:{</span><span class="s1">&#39;Radius&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">}}}</span>
+            <span class="k">return</span> <span class="n">_sim_box</span> 
+        <span class="k">elif</span> <span class="n">_boxshape</span> <span class="o">==</span> <span class="s1">&#39;cylinder&#39;</span><span class="p">:</span>
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                        <span class="s2">&quot;param&quot;</span><span class="p">:{</span><span class="s1">&#39;Radius&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;Xlength&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cylinder length&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">}}}</span>
+            <span class="k">return</span> <span class="n">_sim_box</span> 
+        <span class="k">elif</span> <span class="n">_boxshape</span> <span class="o">==</span> <span class="s1">&#39;parallelepiped&#39;</span><span class="p">:</span>
+            <span class="n">_sim_box</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;BoxShape&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">_boxshape</span><span class="p">,</span>
+                        <span class="s2">&quot;param&quot;</span><span class="p">:{</span><span class="s1">&#39;LSize&#39;</span><span class="p">:[[</span>
+                                <span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;box length_x&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                <span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;box length_y&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">,</span>
+                                <span class="nb">str</span><span class="p">(</span><span class="n">box_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;box length_z&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;*angstrom&#39;</span><span class="p">]]}}}</span> 
+            <span class="k">return</span> <span class="n">_sim_box</span>                 </div>
+
+<div class="viewcode-block" id="get_box_dim_from_vacuum"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.get_box_dim_from_vacuum">[docs]</a><span class="k">def</span> <span class="nf">get_box_dim_from_vacuum</span><span class="p">(</span><span class="n">geom_file</span><span class="p">,</span> <span class="n">vacuum</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span><span class="n">box_shape</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">geom_file</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">box_shape</span> <span class="o">==</span> <span class="s2">&quot;parallelepiped&quot;</span><span class="p">:</span>
+        <span class="n">atoms</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">vacuum</span><span class="o">=</span><span class="n">vacuum</span><span class="p">)</span>
+        <span class="n">cell_param</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">cellpar</span><span class="p">()</span>
+        <span class="n">lx</span> <span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cell_param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ly</span> <span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cell_param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">lz</span> <span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cell_param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">box_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;lx&quot;</span><span class="p">:</span><span class="n">lx</span><span class="p">,</span>
+            <span class="s2">&quot;ly&quot;</span><span class="p">:</span><span class="n">ly</span><span class="p">,</span>
+            <span class="s2">&quot;lz&quot;</span><span class="p">:</span><span class="n">lz</span>
+        <span class="p">}</span>
+
+    <span class="k">elif</span> <span class="n">box_shape</span> <span class="o">==</span> <span class="s2">&quot;cylinder&quot;</span><span class="p">:</span>
+        <span class="n">atoms</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">vacuum</span><span class="o">=</span><span class="n">vacuum</span><span class="p">)</span>
+        <span class="n">cell_param</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">cellpar</span><span class="p">()</span>
+        <span class="n">lx</span> <span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cell_param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cell_param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cell_param</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">box_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lx&quot;</span><span class="p">:</span><span class="n">lx</span><span class="p">,</span>
+                    <span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="nb">round</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span>
+
+    <span class="k">elif</span> <span class="n">box_shape</span> <span class="o">==</span> <span class="s2">&quot;sphere&quot;</span><span class="p">:</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_all_distances</span><span class="p">()</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">disp</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">vacuum</span>
+        <span class="n">box_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="nb">round</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span>
+
+    <span class="k">elif</span> <span class="n">box_shape</span> <span class="o">==</span> <span class="s2">&quot;minimum&quot;</span><span class="p">:</span>
+        <span class="n">box_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="n">vacuum</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">box_dict</span></div>
+
+<div class="viewcode-block" id="set_expt_features"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.set_expt_features">[docs]</a><span class="k">def</span> <span class="nf">set_expt_features</span><span class="p">():</span>
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="get_xc_pseudo"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.get_xc_pseudo">[docs]</a><span class="k">def</span> <span class="nf">get_xc_pseudo</span><span class="p">(</span><span class="n">xc_str</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">_xc</span> <span class="o">=</span> <span class="n">xc_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">xc_pseudo</span> <span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;lda&quot;</span><span class="p">:[</span><span class="s2">&quot;lda_x + lda_c_pz_mod&quot;</span><span class="p">,</span> <span class="s2">&quot;standard&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;pbe&quot;</span><span class="p">:[</span><span class="s2">&quot;gga_x_pbe + gga_c_pbe&quot;</span><span class="p">,</span> <span class="s2">&quot;pseudodojo_pbe&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">pseudo_expt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;yes&#39;</span> <span class="p">:[</span><span class="s2">&quot;pseudodojo_lda&quot;</span><span class="p">,</span><span class="s2">&quot;hscv_lda&quot;</span><span class="p">,</span><span class="s2">&quot;pseudodojo_lda_stringent&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;pseudodojo_pbe&quot;</span><span class="p">,</span><span class="s2">&quot;pseudodojo_pbe_stringent&quot;</span><span class="p">,</span><span class="s2">&quot;pseudodojo_pbesol&quot;</span><span class="p">,</span><span class="s2">&quot;pseudodojo_pbesol_stringent&quot;</span><span class="p">,</span><span class="s2">&quot;sg15&quot;</span><span class="p">,</span> <span class="s2">&quot;hscv_pbe&quot;</span><span class="p">],</span>
+                    <span class="s1">&#39;no&#39;</span><span class="p">:[</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span> <span class="s2">&quot;hgh_lda_sc&quot;</span><span class="p">,</span><span class="s2">&quot;hgh_lda&quot;</span><span class="p">]</span>
+                    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">_xc</span> <span class="ow">in</span> <span class="n">xc_pseudo</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">xc</span> <span class="o">=</span> <span class="n">xc_pseudo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_xc</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pseudo</span> <span class="o">=</span> <span class="n">xc_pseudo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_xc</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">pseudo_expt</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">pseudo</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                <span class="n">expt</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="k">break</span>
+        <span class="n">xc_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;ExperimentalFeatures&quot;</span><span class="p">:</span><span class="n">expt</span><span class="p">,</span>
+        <span class="s2">&quot;XCFunctional&quot;</span><span class="p">:</span> <span class="n">xc</span><span class="p">,</span>
+        <span class="s2">&quot;PseudopotentialSet&quot;</span> <span class="p">:</span> <span class="n">pseudo</span><span class="p">,</span>    
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">xc_dict</span></div>
+    
+<div class="viewcode-block" id="convert_unit"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.octopus.html#litesoph.engines.octopus.gs2oct.convert_unit">[docs]</a><span class="k">def</span> <span class="nf">convert_unit</span><span class="p">():</span>
+    <span class="k">pass</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

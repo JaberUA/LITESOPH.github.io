@@ -8,7 +8,7 @@ Predefined Workflow Mode
    :alt: LITESOPH_home
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    
    Upload_Geometry/Upload_Geometry
    Charge/Charge

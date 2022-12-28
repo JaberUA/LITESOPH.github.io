@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -84,7 +86,7 @@
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 
-<div class="viewcode-block" id="plot2D"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.moocc_correlation_plot.plot2D">[docs]</a><span class="k">def</span> <span class="nf">plot2D</span><span class="p">(</span><span class="n">eo</span><span class="p">,</span><span class="n">eu</span><span class="p">,</span><span class="n">dmatw</span><span class="p">,</span><span class="n">fnm</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">ne</span><span class="p">,</span><span class="n">eomin</span><span class="p">,</span><span class="n">eumax</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<div class="viewcode-block" id="plot2D"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.moocc_correlation_plot.plot2D">[docs]</a><span class="k">def</span> <span class="nf">plot2D</span><span class="p">(</span><span class="n">eo</span><span class="p">,</span><span class="n">eu</span><span class="p">,</span><span class="n">dmatw</span><span class="p">,</span><span class="n">fnm</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">ne</span><span class="p">,</span><span class="n">eomin</span><span class="p">,</span><span class="n">eumax</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
 
         <span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span> <span class="o">=</span> <span class="n">dmatw</span><span class="o">.</span><span class="n">shape</span>
 
@@ -154,7 +156,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fname1</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="plot_mo_population_correlations"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.moocc_correlation_plot.plot_mo_population_correlations">[docs]</a><span class="k">def</span> <span class="nf">plot_mo_population_correlations</span><span class="p">(</span><span class="n">pop_correlation_file</span><span class="p">,</span> <span class="n">occ_states</span><span class="p">,</span> <span class="n">unocc_states</span><span class="p">,</span>
+<div class="viewcode-block" id="plot_mo_population_correlations"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.moocc_correlation_plot.plot_mo_population_correlations">[docs]</a><span class="k">def</span> <span class="nf">plot_mo_population_correlations</span><span class="p">(</span><span class="n">pop_correlation_file</span><span class="p">,</span> <span class="n">occ_states</span><span class="p">,</span> <span class="n">unocc_states</span><span class="p">,</span>
                                     <span class="n">divisions</span><span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span> <span class="s1">&#39;Population Correlations&#39;</span><span class="p">):</span>
     <span class="n">ea</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">occ_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">er</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">unocc_states</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -198,7 +200,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

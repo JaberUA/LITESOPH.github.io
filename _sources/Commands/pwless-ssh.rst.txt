@@ -1,8 +1,5 @@
-Technical Issues
-======================
-
-Passwordless SSH log in
-##############################
+How to access passwordless SSH?
+===============================
 
 Step 1: Check or Create Authentication SSH-Keygen Keys on local machine
 	

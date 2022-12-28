@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -72,49 +74,54 @@
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="k">as</span> <span class="nn">ttk</span>
 <span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_classes</span> <span class="kn">import</span> <span class="n">ProjectInfo</span>
 
-<div class="viewcode-block" id="ProjectList"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.navigation.ProjectList">[docs]</a><span class="k">class</span> <span class="nc">ProjectList</span><span class="p">:</span>
+
+<div class="viewcode-block" id="ProjectTreeNavigation"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.navigation.ProjectTreeNavigation">[docs]</a><span class="k">class</span> <span class="nc">ProjectTreeNavigation</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">treedata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_path_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_id_logger_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">treeview</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;#0&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Project and Workflows&#39;</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>        
+        <span class="c1"># self.treeview.bind(&#39;&lt;&lt;TreeviewOpen&gt;&gt;&#39;, self.open_node)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Double-1&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">OnDoubleClick</span><span class="p">)</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;TreeviewOpen&gt;&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_node</span><span class="p">)</span>
+<div class="viewcode-block" id="ProjectTreeNavigation.update"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.navigation.ProjectTreeNavigation.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_info</span><span class="p">:</span> <span class="n">ProjectInfo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_info</span> <span class="o">=</span> <span class="n">project_info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_treeview</span><span class="p">()</span></div>
+    
+    <span class="k">def</span> <span class="nf">_update_treeview</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">project_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_info</span><span class="o">.</span><span class="n">label</span>
         
-<div class="viewcode-block" id="ProjectList.populate"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.navigation.ProjectList.populate">[docs]</a>    <span class="k">def</span> <span class="nf">populate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
-        
-        <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">project_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*&#39;</span><span class="p">)]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">compare_list</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_path_list</span><span class="p">):</span>    
-            <span class="n">rot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">rot</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+                                        <span class="n">text</span> <span class="o">=</span> <span class="n">project_name</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">current_path_list</span> <span class="o">=</span> <span class="n">paths</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">insert_node</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">project_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">project_path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">worfklow</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_info</span><span class="o">.</span><span class="n">workflows</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_exists</span><span class="p">(</span><span class="n">worfklow</span><span class="o">.</span><span class="n">uuid</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span> <span class="n">worfklow</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
+                                        <span class="n">text</span><span class="o">=</span> <span class="n">worfklow</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">worfklow</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_exists</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">uuid</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">worfklow</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ProjectTreeNavigation.node_exists"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.navigation.ProjectTreeNavigation.node_exists">[docs]</a>    <span class="k">def</span> <span class="nf">node_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">tk</span><span class="o">.</span><span class="n">TclError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span></div>
-
-<div class="viewcode-block" id="ProjectList.insert_node"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.navigation.ProjectList.insert_node">[docs]</a>    <span class="k">def</span> <span class="nf">insert_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">abspath</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">Path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">(</span><span class="n">abspath</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">treedata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">abspath</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="ProjectList.open_node"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.navigation.ProjectList.open_node">[docs]</a>    <span class="k">def</span> <span class="nf">open_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">focus</span><span class="p">()</span>
-        <span class="n">abspath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treedata</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">abspath</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">get_children</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">Path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">(</span><span class="n">abspath</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">insert_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">abspath</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span></div></div>
-
-<div class="viewcode-block" id="compare_list"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.navigation.compare_list">[docs]</a><span class="k">def</span> <span class="nf">compare_list</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span><span class="n">list2</span><span class="p">):</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span><span class="o">==</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">list2</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
+            <span class="k">return</span> <span class="kc">True</span></div>
+        
+<div class="viewcode-block" id="ProjectTreeNavigation.OnDoubleClick"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.navigation.ProjectTreeNavigation.OnDoubleClick">[docs]</a>    <span class="k">def</span> <span class="nf">OnDoubleClick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">treeview</span><span class="o">.</span><span class="n">selection</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div></div>
+        <span class="c1"># print(&quot;you clicked on&quot;, self.treeview.item(item,&quot;text&quot;))</span>
 </pre></div>
 
            </div>
@@ -125,7 +132,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

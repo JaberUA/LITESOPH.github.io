@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.common.task_data &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.common.task_data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.common.task_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+
+
+<div class="viewcode-block" id="TaskTypes"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.task_data.TaskTypes">[docs]</a><span class="k">class</span> <span class="nc">TaskTypes</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">GROUND_STATE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;ground_state&#39;</span>
+    <span class="n">RT_TDDFT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;rt_tddft&#39;</span>
+    <span class="n">COMPUTE_SPECTRUM</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;spectrum&#39;</span>
+    <span class="n">COMPUTE_AVERAGED_SPECTRUM</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;compute_average_spectrum&#39;</span>
+    <span class="n">TCM</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;tcm&#39;</span>
+    <span class="n">MO_POPULATION</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;mo_population&#39;</span>
+    <span class="n">MASKING</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;masking&#39;</span></div>
+
+
+<div class="viewcode-block" id="TaskParamDB"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.task_data.TaskParamDB">[docs]</a><span class="k">class</span> <span class="nc">TaskParamDB</span><span class="p">:</span>
+
+<div class="viewcode-block" id="TaskParamDB.get_template_task_param"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.task_data.TaskParamDB.get_template_task_param">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_template_task_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="n">template_ground_state_parameters</span> <span class="o">=</span> <span class="p">{</span> 
+        <span class="s2">&quot;xc&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>               
+        <span class="s2">&quot;basis_type&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  
+        <span class="s2">&quot;basis&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  
+        <span class="s2">&quot;bands&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;spin&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;spacing&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;vacuum&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;boxshape&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;box_dim&quot;</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>        
+        <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span>
+        <span class="s2">&quot;energy_conv&quot;</span><span class="p">:</span> <span class="mf">1e-6</span> <span class="p">,</span>
+        <span class="s2">&quot;density_conv&quot;</span><span class="p">:</span> <span class="mf">1e-6</span> <span class="p">,</span>
+        <span class="s2">&quot;smearing_fun&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;smearing_width&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;mixing&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        
+<span class="p">}</span>
+
+<span class="n">template_rt_tddft_parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;strength&#39;</span><span class="p">:</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="s1">&#39;polarization&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;time_step&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;number_of_steps&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;output_freq&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;spectrum&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;laser&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;masking&#39;</span><span class="p">:</span> <span class="kc">None</span>
+<span class="p">}</span>
+
+<span class="n">template_compute_spectrum_parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;delta_e&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+            <span class="s1">&#39;e_max&#39;</span><span class="p">:</span><span class="mf">30.0</span><span class="p">,</span>
+            <span class="s1">&#39;e_min&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>       
+        <span class="p">}</span>
+
+<span class="n">task_dependencies_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">GROUND_STATE</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span> <span class="p">[</span><span class="n">TaskTypes</span><span class="o">.</span><span class="n">GROUND_STATE</span><span class="p">],</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">COMPUTE_SPECTRUM</span><span class="p">:</span> <span class="p">[{</span><span class="n">TaskTypes</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:{</span><span class="s1">&#39;delta_kick&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                            <span class="s2">&quot;spectrum&quot;</span> <span class="p">:</span> <span class="kc">True</span><span class="p">}}],</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">TCM</span><span class="p">:</span> <span class="p">[{</span><span class="n">TaskTypes</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;ksd&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}],</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">MO_POPULATION</span><span class="p">:</span> <span class="p">[{</span><span class="n">TaskTypes</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;mo_population&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}],</span>
+    <span class="n">TaskTypes</span><span class="o">.</span><span class="n">MASKING</span><span class="p">:</span> <span class="p">[{</span><span class="n">TaskTypes</span><span class="o">.</span><span class="n">RT_TDDFT</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;laser&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                            <span class="s2">&quot;masking&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}]</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="check_properties_dependencies"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.task_data.check_properties_dependencies">[docs]</a><span class="k">def</span> <span class="nf">check_properties_dependencies</span><span class="p">(</span><span class="n">task_name</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    
+    <span class="k">if</span> <span class="n">task_name</span> <span class="o">==</span> <span class="n">TaskTypes</span><span class="o">.</span><span class="n">COMPUTE_SPECTRUM</span><span class="p">:</span>
+        <span class="n">laser</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;laser&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">laser</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;spectrum only works with delta kick.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;spectrum&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;spectrum was not choosen in TD simulation&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">task_name</span> <span class="o">==</span> <span class="n">TaskTypes</span><span class="o">.</span><span class="n">TCM</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;ksd&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;ksd was not choosen in TD simulation&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">task_name</span> <span class="o">==</span> <span class="n">TaskTypes</span><span class="o">.</span><span class="n">MO_POPULATION</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;mo_population&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;mo_population was not choosen in TD simulation&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">task_name</span> <span class="o">==</span> <span class="n">TaskTypes</span><span class="o">.</span><span class="n">MASKING</span><span class="p">:</span>
+        <span class="n">laser</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;laser&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">masking</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;masking&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">laser</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">masking</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;masking was not choosen in TD simulation&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

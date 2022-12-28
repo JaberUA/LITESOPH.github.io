@@ -7,7 +7,7 @@ Setting up your local repository
 
 2. ‘git clone’ this newly forked repo into your local machine.
 
-.. Note::
+.. Warning::
    Don’t directly clone from LITESOPH/litesoph-pipeline.
 
 Setting up test environment
@@ -36,7 +36,7 @@ Step-5: Install litesoph using the following command:
 
    $ pip install -e <path litesoph package>
 
-Python Venv environment
+Python venv environment
 ########################
 Step-1: Check Python version.
 
@@ -61,7 +61,7 @@ Step-5: Install litesoph. Use the following command:
 
 .. code-block:: python
 
-   $ pip install -e <path litesoph package>
+   $ pip install -e <path to litesoph package>
 
 Coding Standards
 #####################
@@ -76,14 +76,17 @@ For more information refer to the original  `PEP-8 <https://www.python.org/dev/p
 
 #######################
 
-Litesoph Architecture
+LITESOPH Architecture
 -----------------------
-.. image:: ./Image/LITESOPH_home.png
+The LITESOPH Architecture has the following model.
+
+.. image:: ./Image/LS_Architecture.png
    :width: 800
    :alt: LITESOPH_home
 
-Work flow of LITESOPH:
+Workflow of LITESOPH:
 #######################
+The overall workflow of LITESOPH is as the following:
 
 .. image:: ./Image/Litesoph_Architecture.png
    :width: 800
@@ -91,9 +94,10 @@ Work flow of LITESOPH:
 
 Modules of LITESOPH: 
 -----------------------
+The modules of LITESOPH for the LITESOPH-Developer is as the following.
 
 .. toctree::
    :maxdepth: 4
 
-   litesoph/litesoph
-   litesoph/setup
+   litesoph_modules/litesoph
+   

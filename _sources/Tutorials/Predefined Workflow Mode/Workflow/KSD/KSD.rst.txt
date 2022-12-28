@@ -1,3 +1,5 @@
+.. _KSD:
+
 Kohn Sham Decomposition
 ===============================
 The Workflow for KSD Calculations is given below

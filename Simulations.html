@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulations of Photo-Physical Properties &mdash; LITESOPH 0.1 documentation</title>
+  <title>Simulations of Photo-Induced Properties using LITESOPH &mdash; LITESOPH 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorials" href="Tutorials/Tutorials.html" />
-    <link rel="prev" title="LITESOPH" href="README.html" /> 
+    <link rel="prev" title="Upcoming Features" href="Upcoming_Feature.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,8 +40,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="README.html">LITESOPH</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulations of Photo-Physical Properties</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulations of Photo-Induced Properties using LITESOPH</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#absorption-spectrum">Absorption Spectrum</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#calculations-of-absorption-spectrum">Calculations of Absorption Spectrum</a></li>
 </ul>
@@ -49,11 +51,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#kohn-sham-decomposition-ksd">Kohn-Sham Decomposition (KSD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#molecular-orbital-mo-population">Molecular Orbital (MO) Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#laser-simulation">LASER Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#laser-masking-to-study-energy-transfer-using-rt-tddft-approach">LASER Masking  <strong>TO STUDY ENERGY TRANSFER USING RT-TDDFT APPROACH</strong></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#evaluating-the-coupling-matrix-element-from-a-real-time-propagation"><strong>Evaluating the Coupling Matrix element from a real-time propagation</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#pump-probe-spectroscopy">Pump-probe Spectroscopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#laser-masking-to-study-energy-transfer-using-rt-tddft-approach">LASER Masking  <strong>to study energy transfer using RT-TDDFT approach</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
@@ -61,7 +59,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -79,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Simulations of Photo-Physical Properties</li>
+      <li>Simulations of Photo-Induced Properties using LITESOPH</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Simulations.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,8 +87,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="simulations-of-photo-physical-properties">
-<h1>Simulations of Photo-Physical Properties<a class="headerlink" href="#simulations-of-photo-physical-properties" title="Permalink to this headline"></a></h1>
+  <section id="simulations-of-photo-induced-properties-using-litesoph">
+<h1>Simulations of Photo-Induced Properties using LITESOPH<a class="headerlink" href="#simulations-of-photo-induced-properties-using-litesoph" title="Permalink to this headline"></a></h1>
 <p>Photophysical processes are initiated by the absorption of light by the molecules.
 After light irradiation molecules get promoted to the electronic excited state.
 In the excited state, molecules can undergo a reaction on the same PES or they can
@@ -104,8 +102,8 @@ photo dynamics in the excited state.</p>
 <span id="id1"></span><h2>Absorption Spectrum<a class="headerlink" href="#absorption-spectrum" title="Permalink to this headline"></a></h2>
 <p>The absorption spectrum provides information about the energies of the electronic excited state and
 their transition probabilities. The absorption spectrum can be calculated using different theories like
-<a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a>, <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jctc.2c00368">CASPT2</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Coupled_cluster#:~:text=For%20example%2C%20the%20CCSD(T,many%2Dbody%20perturbation%20theory%20arguments.">CCSD</a>, and <a class="reference external" href="https://adc-connect.org/v0.15.13/theory.html">ADC</a> (2) <a class="footnote-reference brackets" href="#id17" id="id2">1</a>. Among all methods, <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> offers a good compromise
-between accuracy and computational cost for a large system  <a class="footnote-reference brackets" href="#id18" id="id3">2</a> <a class="footnote-reference brackets" href="#id19" id="id4">3</a> <a class="footnote-reference brackets" href="#id20" id="id5">4</a> <a class="footnote-reference brackets" href="#id21" id="id6">5</a> <a class="footnote-reference brackets" href="#id22" id="id7">6</a> . Thus <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> is widely used to compute
+<a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a>, <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jctc.2c00368">CASPT2</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Coupled_cluster#:~:text=For%20example%2C%20the%20CCSD(T,many%2Dbody%20perturbation%20theory%20arguments.">CCSD</a>, and <a class="reference external" href="https://adc-connect.org/v0.15.13/theory.html">ADC</a> (2) <a class="footnote-reference brackets" href="#id16" id="id2">1</a>. Among all methods, <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> offers a good compromise
+between accuracy and computational cost for a large system  <a class="footnote-reference brackets" href="#id17" id="id3">2</a> <a class="footnote-reference brackets" href="#id18" id="id4">3</a> <a class="footnote-reference brackets" href="#id19" id="id5">4</a> <a class="footnote-reference brackets" href="#id20" id="id6">5</a> <a class="footnote-reference brackets" href="#id21" id="id7">6</a> . Thus <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> is widely used to compute
 the absorption spectrum. Both linear response (LR)-TDDFT and real time (RT)-TDDFT can be used
 to calculate spectrum in frequency and time domain respectively. In our tools, we have only
 incorporated the <a class="reference external" href="https://nwchemgit.github.io/RT-TDDFT.html">RT-TDDFT</a> approach to compute the absorption spectrum as well as other properties
@@ -114,11 +112,9 @@ because this method is more rigorous and applicable to all kinds of systems.</p>
 <hr class="docutils" />
 <section id="calculations-of-absorption-spectrum">
 <h3>Calculations of Absorption Spectrum<a class="headerlink" href="#calculations-of-absorption-spectrum" title="Permalink to this headline"></a></h3>
-<p>The <a class="reference internal" href="#absorption-spectrum"><span class="std std-ref">Absorption Spectrum</span></a> is calculated based on these three <a class="reference internal" href="README.html#engines"><span class="std std-ref">Engines Interfaced with LITESOPH</span></a>.</p>
+<p>The <a class="reference internal" href="#absorption-spectrum"><span class="std std-ref">Absorption Spectrum</span></a> is calculated based on these three <a class="reference internal" href="README.html#engines"><span class="std std-ref">Engines Interfaced with LITESOPH</span></a>. Here are the results of some molecular systems using LITESOPH-GUI.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="NWChem_Calculation.html"><span class="doc">TDDFT calculations using NWChem</span></a>,</p></li>
-<li><p><a class="reference internal" href="GPAW_Calculation.html"><span class="doc">TDDFT calculations using GPAW</span></a> and</p></li>
-<li><p><a class="reference internal" href="Octopus_Calculation.html"><span class="doc">TDDFT calculations using Octopus</span></a>.</p></li>
+<li><p><a class="reference internal" href="GPAW/GPAW_Calculation.html"><span class="doc">TDDFT calculations using GPAW</span></a></p></li>
 </ul>
 </section>
 </section>
@@ -139,7 +135,7 @@ atoms.</p>
 <p>In order to analyze the response in terms of the KSD, the decomposition is presented as a transition contribution map ( <a class="reference external" href="http://allie.dbcls.jp/pair/TCM;transition+contribution+map.html">TCM</a> ),
 which is an especially useful representation for plasmonic systems in which resonances are typically superpositions of many
 electron-hole excitations. The TCM represents the KSD weight at a fixed energy of excitation in the two-dimensional plane
-spanned by the energy axes for occupied and unoccupied states. For more details, refer to <a class="footnote-reference brackets" href="#id23" id="id8">7</a>.</p>
+spanned by the energy axes for occupied and unoccupied states. For more details, refer to <a class="footnote-reference brackets" href="#id22" id="id8">7</a>.</p>
 <p>More specifically, the 2D plot is defined by</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
@@ -191,14 +187,14 @@ S^x_{ia}(\omega) = -\frac{4\omega}{\pi}Im[\mu^{x^\star}_{ia}\delta\rho^x_{ia}(\o
 and the superscript <span class="math notranslate nohighlight">\(x\)</span> indicates the direction of the perturbation.</p>
 <p>Transition contribution map for the photoabsorption decomposition of Au55 metallic nanoparticle at 3.02 eV resonance
 energy calculated using LCAO <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> approach in GPAW code is shown in <a class="reference internal" href="#au55-tcm"><span class="std std-ref">Fig.1</span></a>.</p>
-<figure class="align-center" id="id25">
+<figure class="align-center" id="id23">
 <span id="au55-tcm"></span><a class="reference internal image-reference" href="_images/Au55_tcm_3.02.png"><img alt="alternate text" src="_images/Au55_tcm_3.02.png" style="width: 500px; height: 400px;" /></a>
 <figcaption>
 <p><span class="caption-text"><strong>Fig.1: Transition contribution map for the photoabsorption decomposition of Au55 metallic nanoparticle
 at 3.02 eV resonance energy calculated using LCAO TDDFT approach in GPAW code. The KS eigenvalues are
 given with respect to the Fermi level. The constant transition energy line</strong> <span class="math notranslate nohighlight">\(\varepsilon_u - \varepsilon_o = \omega\)</span>
 <strong>is the analysis energy (solid line). Red and blue colors indicate positive and negative values of the
-photoabsorption, respectively. The density of states (DOS) are also shown.</strong></span><a class="headerlink" href="#id25" title="Permalink to this image"></a></p>
+photoabsorption, respectively. The density of states (DOS) are also shown.</strong></span><a class="headerlink" href="#id23" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -264,97 +260,33 @@ t_0 = t-\sqrt{-2\sigma^2\ln G(t)}
 \tag{13}
 \end{equation}\]</div>
 <section id="laser-masking-to-study-energy-transfer-using-rt-tddft-approach">
-<h3>LASER Masking  <strong>TO STUDY ENERGY TRANSFER USING RT-TDDFT APPROACH</strong><a class="headerlink" href="#laser-masking-to-study-energy-transfer-using-rt-tddft-approach" title="Permalink to this headline"></a></h3>
+<h3>LASER Masking  <strong>to study energy transfer using RT-TDDFT approach</strong><a class="headerlink" href="#laser-masking-to-study-energy-transfer-using-rt-tddft-approach" title="Permalink to this headline"></a></h3>
 <p>Energy transfer is one of the most fundamental processes on the molecular scale, governing light-harvesting in biological
 systems and energy conversion in electronic devices such as organic solar cells or light-emitting diodes. The design principles
 of natural light-harvesting complexes have found considerable interest, as scientists believe that the principles realized in nature
-can be mimicked in the design of artificial organic devices.
-One standard method to interpret experimental data of excitation energy transfer between a donor (D) and an acceptor (A)
+can be mimicked in the design of artificial organic devices.One standard method to interpret experimental data of excitation energy transfer between a donor (D) and an acceptor (A)
 molecule separated by the distance R is the so-called Forster resonance energy transfer ( <a class="reference external" href="https://en.wikipedia.org/wiki/F%C3%B6rster_resonance_energy_transfer">FRET</a> ) theory. <span class="math notranslate nohighlight">\(Forster\)</span> theory describes ¨
 the nonradiative energy transfer mediated by a (quantum-mechanical) coupling between the transition dipoles of the donor and
-acceptor molecules (for example, see <a class="reference internal" href="#fig-2"><span class="std std-ref">Fig.2</span></a>). One of the central assumptions in FRET is that the coupling between D and A
-can be described by a (point)-dipole-dipole interaction, falling as 1/R3
-. Furthermore, <a class="reference external" href="https://en.wikipedia.org/wiki/F%C3%B6rster_resonance_energy_transfer">FRET</a> theory is formulated for the weak
+acceptor molecules. One of the central assumptions in FRET is that the coupling between D and A
+can be described by a (point)-dipole-dipole interaction, falling as 1/R3.
+Furthermore, <a class="reference external" href="https://en.wikipedia.org/wiki/F%C3%B6rster_resonance_energy_transfer">FRET</a> theory is formulated for the weak
 coupling regime (i.e., the isolated D and A excited states do not change significantly on coupling).</p>
-<figure class="align-center" id="id26">
-<span id="fig-2"></span><a class="reference internal image-reference" href="_images/eet.png"><img alt="alternate text" src="_images/eet.png" style="width: 400px; height: 250px;" /></a>
-<figcaption>
-<p><span class="caption-text"><em>Fig.2: Schematic of the non-radiative resonance energy transfer
-between the excited state donor and the ground state acceptor molecules.</em></span><a class="headerlink" href="#id26" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<p>Recently, <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> has been applied to Forster type excitation energy transfer questions in the Casida type linear response as
-well as in <a class="reference external" href="https://nwchemgit.github.io/RT-TDDFT.html">RT-TDDFT</a>. Nowadays, RT-TDDFT is finding an increasing attention due to its accuracy and favorable scaling, which
-allows one to apply it large systems. The <a class="reference external" href="https://nwchemgit.github.io/RT-TDDFT.html">RT-TDDFT</a> solutions, particularly those based on the linear combination of atomic
-orbitals (LCAO) as basis sets, can provide insights into the electronically excited state dynamics for the large complex materials.
-To study the EET using <a class="reference external" href="https://nwchemgit.github.io/RT-TDDFT.html">RT-TDDFT</a>, it is convenient to start from an initially localized excitation of the molecular aggregates (for
-example, see <a class="reference internal" href="#maeet"><span class="std std-ref">Fig.3</span></a>). However, such a feature is presently unavailable in most of the LCAO-basis RT-TDDFT codes. Motivated
-by this need, we have developed the LASER MASKING tool on the LCAO basis employing the GPAW code. This way, we can
-excite only the desired molecule in molecular or nanoparticle assemblies.</p>
-<figure class="align-center" id="id27">
-<span id="maeet"></span><a class="reference internal image-reference" href="_images/molecular_aggregate_eet.png"><img alt="alternate text" src="_images/molecular_aggregate_eet.png" style="width: 400px; height: 250px;" /></a>
-<figcaption>
-<p><span class="caption-text"><strong>Fig.3: Schematic of the locally exciting a molecule in the molecular aggregate</strong></span><a class="headerlink" href="#id27" title="Permalink to this image"></a></p>
-</figcaption>
-</figure>
-<p>The Hamiltonian of the system in the presence of laser masking is given as</p>
-<div class="math notranslate nohighlight">
-\[\mathbf H(\mathbf t) = - \frac{\nabla^2}{2} + \mathbf M(\mathbf r)\mathbf V_\text{ext}({\mathbf r}, t) + \mathbf V(\mathbf r)
-\label{Eq:H(t)}
-\tag{14}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf V_{ext}\)</span> is the externally applied time-dependent potential and V is the internal potential energy due to electrons and ions.
-The masking function M(r) in Eq. <span class="math notranslate nohighlight">\(\ref{Eq:H(t)}\)</span> is defined as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray}
-M(\mathbf r) =
-\begin{cases}
-  1, &amp; \text{Unmasked region} \\
-  0, &amp; \text{Masked region}
-\end{cases}
-\label{Eq:Mr}
-\tag{15}
-\end{eqnarray}\end{split}\]</div>
 <p>The energy transfer rate is written as</p>
 <div class="math notranslate nohighlight">
 \[\mathbf K^\text{ET} = 2\pi {\lvert V\rvert}^2\int_{0}^\infty\!\mathrm{d}\varepsilon {\mathbf J(\varepsilon)}
 \label{Eq:K^ET}
-\tag{16}\]</div>
+\tag{14}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf J(\varepsilon)\)</span> is the spectral overlap between the normalized donor emission and acceptor absorption spectra.</p>
-<p>The factor V in Eq. <span class="math notranslate nohighlight">\(\ref{Eq:K^ET}\)</span> is the electronic coupling matrix element and is given as</p>
-<div class="math notranslate nohighlight">
-\[\mathbf V = \langle D\mathbf A^{*}|\hat{\mathbf V}^{C}|D^*\mathbf A \rangle
-\label{Eq:V}
-\tag{17}\]</div>
-<p>where the Coulomb interaction  <span class="math notranslate nohighlight">\(\hat V^C\)</span> mediates between the initial and final wave functions. F¨orster theory is based on the assumption
-that the wave function of the total system can be separated into D and A parts due to negligible electronic coupling between
-D and A. Initially, the acceptor is in its ground state denoted by <span class="math notranslate nohighlight">\(|\mathbf A \rangle\)</span> and the donor is in an excited state <span class="math notranslate nohighlight">\(|D^⋆\rangle\)</span>.</p>
-<p>The coupling matrix element in Eq. <span class="math notranslate nohighlight">\(\ref{Eq:V}\)</span> within the FRET theory is obtained as</p>
-<div class="math notranslate nohighlight">
-\[V^\text{FRET} = \kappa^{DA} \frac{{\lvert \mu^A\rvert}{\lvert \mu^D \rvert}}{{\lvert {\mathbf R} \rvert}^3}
-\label{Eq:V^F}
-\tag{18}\]</div>
-<p>where κDA is the orientation factor and μA and μD are the transition dipole moments of acceptor and donor molecules, respectively
-(for more details, refer to <a class="footnote-reference brackets" href="#id24" id="id12">8</a> ).</p>
-<p>Together with Eq. <span class="math notranslate nohighlight">\(\ref{Eq:K^ET}\)</span> the above equation yields the rate of the Forster type excitation energy transfer.</p>
-<section id="evaluating-the-coupling-matrix-element-from-a-real-time-propagation">
-<h4><strong>Evaluating the Coupling Matrix element from a real-time propagation</strong><a class="headerlink" href="#evaluating-the-coupling-matrix-element-from-a-real-time-propagation" title="Permalink to this headline"></a></h4>
-<p>The most important question to ask is how to extract the coupling constant matrix element as given in Eq. <span class="math notranslate nohighlight">\(\ref{Eq:V}\)</span>.
-In principle one could calculate the the initial and final states and evaluate Eq. <span class="math notranslate nohighlight">\(\ref{Eq:V}\)</span> directly. As we know, the many-body states
-are hard to compute from first principles and there is no solid reason to identify the KS Slater determinant with the true wave function.
-However, there exists an alternative approach to calculate them in terms of the Davydov splitting. In the case two same molecules, the
+<p>The factor V in Eq. <span class="math notranslate nohighlight">\(\ref{Eq:K^ET}\)</span> is the electronic coupling matrix element which is obtained using
+Davydov splitting. In the case two same molecules, the
 Davydov splitting <span class="math notranslate nohighlight">\(\Delta\Omega\)</span> equals the energy splitting <span class="math notranslate nohighlight">\(\Delta E\)</span> of the (nearly) degenerate excitation energies of the monomers
 in the supermolecule.</p>
 <div class="math notranslate nohighlight">
 \[\begin{equation}
 V = \frac{\Delta\Omega}{2}
 \label{eq:Davydov_splitting}
-\tag{19}
+\tag{15}
 \end{equation}\]</div>
-<p>This observation can be exploited in <a class="reference external" href="https://en.wikipedia.org/wiki/Time-dependent_density_functional_theory#:~:text=Time%2Ddependent%20density%2Dfunctional%20theory,as%20electric%20or%20magnetic%20fields.">TDDFT</a> by calculating the spectrum and extracting the coupling matrix element from the energy splitting.
-In the real-time approach to TDDFT spectra are usually determined by initially exciting
-the system with a momentum boost, propagating the time-dependent KS equations using the dipole moment as observable, and calculating the
-dipole spectrum via a Fourier transformation. As the energy splitting is typically much smaller than the excitation energies themselves,
-high resolution and thus comparably long propagation times are needed to resolve the splitting.</p>
 <p>There is however, an another alternative way of evaluating the required information by observing the <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(A\)</span> dipole moments separately.
 It significantly reduces the computational cost. We note that the Davydov splitting and consequently also the coupling matrix element <span class="math notranslate nohighlight">\(V\)</span>
 manifests itself as a frequency <span class="math notranslate nohighlight">\(\omega_{beat}\)</span> in the time-dependent <span class="math notranslate nohighlight">\(D\)</span> (and <span class="math notranslate nohighlight">\(A\)</span>) dipole moment. This frequency can be extracted as
@@ -363,56 +295,44 @@ a beat frequency <span class="math notranslate nohighlight">\(\omega_{beat}\)</s
 \[\begin{equation}
 V = \omega_{beat}
 \label{eq:V_beat}
-\tag{20}
+\tag{16}
 \end{equation}\]</div>
-<p>Apart from the beat the dipole moment of the system oscillates only at frequencies close to the laser frequency that was used for the excitation.
-Hence the beat frequency can be determined easily from the <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(A\)</span> dipole moments. The essential observation now is that for doing so, the
-dipole moment time evolution only has to be recorded long enough to capture one half cycle of the beat. This is a much shorter time than the time
-needed to obtain an accurate spectrum from the Fourier transformation. Thus, the coupling strength can be determined with moderate simulation times.</p>
-</section>
-</section>
-<section id="pump-probe-spectroscopy">
-<h3>Pump-probe Spectroscopy<a class="headerlink" href="#pump-probe-spectroscopy" title="Permalink to this headline"></a></h3>
 </section>
 </section>
 <section id="references">
 <span id="ref"></span><h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
 <dl class="footnote brackets">
-<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>González, L.; Escudero, D.; Serrano-Andrés, L. Progress and Challenges in the Calculation of
 Electronic Excited States. Chem. Phys. Chem. 2012, 13, 28-51.</p>
 </dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
 <dd><p>Varsano, D.; Di Felice, R.; Marques, M. A.; Rubio, A. A TDDFT study of the excited states
 of DNA bases and their assemblies. J. Phys. Chem. B. 2006, 110, 7129–7138.</p>
 </dd>
-<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
 <dd><p>Lopata, K.; Govind, N. Modelling fast electron dynamics with real-time time-dependent
 density functional theory: application to small molecules and chromophore. J. Chem. Theory
 Comput. 2011, 7, 1344–1355.</p>
 </dd>
-<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id5">4</a></span></dt>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id5">4</a></span></dt>
 <dd><p>Lange, A. W.; Rohrdanz, M. A.; Herbert, J. M. Charge-transfer excited states in a π-stacked
 adenine dimer, as predicted using long-range-corrected time-dependent density functional
 theory. J. Phys. Chem. B. 2008,112, 6304–6308.</p>
 </dd>
-<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id6">5</a></span></dt>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id6">5</a></span></dt>
 <dd><p>Provorse, M. R.; Isborn, C. M. Electron dynamics with real-time time-dependent density
 functional theory. Int. J. Quantum Chem. 2016,116, 739–749.</p>
 </dd>
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id7">6</a></span></dt>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id7">6</a></span></dt>
 <dd><p>Tussupbayev, S.; Govind, N.; Lopata, K.; Cramer, C. J. Comparison of real-time and linear-
 response time-dependent density functional theories for molecular chromophores ranging
 from sparse to high densities of states. J. Chem. Theory Comput. 2015, 11, 1102–1109.</p>
 </dd>
-<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id8">7</a></span></dt>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id8">7</a></span></dt>
 <dd><p>T. P. Rossi, M. Kuisma, M. J. Puska, R. M. Nieminen, and P. Erhart, Kohn–sham decomposition in real-time time-dependent densityfunctional
 theory: An efficient tool for analyzing plasmonic excitations, Journal of Chemical Theory and Computation 13, 4779 (2017),
 pMID: 28862851, <a class="reference external" href="https://doi.org/10.1021/acs.jctc.7b00589">https://doi.org/10.1021/acs.jctc.7b00589</a> .</p>
-</dd>
-<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id12">8</a></span></dt>
-<dd><p>D. Hofmann, T. Korzdorfer, and S. Kummel, Energy transfer and forster’s dipole coupling approximation investigated in a real-time
-kohn-sham scheme, Phys. Rev. A 82, 012509 (2010).</p>
 </dd>
 </dl>
 </section>
@@ -422,7 +342,7 @@ kohn-sham scheme, Phys. Rev. A 82, 012509 (2010).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="README.html" class="btn btn-neutral float-left" title="LITESOPH" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Upcoming_Feature.html" class="btn btn-neutral float-left" title="Upcoming Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="Tutorials/Tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -430,7 +350,7 @@ kohn-sham scheme, Phys. Rev. A 82, 012509 (2010).</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

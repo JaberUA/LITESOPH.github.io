@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.engines.nwchem.task_data &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../nwchem.html">litesoph.engines.nwchem</a> &raquo;</li>
+      <li>litesoph.engines.nwchem.task_data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.engines.nwchem.task_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_types</span> <span class="kn">import</span> <span class="n">DataTypes</span> <span class="k">as</span> <span class="n">DT</span>
+
+
+
+<span class="n">nwchem_gs_param_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;basis_type&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:[</span><span class="s1">&#39;gaussian&#39;</span><span class="p">],</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">},</span>
+            <span class="s1">&#39;xc&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:[</span><span class="s2">&quot;PBE96&quot;</span><span class="p">,</span><span class="s2">&quot;PBE0&quot;</span><span class="p">,</span><span class="s2">&quot;B3LYP&quot;</span><span class="p">,</span><span class="s2">&quot;PW91&quot;</span><span class="p">,</span> <span class="s2">&quot;BP86&quot;</span><span class="p">,</span> <span class="s2">&quot;BP91&quot;</span><span class="p">,</span><span class="s2">&quot;BHLYP&quot;</span><span class="p">,</span><span class="s2">&quot;M05&quot;</span><span class="p">,</span><span class="s2">&quot;M05-2X&quot;</span><span class="p">,</span><span class="s2">&quot;M06-HF&quot;</span><span class="p">,</span><span class="s2">&quot;M08-SO&quot;</span><span class="p">,</span><span class="s2">&quot;M011&quot;</span><span class="p">,</span><span class="s2">&quot;CAM-B3LYP&quot;</span><span class="p">,</span><span class="s2">&quot;LC-BLYP&quot;</span><span class="p">,</span><span class="s2">&quot;LC-PBE&quot;</span><span class="p">,</span><span class="s2">&quot;LC-wPBE&quot;</span><span class="p">,</span><span class="s2">&quot;HSE03&quot;</span><span class="p">,</span><span class="s2">&quot;HSE06&quot;</span><span class="p">],</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="s2">&quot;PBE0&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;basis&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="s1">&#39;values&#39;</span><span class="p">:[</span><span class="s2">&quot;6-31G&quot;</span><span class="p">,</span><span class="s2">&quot;STO-2G&quot;</span><span class="p">,</span><span class="s2">&quot;STO-3G&quot;</span><span class="p">,</span><span class="s2">&quot;STO-6G&quot;</span><span class="p">,</span><span class="s2">&quot;3-21G&quot;</span><span class="p">,</span><span class="s2">&quot;3-21G*&quot;</span><span class="p">,</span><span class="s2">&quot;6-31G*&quot;</span><span class="p">,</span><span class="s2">&quot;6-31G**&quot;</span><span class="p">,</span><span class="s2">&quot;6-311G&quot;</span><span class="p">,</span><span class="s2">&quot;6-311G*&quot;</span><span class="p">,</span><span class="s2">&quot;6-311G**&quot;</span><span class="p">,</span><span class="s2">&quot;cc-pVDZ&quot;</span><span class="p">,</span><span class="s2">&quot;aug-cc-pvtz&quot;</span><span class="p">],</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="s2">&quot;6-31G&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;max_iter&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">},</span>
+            <span class="s1">&#39;energy_conv&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">decimal</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="mf">5.0e-7</span><span class="p">},</span>
+            <span class="s1">&#39;density_conv&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="n">DT</span><span class="o">.</span><span class="n">decimal</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;default_value&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">},</span>
+        <span class="p">}</span>
+
+
+<span class="n">nwchem_xc_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;B3LYP&#39;</span>     <span class="p">:</span><span class="s1">&#39;xc b3lyp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PBE0&#39;</span>      <span class="p">:</span><span class="s1">&#39;xc pbe0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PBE96&#39;</span>     <span class="p">:</span><span class="s1">&#39;xc xpbe96 cpbe96&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BHLYP&#39;</span>     <span class="p">:</span><span class="s1">&#39;xc bhlyp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PW91&#39;</span>      <span class="p">:</span><span class="s1">&#39;xc xperdew91 perdew91&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BP86&#39;</span>      <span class="p">:</span><span class="s1">&#39;xc becke88 perdew86&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BP91&#39;</span>      <span class="p">:</span><span class="s1">&#39;xc becke88 perdew91&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BLYP&#39;</span>      <span class="p">:</span><span class="s1">&#39;xc becke88 lyp&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M05&#39;</span>       <span class="p">:</span><span class="s1">&#39;xc m05&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M05-2X&#39;</span>    <span class="p">:</span><span class="s1">&#39;xc m05-2x&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M06&#39;</span>       <span class="p">:</span><span class="s1">&#39;xc m06&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M06-HF&#39;</span>    <span class="p">:</span><span class="s1">&#39;xc m06-hf&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M08-SO&#39;</span>    <span class="p">:</span><span class="s1">&#39;xc m08-so&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;M11&#39;</span>       <span class="p">:</span><span class="s1">&#39;xc m11&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CAM-B3LYP&#39;</span> <span class="p">:</span><span class="s1">&#39;xc xcamb88 1.00 lyp 0.81 vwn_5 0.19 hfexch 1.00 </span><span class="se">\n</span><span class="s1"> cam 0.33 cam_alpha 0.19 cam_beta 0.46&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;LC-BLYP&#39;</span>   <span class="p">:</span><span class="s1">&#39;xc xcamb88 1.00 lyp 1.0 hfexch 1.00 </span><span class="se">\n</span><span class="s1"> cam 0.33 cam_alpha 0.0 cam_beta 1.0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;LC-PBE&#39;</span>    <span class="p">:</span><span class="s1">&#39;xc xcampbe96 1.0 cpbe96 1.0 HFexch 1.0 </span><span class="se">\n</span><span class="s1"> cam 0.30 cam_alpha 0.0 cam_beta 1.0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;LC-wPBE&#39;</span>   <span class="p">:</span><span class="s1">&#39;xc xwpbe 1.00 cpbe96 1.0 hfexch 1.00 </span><span class="se">\n</span><span class="s1"> cam 0.4 cam_alpha 0.00 cam_beta 1.00&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CAM-PBE0&#39;</span>  <span class="p">:</span><span class="s1">&#39;xc xcampbe96 1.0 cpbe96 1.0 HFexch 1.0 </span><span class="se">\n</span><span class="s1"> cam 0.30 cam_alpha 0.25 cam_beta 0.75&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rCAM-B3LYP&#39;</span><span class="p">:</span><span class="s1">&#39;xc xcamb88 1.00 lyp 1.0 vwn_5 0. hfexch 1.00 becke88 nonlocal 0.13590 </span><span class="se">\n</span><span class="s1"> cam 0.33 cam_alpha 0.18352 cam_beta 0.94979&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HSE03&#39;</span>     <span class="p">:</span><span class="s1">&#39;xc xpbe96 1.0 xcampbe96 -0.25 cpbe96 1.0 srhfexch 0.25 </span><span class="se">\n</span><span class="s1"> cam 0.33 cam_alpha 0.0 cam_beta 1.0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HSE06&#39;</span>     <span class="p">:</span><span class="s1">&#39;xc xpbe96 1.0 xcampbe96 -0.25 cpbe96 1.0 srhfexch 0.25 </span><span class="se">\n</span><span class="s1"> cam 0.11 cam_alpha 0.0 cam_beta 1.0&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="get_gs_default_param"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.task_data.get_gs_default_param">[docs]</a><span class="k">def</span> <span class="nf">get_gs_default_param</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span> 
+        <span class="s2">&quot;xc&quot;</span><span class="p">:</span><span class="s2">&quot;PBE96&quot;</span><span class="p">,</span>               
+        <span class="s2">&quot;basis_type&quot;</span><span class="p">:</span> <span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>  
+        <span class="s2">&quot;basis&quot;</span><span class="p">:</span> <span class="s2">&quot;6-31G&quot;</span><span class="p">,</span>  
+        <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span>
+        <span class="s2">&quot;energy_conv&quot;</span><span class="p">:</span> <span class="mf">1e-6</span> <span class="p">,</span>
+        <span class="s2">&quot;density_conv&quot;</span><span class="p">:</span> <span class="mf">1e-6</span> <span class="p">,</span>        
+    <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="get_rt_tddft_default_param"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.task_data.get_rt_tddft_default_param">[docs]</a><span class="k">def</span> <span class="nf">get_rt_tddft_default_param</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;strength&#39;</span><span class="p">:</span> <span class="mf">1e-5</span><span class="p">,</span>
+    <span class="s1">&#39;polarization&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;time_step&#39;</span><span class="p">:</span> <span class="mf">2.4</span><span class="p">,</span>
+    <span class="s1">&#39;number_of_steps&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s1">&#39;output_freq&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;spectrum&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;laser&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s1">&#39;masking&#39;</span><span class="p">:</span> <span class="kc">None</span>
+<span class="p">}</span></div>
+
+<div class="viewcode-block" id="get_compute_spec_param"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.task_data.get_compute_spec_param">[docs]</a><span class="k">def</span> <span class="nf">get_compute_spec_param</span><span class="p">():</span>
+    <span class="k">return</span><span class="p">{</span>
+            <span class="s1">&#39;delta_e&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+            <span class="s1">&#39;e_max&#39;</span><span class="p">:</span><span class="mf">30.0</span><span class="p">,</span>
+            <span class="s1">&#39;e_min&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>       
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="get_mopop_param"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.task_data.get_mopop_param">[docs]</a><span class="k">def</span> <span class="nf">get_mopop_param</span><span class="p">():</span>
+    <span class="k">return</span><span class="p">{</span>
+        <span class="s1">&#39;num_occupied_mo&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">&#39;num_unoccupied_mo&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

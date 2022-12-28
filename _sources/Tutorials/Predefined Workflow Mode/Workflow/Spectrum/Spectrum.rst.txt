@@ -1,6 +1,6 @@
 Spectrum
 =========
-The Workflow for Spectrum Calculations is given below
+The Workflow for Spectrum Calculations is given below:
 
 .. image:: ./Spec.png
    :width: 800

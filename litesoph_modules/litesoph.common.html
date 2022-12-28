@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.common package &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="litesoph.common.data_sturcture package" href="litesoph.common.data_sturcture.html" />
+    <link rel="prev" title="litesoph package" href="litesoph.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../Developer_Guideline.html">Developer Guideline</a> &raquo;</li>
+          <li><a href="litesoph.html">litesoph package</a> &raquo;</li>
+      <li>litesoph.common package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/litesoph_modules/litesoph.common.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="litesoph-common-package">
+<h1>litesoph.common package<a class="headerlink" href="#litesoph-common-package" title="Permalink to this headline"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="litesoph.common.data_sturcture.html">litesoph.common.data_sturcture package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="litesoph.common.data_sturcture.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="litesoph.common.data_sturcture.html#module-litesoph.common.data_sturcture.data_classes">litesoph.common.data_sturcture.data_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="litesoph.common.data_sturcture.html#module-litesoph.common.data_sturcture.data_types">litesoph.common.data_sturcture.data_types module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="litesoph.common.data_sturcture.html#module-litesoph.common.data_sturcture.utils">litesoph.common.data_sturcture.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="litesoph.common.data_sturcture.html#module-litesoph.common.data_sturcture">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-litesoph.common.decision_tree">
+<span id="litesoph-common-decision-tree-module"></span><h2>litesoph.common.decision_tree module<a class="headerlink" href="#module-litesoph.common.decision_tree" title="Permalink to this headline"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.decision_tree.EngineDecisionError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.decision_tree.</span></span><span class="sig-name descname"><span class="pre">EngineDecisionError</span></span><a class="reference internal" href="../_modules/litesoph/common/decision_tree.html#EngineDecisionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.decision_tree.EngineDecisionError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RecursionError</span></code></p>
+<p>Raise this exception when unable to determine the engine.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.decision_tree.choose_engine">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.decision_tree.</span></span><span class="sig-name descname"><span class="pre">choose_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/decision_tree.html#choose_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.decision_tree.choose_engine" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.decision_tree.decide_engine">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.decision_tree.</span></span><span class="sig-name descname"><span class="pre">decide_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['basis_type',</span> <span class="pre">'xc',</span> <span class="pre">'basis',</span> <span class="pre">'boxshape']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decision_param_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'basis':</span> <span class="pre">[('def2SVP',</span> <span class="pre">[]),</span> <span class="pre">('6-31G',</span> <span class="pre">['nwchem']),</span> <span class="pre">('STO-2G',</span> <span class="pre">['nwchem']),</span> <span class="pre">('STO-3G',</span> <span class="pre">['nwchem']),</span> <span class="pre">('dzp',</span> <span class="pre">['gpaw']),</span> <span class="pre">('dz',</span> <span class="pre">['gpaw']),</span> <span class="pre">('sz',</span> <span class="pre">['gpaw']),</span> <span class="pre">('pvalence.dz',</span> <span class="pre">['gpaw']),</span> <span class="pre">('szp',</span> <span class="pre">['gpaw'])],</span> <span class="pre">'basis_type':</span> <span class="pre">[('gaussian',</span> <span class="pre">['nwchem']),</span> <span class="pre">('lcao',</span> <span class="pre">['gpaw']),</span> <span class="pre">('fd',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('pw',</span> <span class="pre">['gpaw'])],</span> <span class="pre">'boxshape':</span> <span class="pre">[('minimum',</span> <span class="pre">['octopus']),</span> <span class="pre">('sphere',</span> <span class="pre">['octopus']),</span> <span class="pre">('cylinder',</span> <span class="pre">['octopus']),</span> <span class="pre">('parallelepiped',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus'])],</span> <span class="pre">'xc':</span> <span class="pre">[('B3LYP',</span> <span class="pre">['nwchem',</span> <span class="pre">'gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('PBE0',</span> <span class="pre">['nwchem',</span> <span class="pre">'gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('CAMY-B3LYP',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('CAM-B3LYP',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('HSE03',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('HSE06',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('M05',</span> <span class="pre">['nwchem']),</span> <span class="pre">('M05-2X',</span> <span class="pre">['nwchem']),</span> <span class="pre">('M06-HF',</span> <span class="pre">['nwchem']),</span> <span class="pre">('M08-SO',</span> <span class="pre">['nwchem']),</span> <span class="pre">('M011',</span> <span class="pre">['nwchem']),</span> <span class="pre">('PBE',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('PW91',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('BLYP',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('CAMY-BLYP',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('PBEsol',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus']),</span> <span class="pre">('PW91',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('BP86',</span> <span class="pre">['nwchem']),</span> <span class="pre">('BP91',</span> <span class="pre">['nwchem']),</span> <span class="pre">('LC-BLYP',</span> <span class="pre">['nwchem']),</span> <span class="pre">('LC-PBE',</span> <span class="pre">['nwchem']),</span> <span class="pre">('LC-wPBE',</span> <span class="pre">['nwchem',</span> <span class="pre">'octopus']),</span> <span class="pre">('LDA',</span> <span class="pre">['gpaw',</span> <span class="pre">'octopus'])]}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_engines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['gpaw',</span> <span class="pre">'nwchem',</span> <span class="pre">'octopus']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/decision_tree.html#decide_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.decision_tree.decide_engine" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.decision_tree.get_choice_engines">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.decision_tree.</span></span><span class="sig-name descname"><span class="pre">get_choice_engines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calc_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_data_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/decision_tree.html#get_choice_engines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.decision_tree.get_choice_engines" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of tuples of the form (calc_param_option, list of compatible engines)
+in order of decreasing priority</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.decision_tree.update_engine_list">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.decision_tree.</span></span><span class="sig-name descname"><span class="pre">update_engine_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calc_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_data_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/decision_tree.html#update_engine_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.decision_tree.update_engine_list" title="Permalink to this definition"></a></dt>
+<dd><p>Access the possible task_param values from engine_data_map,
+and updates the engine list if choice is present</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.engine_manager">
+<span id="litesoph-common-engine-manager-module"></span><h2>litesoph.common.engine_manager module<a class="headerlink" href="#module-litesoph.common.engine_manager" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.engine_manager.</span></span><span class="sig-name descname"><span class="pre">EngineManager</span></span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base class for all the engine.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.NAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.check_task">
+<span class="sig-name descname"><span class="pre">check_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.check_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.check_task" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.get_default_task_param">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_default_task_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.get_default_task_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.get_default_task_param" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.get_task">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.get_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.get_task" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.get_task_list">
+<span class="sig-name descname"><span class="pre">get_task_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.get_task_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.get_task_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.get_workflow">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.get_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.get_workflow" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.get_workflow_list">
+<span class="sig-name descname"><span class="pre">get_workflow_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/engine_manager.html#EngineManager.get_workflow_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.get_workflow_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.implemented_tasks">
+<span class="sig-name descname"><span class="pre">implemented_tasks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.implemented_tasks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.engine_manager.EngineManager.implemented_workflows">
+<span class="sig-name descname"><span class="pre">implemented_workflows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#litesoph.common.engine_manager.EngineManager.implemented_workflows" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.job_submit">
+<span id="litesoph-common-job-submit-module"></span><h2>litesoph.common.job_submit module<a class="headerlink" href="#module-litesoph.common.job_submit" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">NetworkJobSubmission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class contain methods connect to remote cluster through ssh and perform common
+uploadig and downloading of files and also to execute command on the remote cluster.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.check_file">
+<span class="sig-name descname"><span class="pre">check_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.check_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.check_file" title="Permalink to this definition"></a></dt>
+<dd><p>checks if the file exists in the remote path</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.disconnect" title="Permalink to this definition"></a></dt>
+<dd><p>closes the ssh session with the cluster.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.download_files">
+<span class="sig-name descname"><span class="pre">download_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.download_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.download_files" title="Permalink to this definition"></a></dt>
+<dd><p>This method downloads the file from cluster</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.execute_command">
+<span class="sig-name descname"><span class="pre">execute_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.execute_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.execute_command" title="Permalink to this definition"></a></dt>
+<dd><p>Execute a command on the remote host.
+Return a tuple containing retruncode, stdout and stderr
+from the command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.progress">
+<span class="sig-name descname"><span class="pre">progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.progress" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.scp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scp</span></span><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.scp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.ssh_connect">
+<span class="sig-name descname"><span class="pre">ssh_connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.ssh_connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.ssh_connect" title="Permalink to this definition"></a></dt>
+<dd><p>connects to the cluster through ssh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.NetworkJobSubmission.upload_files">
+<span class="sig-name descname"><span class="pre">upload_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#NetworkJobSubmission.upload_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.NetworkJobSubmission.upload_files" title="Permalink to this definition"></a></dt>
+<dd><p>This method uploads the file to remote server.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitLocal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">SubmitLocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nprocessors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitLocal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitLocal" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitLocal.run_job">
+<span class="sig-name descname"><span class="pre">run_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitLocal.run_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitLocal.run_job" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">SubmitNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hostname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork.check_job_status">
+<span class="sig-name descname"><span class="pre">check_job_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork.check_job_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork.check_job_status" title="Permalink to this definition"></a></dt>
+<dd><p>returns true if the job is completed in remote machine</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork.download_output_files">
+<span class="sig-name descname"><span class="pre">download_output_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork.download_output_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork.download_output_files" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads entire project directory to local project dir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork.get_output_log">
+<span class="sig-name descname"><span class="pre">get_output_log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork.get_output_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork.get_output_log" title="Permalink to this definition"></a></dt>
+<dd><p>Downloads engine log file for that particular task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork.run_job">
+<span class="sig-name descname"><span class="pre">run_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork.run_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork.run_job" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates the job submission command and executes the command on the cluster</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.SubmitNetwork.upload_files">
+<span class="sig-name descname"><span class="pre">upload_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#SubmitNetwork.upload_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.SubmitNetwork.upload_files" title="Permalink to this definition"></a></dt>
+<dd><p>uploads entire project directory to remote path</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.execute">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.execute" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.execute_rsync">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">execute_rsync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passwd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3600</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#execute_rsync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.execute_rsync" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.rsync_cmd">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">rsync_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#rsync_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.rsync_cmd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.rsync_download_files">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">rsync_download_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#rsync_download_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.rsync_download_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.job_submit.rsync_upload_files">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.job_submit.</span></span><span class="sig-name descname"><span class="pre">rsync_upload_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/job_submit.html#rsync_upload_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.job_submit.rsync_upload_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-litesoph.common.ls_manager">
+<span id="litesoph-common-ls-manager-module"></span><h2>litesoph.common.ls_manager module<a class="headerlink" href="#module-litesoph.common.ls_manager" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.ls_manager.</span></span><span class="sig-name descname"><span class="pre">LSManager</span></span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.append_project">
+<span class="sig-name descname"><span class="pre">append_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.append_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.append_project" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.get_project_summary">
+<span class="sig-name descname"><span class="pre">get_project_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.get_project_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.get_project_summary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.get_summary">
+<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.get_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.get_summary" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.new_project">
+<span class="sig-name descname"><span class="pre">new_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.new_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.new_project" title="Permalink to this definition"></a></dt>
+<dd><p>” Creates Project directory  and instantiates ProjectInfo and project manager
+then return project manager.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.open_project">
+<span class="sig-name descname"><span class="pre">open_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.open_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.open_project" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.read_config">
+<span class="sig-name descname"><span class="pre">read_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.read_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.read_config" title="Permalink to this definition"></a></dt>
+<dd><p>Reads the lsconfig file and converts it into dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.LSManager.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#LSManager.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.LSManager.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.ProjectSetupError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.ls_manager.</span></span><span class="sig-name descname"><span class="pre">ProjectSetupError</span></span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#ProjectSetupError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.ProjectSetupError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when unable to create new project.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.ls_manager.summary_of_current_project">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.ls_manager.</span></span><span class="sig-name descname"><span class="pre">summary_of_current_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/ls_manager.html#summary_of_current_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.ls_manager.summary_of_current_project" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.models">
+<span id="litesoph-common-models-module"></span><h2>litesoph.common.models module<a class="headerlink" href="#module-litesoph.common.models" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.AutoModeModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">AutoModeModel</span></span><a class="reference internal" href="../_modules/litesoph/common/models.html#AutoModeModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.AutoModeModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.AutoModeModel.ground_state">
+<span class="sig-name descname"><span class="pre">ground_state</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'basis':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">[]},</span> <span class="pre">'charge':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'mode':</span> <span class="pre">{'default_value':</span> <span class="pre">'--choose</span> <span class="pre">mode--',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['nao',</span> <span class="pre">'fd',</span> <span class="pre">'pw',</span> <span class="pre">'gaussian']},</span> <span class="pre">'multip':</span> <span class="pre">{'default_value':</span> <span class="pre">1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'shape':</span> <span class="pre">{'default_value':</span> <span class="pre">'--choose</span> <span class="pre">box--',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['parallelepiped',</span> <span class="pre">'minimum',</span> <span class="pre">'sphere',</span> <span class="pre">'cylinder']}}</span></em><a class="headerlink" href="#litesoph.common.models.AutoModeModel.ground_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.GpawModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">GpawModel</span></span><a class="reference internal" href="../_modules/litesoph/common/models.html#GpawModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.GpawModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.GpawModel.ground_state">
+<span class="sig-name descname"><span class="pre">ground_state</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bands':</span> <span class="pre">{'default_value':</span> <span class="pre">'occupied',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['occupied',</span> <span class="pre">'unoccupied',</span> <span class="pre">'all']},</span> <span class="pre">'basis':</span> <span class="pre">{'default_value':</span> <span class="pre">'dzp',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['dzp',</span> <span class="pre">'sz',</span> <span class="pre">'dz',</span> <span class="pre">'szp',</span> <span class="pre">'pvalence.dz']},</span> <span class="pre">'charge':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'density':</span> <span class="pre">{'default_value':</span> <span class="pre">1e-06,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'eigenstate':</span> <span class="pre">{'default_value':</span> <span class="pre">4e-08,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'energy':</span> <span class="pre">{'default_value':</span> <span class="pre">5e-07,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'h':</span> <span class="pre">{'default_value':</span> <span class="pre">0.3,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'lx':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'ly':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'lz':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'maxiter':</span> <span class="pre">{'default_value':</span> <span class="pre">300,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'mode':</span> <span class="pre">{'default_value':</span> <span class="pre">'nao',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['nao',</span> <span class="pre">'fd',</span> <span class="pre">'pw']},</span> <span class="pre">'multip':</span> <span class="pre">{'default_value':</span> <span class="pre">1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'nbands':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string},</span> <span class="pre">'shape':</span> <span class="pre">{'default_value':</span> <span class="pre">'parallelepiped',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['parallelepiped']},</span> <span class="pre">'smear':</span> <span class="pre">{'default_value':</span> <span class="pre">0.0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'smearfn':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['',</span> <span class="pre">'improved-tetrahedron-method',</span> <span class="pre">'tetrahedron-method',</span> <span class="pre">'fermi-dirac',</span> <span class="pre">'marzari-vanderbilt']},</span> <span class="pre">'spinpol':</span> <span class="pre">{'default_value':</span> <span class="pre">'None',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['None',</span> <span class="pre">'True']},</span> <span class="pre">'vacuum':</span> <span class="pre">{'default_value':</span> <span class="pre">6,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'xc':</span> <span class="pre">{'default_value':</span> <span class="pre">'LDA',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['LDA',</span> <span class="pre">'PBE',</span> <span class="pre">'PBE0',</span> <span class="pre">'PBEsol',</span> <span class="pre">'BLYP',</span> <span class="pre">'B3LYP',</span> <span class="pre">'CAMY-BLYP',</span> <span class="pre">'CAMY-B3LYP']}}</span></em><a class="headerlink" href="#litesoph.common.models.GpawModel.ground_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">LaserDesignModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.create_pulse">
+<span class="sig-name descname"><span class="pre">create_pulse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel.create_pulse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.create_pulse" title="Permalink to this definition"></a></dt>
+<dd><p>creates gaussian pulse with given inval,fwhm value</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.laser_input">
+<span class="sig-name descname"><span class="pre">laser_input</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'frequency':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'fwhm':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'inval':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'number_of_steps':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'strength':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'time_step':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'tin':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal}}</span></em><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.laser_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.plot_strength_derivative">
+<span class="sig-name descname"><span class="pre">plot_strength_derivative</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel.plot_strength_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.plot_strength_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>returns Figure object for (strength,derivative) in (X,Y)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.plot_time_derivative">
+<span class="sig-name descname"><span class="pre">plot_time_derivative</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel.plot_time_derivative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.plot_time_derivative" title="Permalink to this definition"></a></dt>
+<dd><p>returns Figure object for (time,derivative) in (X,Y)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.plot_time_strength">
+<span class="sig-name descname"><span class="pre">plot_time_strength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel.plot_time_strength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.plot_time_strength" title="Permalink to this definition"></a></dt>
+<dd><p>returns Figure object for (time,strength) in (X,Y)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModel.write_laser">
+<span class="sig-name descname"><span class="pre">write_laser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModel.write_laser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModel.write_laser" title="Permalink to this definition"></a></dt>
+<dd><p>writes laser pulse to file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModelNew">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">LaserDesignModelNew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModelNew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModelNew" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModelNew.create_pulse">
+<span class="sig-name descname"><span class="pre">create_pulse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignModelNew.create_pulse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignModelNew.create_pulse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignModelNew.laser_input">
+<span class="sig-name descname"><span class="pre">laser_input</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'frequency':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'fwhm':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'inval':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'number_of_steps':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'strength':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'time_step':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'tin':</span> <span class="pre">{'req':</span> <span class="pre">True,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal}}</span></em><a class="headerlink" href="#litesoph.common.models.LaserDesignModelNew.laser_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">LaserDesignPlotModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">laser_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">laser_profile_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>laser_inputs: list of laser inputs
+laser_profile_time: in femtosecond</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel.compute_laser_design_param">
+<span class="sig-name descname"><span class="pre">compute_laser_design_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">laser_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">laser_param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel.compute_laser_design_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel.compute_laser_design_param" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates laser parameters specific to laser type</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel.get_laser_pulse_list">
+<span class="sig-name descname"><span class="pre">get_laser_pulse_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel.get_laser_pulse_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel.get_laser_pulse_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel.get_time_strength">
+<span class="sig-name descname"><span class="pre">get_time_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_pulse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel.get_time_strength"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel.get_time_strength" title="Permalink to this definition"></a></dt>
+<dd><p>Plots single/multiple lasers given the delay</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel.plot_laser">
+<span class="sig-name descname"><span class="pre">plot_laser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel.plot_laser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel.plot_laser" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.models.LaserDesignPlotModel.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">laser_strengths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#LaserDesignPlotModel.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.LaserDesignPlotModel.write" title="Permalink to this definition"></a></dt>
+<dd><p>Write the values of the pulse to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> – filename</p></li>
+<li><p><strong>time_t</strong> – times in attoseconds</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.NWchemModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">NWchemModel</span></span><a class="reference internal" href="../_modules/litesoph/common/models.html#NWchemModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.NWchemModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.NWchemModel.ground_state">
+<span class="sig-name descname"><span class="pre">ground_state</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'basis':</span> <span class="pre">{'default_value':</span> <span class="pre">'6-31G',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['6-31G',</span> <span class="pre">'STO-2G',</span> <span class="pre">'STO-3G',</span> <span class="pre">'STO-6G',</span> <span class="pre">'3-21G',</span> <span class="pre">'3-21G*',</span> <span class="pre">'6-31G*',</span> <span class="pre">'6-31G**',</span> <span class="pre">'6-311G',</span> <span class="pre">'6-311G*',</span> <span class="pre">'6-311G**',</span> <span class="pre">'cc-pVDZ',</span> <span class="pre">'aug-cc-pvtz']},</span> <span class="pre">'charge':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'density':</span> <span class="pre">{'default_value':</span> <span class="pre">1e-06,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'energy':</span> <span class="pre">{'default_value':</span> <span class="pre">5e-07,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'gradient':</span> <span class="pre">{'default_value':</span> <span class="pre">0.0001,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'maxiter':</span> <span class="pre">{'default_value':</span> <span class="pre">300,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'mode':</span> <span class="pre">{'default_value':</span> <span class="pre">'gaussian',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['gaussian']},</span> <span class="pre">'multip':</span> <span class="pre">{'default_value':</span> <span class="pre">1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'xc':</span> <span class="pre">{'default_value':</span> <span class="pre">'PBE0',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['PBE96',</span> <span class="pre">'PBE0',</span> <span class="pre">'B3LYP',</span> <span class="pre">'PW91',</span> <span class="pre">'BP86',</span> <span class="pre">'BP91',</span> <span class="pre">'BHLYP',</span> <span class="pre">'M05',</span> <span class="pre">'M05-2X',</span> <span class="pre">'M06-HF',</span> <span class="pre">'M08-SO',</span> <span class="pre">'M011',</span> <span class="pre">'CAM-B3LYP',</span> <span class="pre">'LC-BLYP',</span> <span class="pre">'LC-PBE',</span> <span class="pre">'LC-wPBE',</span> <span class="pre">'HSE03',</span> <span class="pre">'HSE06']}}</span></em><a class="headerlink" href="#litesoph.common.models.NWchemModel.ground_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.models.OctopusModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">OctopusModel</span></span><a class="reference internal" href="../_modules/litesoph/common/models.html#OctopusModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.OctopusModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.models.OctopusModel.ground_state">
+<span class="sig-name descname"><span class="pre">ground_state</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'abs_density':</span> <span class="pre">{'default_value':</span> <span class="pre">1e-06,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'abs_eigen':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'c':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">{'lda_c':</span> <span class="pre">['lda_c_pz_mod',</span> <span class="pre">'lda_c_ob_pz',</span> <span class="pre">'lda_c_pw',</span> <span class="pre">'lda_c_ob_pw',</span> <span class="pre">'lda_c_2d_amgb'],</span> <span class="pre">'pbe_c':</span> <span class="pre">['gga_c_pbe',</span> <span class="pre">'gga_c_tca',</span> <span class="pre">'gga_c_lyp',</span> <span class="pre">'gga_c_p86',</span> <span class="pre">'gga_c_pbe_sol']}},</span> <span class="pre">'charge':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'conv_energy':</span> <span class="pre">{'default_value':</span> <span class="pre">5e-07,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'dxc':</span> <span class="pre">{'default_value':</span> <span class="pre">3,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'eigen':</span> <span class="pre">{'default_value':</span> <span class="pre">'rmmdiis',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['rmmdiis',</span> <span class="pre">'plan',</span> <span class="pre">'cg',</span> <span class="pre">'cg_new']},</span> <span class="pre">'expt':</span> <span class="pre">{'default_value':</span> <span class="pre">'no',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['yes',</span> <span class="pre">'no']},</span> <span class="pre">'extra_states':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'h':</span> <span class="pre">{'default_value':</span> <span class="pre">0.3,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'l':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'lx':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'ly':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'lz':</span> <span class="pre">{'default_value':</span> <span class="pre">12,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'maxiter':</span> <span class="pre">{'default_value':</span> <span class="pre">300,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'mixing':</span> <span class="pre">{'default_value':</span> <span class="pre">0.3,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'mode':</span> <span class="pre">{'default_value':</span> <span class="pre">'fd',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['fd']},</span> <span class="pre">'multip':</span> <span class="pre">{'default_value':</span> <span class="pre">1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'pseudo':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">{'expt_no':</span> <span class="pre">['standard',</span> <span class="pre">'hgh_lda_sc',</span> <span class="pre">'hgh_lda'],</span> <span class="pre">'expt_yes':</span> <span class="pre">[['pseudodojo_lda',</span> <span class="pre">'hscv_lda',</span> <span class="pre">'pseudodojo_lda_stringent'],</span> <span class="pre">['pseudodojo_pbe',</span> <span class="pre">'pseudodojo_pbe_stringent',</span> <span class="pre">'pseudodojo_pbesol',</span> <span class="pre">'pseudodojo_pbesol_stringent',</span> <span class="pre">'sg15',</span> <span class="pre">'hscv_pbe']]}},</span> <span class="pre">'r':</span> <span class="pre">{'default_value':</span> <span class="pre">6,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'rel_density':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'rel_eigen':</span> <span class="pre">{'default_value':</span> <span class="pre">0,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'shape':</span> <span class="pre">{'default_value':</span> <span class="pre">'parallelepiped',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['parallelepiped',</span> <span class="pre">'minimum',</span> <span class="pre">'sphere',</span> <span class="pre">'cylinder']},</span> <span class="pre">'smear':</span> <span class="pre">{'default_value':</span> <span class="pre">0.1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.decimal},</span> <span class="pre">'smearfn':</span> <span class="pre">{'default_value':</span> <span class="pre">'semiconducting',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['semiconducting',</span> <span class="pre">'fermi_dirac',</span> <span class="pre">'cold_smearing',</span> <span class="pre">'methfessel_paxton',</span> <span class="pre">'spline_smearing']},</span> <span class="pre">'spinpol':</span> <span class="pre">{'default_value':</span> <span class="pre">'unpolarized',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['unpolarized',</span> <span class="pre">'polarized']},</span> <span class="pre">'unit_box':</span> <span class="pre">{'default_value':</span> <span class="pre">'angstrom',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">['angstrom']},</span> <span class="pre">'unitconv':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">[]},</span> <span class="pre">'var_oct_xc':</span> <span class="pre">{'default_value':</span> <span class="pre">1,</span> <span class="pre">'max':</span> <span class="pre">None,</span> <span class="pre">'min':</span> <span class="pre">None,</span> <span class="pre">'type':</span> <span class="pre">DataTypes.integer},</span> <span class="pre">'x':</span> <span class="pre">{'default_value':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">DataTypes.string,</span> <span class="pre">'values':</span> <span class="pre">{'lda_x':</span> <span class="pre">['lda_x',</span> <span class="pre">'lda_x_rel',</span> <span class="pre">'lda_x_erf',</span> <span class="pre">'lda_x_rae'],</span> <span class="pre">'pbe_x':</span> <span class="pre">['gga_x_pbe',</span> <span class="pre">'gga_x_pbe_r',</span> <span class="pre">'gga_x_b86',</span> <span class="pre">'gga_x_herman',</span> <span class="pre">'gga_x_b86_mgc',</span> <span class="pre">'gga_x_b88',</span> <span class="pre">'gga_x_pbe_sol']}}}</span></em><a class="headerlink" href="#litesoph.common.models.OctopusModel.ground_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.models.format_laser_label">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">format_laser_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_lasers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#format_laser_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.format_laser_label" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.models.plot">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.models.</span></span><span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/models.html#plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.models.plot" title="Permalink to this definition"></a></dt>
+<dd><p>returns Figure object given x and y data</p>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.project_manager">
+<span id="litesoph-common-project-manager-module"></span><h2>litesoph.common.project_manager module<a class="headerlink" href="#module-litesoph.common.project_manager" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.project_manager.</span></span><span class="sig-name descname"><span class="pre">ProjectManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.add_geometry">
+<span class="sig-name descname"><span class="pre">add_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.add_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.add_geometry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.append_workflow">
+<span class="sig-name descname"><span class="pre">append_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow_info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.append_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.append_workflow" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.check" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.get_predefined_workflow">
+<span class="sig-name descname"><span class="pre">get_predefined_workflow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.get_predefined_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.get_predefined_workflow" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.get_summary">
+<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.get_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.get_summary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.list" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.list_available_workflows">
+<span class="sig-name descname"><span class="pre">list_available_workflows</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.list_available_workflows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.list_available_workflows" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.new_workflow">
+<span class="sig-name descname"><span class="pre">new_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.new_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.new_workflow" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.open_workflow">
+<span class="sig-name descname"><span class="pre">open_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uuid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.open_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.open_workflow" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.start_workflow">
+<span class="sig-name descname"><span class="pre">start_workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.start_workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.start_workflow" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.visualize_geometry">
+<span class="sig-name descname"><span class="pre">visualize_geometry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#ProjectManager.visualize_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.visualize_geometry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.ProjectManager.workflow_data_file_name">
+<span class="sig-name descname"><span class="pre">workflow_data_file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.workflow.json'</span></em><a class="headerlink" href="#litesoph.common.project_manager.ProjectManager.workflow_data_file_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.WorkflowSetupError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.project_manager.</span></span><span class="sig-name descname"><span class="pre">WorkflowSetupError</span></span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#WorkflowSetupError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.WorkflowSetupError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when unable to creating or opening task.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.project_manager.summary_of_current_project">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.project_manager.</span></span><span class="sig-name descname"><span class="pre">summary_of_current_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_manager.html#summary_of_current_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_manager.summary_of_current_project" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.project_status">
+<span id="litesoph-common-project-status-module"></span><h2>litesoph.common.project_status module<a class="headerlink" href="#module-litesoph.common.project_status" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.project_status.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.check" title="Permalink to this definition"></a></dt>
+<dd><p>returns boolean value if given path(keys separated by ‘.’) and value match</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.get" title="Permalink to this definition"></a></dt>
+<dd><p>returns the value from the nested dictionary
+with path(string of keys separated by ‘.’)</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.read" title="Permalink to this definition"></a></dt>
+<dd><p>reads the status object from json file &amp; updates the status dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.set_new_task">
+<span class="sig-name descname"><span class="pre">set_new_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.set_new_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.set_new_task" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.Status.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#Status.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.Status.update" title="Permalink to this definition"></a></dt>
+<dd><p>updates the status dictionary and writes to json file
+if path(string of keys separated by ‘.’) and value are given</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.project_status.file_check">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.project_status.</span></span><span class="sig-name descname"><span class="pre">file_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#file_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.file_check" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.file_check.check_list">
+<span class="sig-name descname"><span class="pre">check_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#file_check.check_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.file_check.check_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.project_status.file_check.search_string">
+<span class="sig-name descname"><span class="pre">search_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#file_check.search_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.file_check.search_string" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a string is present in the file and returns boolean</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.project_status.recursive_update">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.project_status.</span></span><span class="sig-name descname"><span class="pre">recursive_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/project_status.html#recursive_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.project_status.recursive_update" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.task">
+<span id="litesoph-common-task-module"></span><h2>litesoph.common.task module<a class="headerlink" href="#module-litesoph.common.task" title="Permalink to this headline"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.InputError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">InputError</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#InputError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.InputError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.task.TaskSetupError" title="litesoph.common.task.TaskSetupError"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.task.TaskSetupError</span></code></a></p>
+<p>Raised if inputs given to the calculator were incorrect.</p>
+<p>Bad input keywords or values, or missing pseudopotentials.</p>
+<p>This may be raised before or during calculation, depending on
+when the problem is detected.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.PropertyNotPresent">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">PropertyNotPresent</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#PropertyNotPresent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.PropertyNotPresent" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.task.TaskError" title="litesoph.common.task.TaskError"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.task.TaskError</span></code></a></p>
+<p>Requested property is missing.</p>
+<p>Maybe it was never calculated, or for some reason was not extracted
+with the rest of the results, without being a fatal ReadError.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.ReadError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">ReadError</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#ReadError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.ReadError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.task.TaskError" title="litesoph.common.task.TaskError"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.task.TaskError</span></code></a></p>
+<p>Unexpected irrecoverable error while reading calculation results.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.task.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lsconfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base-class for all tasks.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.BASH_filename">
+<span class="sig-name descname"><span class="pre">BASH_filename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'job_script.sh'</span></em><a class="headerlink" href="#litesoph.common.task.Task.BASH_filename" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.add_proper_path">
+<span class="sig-name descname"><span class="pre">add_proper_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.add_proper_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.add_proper_path" title="Permalink to this definition"></a></dt>
+<dd><p>This replaces the local paths to remote paths in the engine input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.check_output">
+<span class="sig-name descname"><span class="pre">check_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.check_output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.check_output" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.check_prerequisite">
+<span class="sig-name descname"><span class="pre">check_prerequisite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.check_prerequisite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.check_prerequisite" title="Permalink to this definition"></a></dt>
+<dd><p>checks if the input files and required data files for the present task are present</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.connect_to_network">
+<span class="sig-name descname"><span class="pre">connect_to_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.connect_to_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.connect_to_network" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.create_directory">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.create_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.create_directory" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.create_input">
+<span class="sig-name descname"><span class="pre">create_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.create_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.create_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.create_job_script">
+<span class="sig-name descname"><span class="pre">create_job_script</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.create_job_script"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.create_job_script" title="Permalink to this definition"></a></dt>
+<dd><p>Create the bash script to run the job and “touch Done” command to it, to know when the
+command is completed.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.create_template">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_template</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.create_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.create_template" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates engine input and stores it in the task info.
+Store the engine input in taskinfo.input[‘engine_input’][data]
+filepath in taskinfo.input[‘engine_input’][‘path’]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.get_engine_input">
+<span class="sig-name descname"><span class="pre">get_engine_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.get_engine_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.get_engine_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.job_script_first_line">
+<span class="sig-name descname"><span class="pre">job_script_first_line</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#!/bin/bash'</span></em><a class="headerlink" href="#litesoph.common.task.Task.job_script_first_line" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.prepare_input">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prepare_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.prepare_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.prepare_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.read_log">
+<span class="sig-name descname"><span class="pre">read_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.read_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.read_log" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.remote_job_script_last_line">
+<span class="sig-name descname"><span class="pre">remote_job_script_last_line</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'touch</span> <span class="pre">Done'</span></em><a class="headerlink" href="#litesoph.common.task.Task.remote_job_script_last_line" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.reset_lsconfig">
+<span class="sig-name descname"><span class="pre">reset_lsconfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lsconfig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.reset_lsconfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.reset_lsconfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.run_job_local">
+<span class="sig-name descname"><span class="pre">run_job_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.run_job_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.run_job_local" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.run_job_network">
+<span class="sig-name descname"><span class="pre">run_job_network</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.run_job_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.run_job_network" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.save_input">
+<span class="sig-name descname"><span class="pre">save_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.save_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.save_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.set_engine_input">
+<span class="sig-name descname"><span class="pre">set_engine_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.set_engine_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.set_engine_input" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.set_submit_local">
+<span class="sig-name descname"><span class="pre">set_submit_local</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.set_submit_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.set_submit_local" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.write_input">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.write_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.write_input" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates engine directory and task directory and writes
+the engine input to a file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task.Task.write_job_script">
+<span class="sig-name descname"><span class="pre">write_job_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_script</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#Task.write_job_script"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.Task.write_job_script" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.TaskError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">TaskError</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#TaskError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.TaskError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></p>
+<p>Base class of error types related to any TASK.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.TaskFailed">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">TaskFailed</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#TaskFailed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.TaskFailed" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.task.TaskError" title="litesoph.common.task.TaskError"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.task.TaskError</span></code></a></p>
+<p>Calculation failed unexpectedly.</p>
+<dl class="simple">
+<dt>Reasons to raise this error are:</dt><dd><ul class="simple">
+<li><p>Calculation did not converge</p></li>
+<li><p>Calculation ran out of memory</p></li>
+<li><p>Segmentation fault or other abnormal termination</p></li>
+<li><p>Arithmetic trouble (singular matrices, NaN, …)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Typically raised during calculation.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.TaskNotImplementedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">TaskNotImplementedError</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#TaskNotImplementedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.TaskNotImplementedError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NotImplementedError</span></code></p>
+<p>Raised if a calculator does not implement the requested property.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.task.TaskSetupError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">TaskSetupError</span></span><a class="reference internal" href="../_modules/litesoph/common/task.html#TaskSetupError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.TaskSetupError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.task.TaskError" title="litesoph.common.task.TaskError"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.task.TaskError</span></code></a></p>
+<p>Calculation cannot be performed with the given parameters.</p>
+<p>Typically raised before a calculation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.task.assemable_job_cmd">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">assemable_job_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine_cmd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cd_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mpi_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler_block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_load_block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#assemable_job_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.assemable_job_cmd" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.task.pbs_job_script">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">pbs_job_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#pbs_job_script"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.pbs_job_script" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.task.write2file">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.task.</span></span><span class="sig-name descname"><span class="pre">write2file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task.html#write2file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task.write2file" title="Permalink to this definition"></a></dt>
+<dd><p>Write template to a file.</p>
+<dl class="simple">
+<dt>directroy: str</dt><dd><p>full path of the directory to write to.</p>
+</dd>
+<dt>filename: str</dt><dd><p>name of the file with extension</p>
+</dd>
+<dt>template: str</dt><dd><p>script template which needs to be written to file.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.task_data">
+<span id="litesoph-common-task-data-module"></span><h2>litesoph.common.task_data module<a class="headerlink" href="#module-litesoph.common.task_data" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskParamDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task_data.</span></span><span class="sig-name descname"><span class="pre">TaskParamDB</span></span><a class="reference internal" href="../_modules/litesoph/common/task_data.html#TaskParamDB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_data.TaskParamDB" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskParamDB.get_template_task_param">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_template_task_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task_data.html#TaskParamDB.get_template_task_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_data.TaskParamDB.get_template_task_param" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task_data.</span></span><span class="sig-name descname"><span class="pre">TaskTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task_data.html#TaskTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_data.TaskTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.COMPUTE_AVERAGED_SPECTRUM">
+<span class="sig-name descname"><span class="pre">COMPUTE_AVERAGED_SPECTRUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'compute_average_spectrum'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.COMPUTE_AVERAGED_SPECTRUM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.COMPUTE_SPECTRUM">
+<span class="sig-name descname"><span class="pre">COMPUTE_SPECTRUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spectrum'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.COMPUTE_SPECTRUM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.GROUND_STATE">
+<span class="sig-name descname"><span class="pre">GROUND_STATE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ground_state'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.GROUND_STATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.MASKING">
+<span class="sig-name descname"><span class="pre">MASKING</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'masking'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.MASKING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.MO_POPULATION">
+<span class="sig-name descname"><span class="pre">MO_POPULATION</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mo_population'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.MO_POPULATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.RT_TDDFT">
+<span class="sig-name descname"><span class="pre">RT_TDDFT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rt_tddft'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.RT_TDDFT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.task_data.TaskTypes.TCM">
+<span class="sig-name descname"><span class="pre">TCM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tcm'</span></em><a class="headerlink" href="#litesoph.common.task_data.TaskTypes.TCM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.task_data.check_properties_dependencies">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.task_data.</span></span><span class="sig-name descname"><span class="pre">check_properties_dependencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task_data.html#check_properties_dependencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_data.check_properties_dependencies" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.task_manager">
+<span id="litesoph-common-task-manager-module"></span><h2>litesoph.common.task_manager module<a class="headerlink" href="#module-litesoph.common.task_manager" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.task_manager.TaskManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.task_manager.</span></span><span class="sig-name descname"><span class="pre">TaskManager</span></span><a class="reference internal" href="../_modules/litesoph/common/task_manager.html#TaskManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_manager.TaskManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task_manager.TaskManager.get_running_task">
+<span class="sig-name descname"><span class="pre">get_running_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task_manager.html#TaskManager.get_running_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_manager.TaskManager.get_running_task" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.task_manager.TaskManager.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/task_manager.html#TaskManager.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.task_manager.TaskManager.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.utils">
+<span id="litesoph-common-utils-module"></span><h2>litesoph.common.utils module<a class="headerlink" href="#module-litesoph.common.utils" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.utils.check_dir_exists">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.utils.</span></span><span class="sig-name descname"><span class="pre">check_dir_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/utils.html#check_dir_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.utils.check_dir_exists" title="Permalink to this definition"></a></dt>
+<dd><p>check if directory exists.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.utils.create_dir">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.utils.</span></span><span class="sig-name descname"><span class="pre">create_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/utils.html#create_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.utils.create_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Creates project directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.utils.get_new_directory">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.utils.</span></span><span class="sig-name descname"><span class="pre">get_new_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/utils.html#get_new_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.utils.get_new_directory" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the directory exists and addeds a number to name untill
+a new name is found.</p>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.workflow_manager">
+<span id="litesoph-common-workflow-manager-module"></span><h2>litesoph.common.workflow_manager module<a class="headerlink" href="#module-litesoph.common.workflow_manager" title="Permalink to this headline"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.TaskSetupError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflow_manager.</span></span><span class="sig-name descname"><span class="pre">TaskSetupError</span></span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#TaskSetupError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.TaskSetupError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when unable to creating or opening task.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowEnded">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflow_manager.</span></span><span class="sig-name descname"><span class="pre">WorkflowEnded</span></span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowEnded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowEnded" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when the workflow has ended.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflow_manager.</span></span><span class="sig-name descname"><span class="pre">WorkflowManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflow_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.add_block">
+<span class="sig-name descname"><span class="pre">add_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.add_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.add_block" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.add_task">
+<span class="sig-name descname"><span class="pre">add_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_task_step_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.add_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.add_task" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.check" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.choose_default_engine">
+<span class="sig-name descname"><span class="pre">choose_default_engine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.choose_default_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.choose_default_engine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.create_task_info">
+<span class="sig-name descname"><span class="pre">create_task_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.create_task_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.create_task_info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.get_engine">
+<span class="sig-name descname"><span class="pre">get_engine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.get_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.get_engine" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.get_engine_task">
+<span class="sig-name descname"><span class="pre">get_engine_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.get_engine_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.get_engine_task" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.get_summary">
+<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.get_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.get_summary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.get_task_dependencies">
+<span class="sig-name descname"><span class="pre">get_task_dependencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.get_task_dependencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.get_task_dependencies" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.next" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.previous">
+<span class="sig-name descname"><span class="pre">previous</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.previous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.previous" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.run_block">
+<span class="sig-name descname"><span class="pre">run_block</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.run_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.run_block" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.run_next_task">
+<span class="sig-name descname"><span class="pre">run_next_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.run_next_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.run_next_task" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.save" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.set_engine">
+<span class="sig-name descname"><span class="pre">set_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.set_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.set_engine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowManager.update_task_param">
+<span class="sig-name descname"><span class="pre">update_task_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowManager.update_task_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowManager.update_task_param" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflow_manager.</span></span><span class="sig-name descname"><span class="pre">WorkflowMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_manager</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflow_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#litesoph.common.workflow_manager.WorkflowManager" title="litesoph.common.workflow_manager.WorkflowManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">litesoph.common.workflow_manager.WorkflowManager</span></code></a></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode.check_engine">
+<span class="sig-name descname"><span class="pre">check_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode.check_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode.check_engine" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode.choose_default_engine">
+<span class="sig-name descname"><span class="pre">choose_default_engine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode.choose_default_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode.choose_default_engine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode.get_task_dependencies">
+<span class="sig-name descname"><span class="pre">get_task_dependencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode.get_task_dependencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode.get_task_dependencies" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode.next" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.WorkflowMode.set_engine">
+<span class="sig-name descname"><span class="pre">set_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#WorkflowMode.set_engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.WorkflowMode.set_engine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="litesoph.common.workflow_manager.update_workflowinfo">
+<span class="sig-prename descclassname"><span class="pre">litesoph.common.workflow_manager.</span></span><span class="sig-name descname"><span class="pre">update_workflowinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">workflow_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">workflowinfo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflow_manager.html#update_workflowinfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflow_manager.update_workflowinfo" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common.workflows_data">
+<span id="litesoph-common-workflows-data-module"></span><h2>litesoph.common.workflows_data module<a class="headerlink" href="#module-litesoph.common.workflows_data" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflows_data.</span></span><span class="sig-name descname"><span class="pre">WorkflowTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflows_data.html#WorkflowTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes.AVERAGED_SPECTRUM">
+<span class="sig-name descname"><span class="pre">AVERAGED_SPECTRUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'averaged_spectrum'</span></em><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes.AVERAGED_SPECTRUM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes.KOHN_SHAM_DECOMPOSITION">
+<span class="sig-name descname"><span class="pre">KOHN_SHAM_DECOMPOSITION</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'kohn_sham_decomposition'</span></em><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes.KOHN_SHAM_DECOMPOSITION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes.MASKING">
+<span class="sig-name descname"><span class="pre">MASKING</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'masking'</span></em><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes.MASKING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes.MO_POPULATION_TRACKING">
+<span class="sig-name descname"><span class="pre">MO_POPULATION_TRACKING</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mo_population_tracking'</span></em><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes.MO_POPULATION_TRACKING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.WorkflowTypes.SPECTRUM">
+<span class="sig-name descname"><span class="pre">SPECTRUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'spectrum'</span></em><a class="headerlink" href="#litesoph.common.workflows_data.WorkflowTypes.SPECTRUM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">litesoph.common.workflows_data.</span></span><span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_id:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters:</span> <span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_parameters:</span> <span class="pre">Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/litesoph/common/workflows_data.html#step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#litesoph.common.workflows_data.step" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step.block_id">
+<span class="sig-name descname"><span class="pre">block_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#litesoph.common.workflows_data.step.block_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step.env_parameters">
+<span class="sig-name descname"><span class="pre">env_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#litesoph.common.workflows_data.step.env_parameters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#litesoph.common.workflows_data.step.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#litesoph.common.workflows_data.step.parameters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="litesoph.common.workflows_data.step.task_type">
+<span class="sig-name descname"><span class="pre">task_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#litesoph.common.workflows_data.step.task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-litesoph.common">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-litesoph.common" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="litesoph.html" class="btn btn-neutral float-left" title="litesoph package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="litesoph.common.data_sturcture.html" class="btn btn-neutral float-right" title="litesoph.common.data_sturcture package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.common.decision_tree &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.common.decision_tree</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.common.decision_tree</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">from</span> <span class="nn">litesoph.engines.gpaw.task_data</span> <span class="kn">import</span> <span class="n">gpaw_gs_param_data</span> <span class="k">as</span> <span class="n">gpaw_data</span>
+<span class="kn">from</span> <span class="nn">litesoph.engines.octopus.task_data</span> <span class="kn">import</span> <span class="n">ground_state</span> <span class="k">as</span> <span class="n">octopus_data</span>
+<span class="kn">from</span> <span class="nn">litesoph.engines.nwchem.task_data</span> <span class="kn">import</span> <span class="n">nwchem_gs_param_data</span> <span class="k">as</span> <span class="n">nwchem_data</span>
+
+<span class="n">ls_integrated_engines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gpaw&quot;</span><span class="p">,</span> <span class="s2">&quot;nwchem&quot;</span><span class="p">,</span> <span class="s2">&quot;octopus&quot;</span><span class="p">]</span>
+<span class="n">available_engines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gpaw&quot;</span><span class="p">,</span><span class="s2">&quot;nwchem&quot;</span><span class="p">,</span> <span class="s2">&quot;octopus&quot;</span><span class="p">]</span>
+<span class="n">engine_priorities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nwchem&quot;</span><span class="p">,</span><span class="s2">&quot;gpaw&quot;</span><span class="p">,</span><span class="s2">&quot;octopus&quot;</span><span class="p">]</span>  
+
+<span class="n">engine_data_base</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nwchem&quot;</span><span class="p">:</span> <span class="n">nwchem_data</span><span class="p">,</span>
+    <span class="s2">&quot;gpaw&quot;</span><span class="p">:</span> <span class="n">gpaw_data</span><span class="p">,</span>
+    <span class="s2">&quot;octopus&quot;</span><span class="p">:</span> <span class="n">octopus_data</span>
+<span class="p">}</span>   
+
+<span class="n">workflow_compatibility</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;spectrum&quot;</span><span class="p">:</span> <span class="n">ls_integrated_engines</span><span class="p">,</span>
+    <span class="s2">&quot;averaged_spectrum&quot;</span><span class="p">:</span> <span class="n">ls_integrated_engines</span><span class="p">,</span>
+    <span class="s2">&quot;kohn_sham_decomposition&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;octopus&quot;</span><span class="p">,</span><span class="s2">&quot;gpaw&quot;</span><span class="p">,],</span>
+    <span class="s2">&quot;mo_population_tracking&quot;</span><span class="p">:</span> <span class="n">ls_integrated_engines</span><span class="p">,</span>
+    <span class="s2">&quot;masking&quot;</span><span class="p">:[</span><span class="s2">&quot;gpaw&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="n">xc_hybrid</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B3LYP&quot;</span><span class="p">,</span> <span class="s2">&quot;PBE0&quot;</span><span class="p">,</span><span class="s2">&quot;CAMY-B3LYP&quot;</span><span class="p">,</span><span class="s2">&quot;CAM-B3LYP&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;HSE03&quot;</span><span class="p">,</span><span class="s2">&quot;HSE06&quot;</span><span class="p">,</span><span class="s2">&quot;M05&quot;</span><span class="p">,</span><span class="s2">&quot;M05-2X&quot;</span><span class="p">,</span><span class="s2">&quot;M06-HF&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;M08-SO&quot;</span><span class="p">,</span><span class="s2">&quot;M011&quot;</span><span class="p">]</span>
+<span class="n">xc_gga</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PBE&quot;</span><span class="p">,</span><span class="s2">&quot;PW91&quot;</span><span class="p">,</span><span class="s2">&quot;BLYP&quot;</span><span class="p">,</span><span class="s2">&quot;CAMY-BLYP&quot;</span><span class="p">,</span><span class="s2">&quot;PBEsol&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PW91&quot;</span><span class="p">,</span><span class="s2">&quot;BP86&quot;</span><span class="p">,</span><span class="s2">&quot;BP91&quot;</span><span class="p">,</span><span class="s2">&quot;LC-BLYP&quot;</span><span class="p">,</span><span class="s2">&quot;LC-PBE&quot;</span><span class="p">,</span><span class="s2">&quot;LC-wPBE&quot;</span><span class="p">]</span>
+<span class="n">xc_lda</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LDA&quot;</span><span class="p">]</span>
+
+<span class="n">basis_sets_gaussian</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;def2SVP&quot;</span><span class="p">,</span><span class="s2">&quot;6-31G&quot;</span><span class="p">,</span><span class="s2">&quot;STO-2G&quot;</span><span class="p">,</span><span class="s2">&quot;STO-3G&quot;</span><span class="p">]</span>
+<span class="n">basis_sets_lcao</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dzp&quot;</span><span class="p">,</span><span class="s2">&quot;dz&quot;</span><span class="p">,</span><span class="s2">&quot;sz&quot;</span><span class="p">,</span><span class="s2">&quot;pvalence.dz&quot;</span><span class="p">,</span><span class="s2">&quot;szp&quot;</span><span class="p">]</span>
+<span class="n">basis_sets_fd</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">basis_sets_pw</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">priority_basis_type</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gaussian&quot;</span><span class="p">,</span><span class="s2">&quot;lcao&quot;</span><span class="p">,</span><span class="s2">&quot;fd&quot;</span><span class="p">,</span><span class="s2">&quot;pw&quot;</span><span class="p">]</span>
+<span class="n">priority_xc</span> <span class="o">=</span> <span class="n">xc_hybrid</span> <span class="o">+</span> <span class="n">xc_gga</span> <span class="o">+</span> <span class="n">xc_lda</span>
+<span class="n">priority_basis_set</span> <span class="o">=</span> <span class="n">basis_sets_gaussian</span> <span class="o">+</span> <span class="n">basis_sets_lcao</span>
+<span class="n">priority_boxshape</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;minimum&quot;</span><span class="p">,</span><span class="s2">&quot;sphere&quot;</span><span class="p">,</span><span class="s2">&quot;cylinder&quot;</span><span class="p">,</span><span class="s2">&quot;parallelepiped&quot;</span><span class="p">]</span>
+
+<span class="n">priority_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;basis_type&quot;</span><span class="p">:</span> <span class="n">priority_basis_type</span><span class="p">,</span>
+    <span class="s2">&quot;xc&quot;</span><span class="p">:</span> <span class="n">priority_xc</span><span class="p">,</span>
+    <span class="s2">&quot;basis&quot;</span><span class="p">:</span> <span class="n">priority_basis_set</span><span class="p">,</span>
+    <span class="s2">&quot;boxshape&quot;</span><span class="p">:</span> <span class="n">priority_boxshape</span>   
+<span class="p">}</span>
+
+<div class="viewcode-block" id="EngineDecisionError"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.decision_tree.EngineDecisionError">[docs]</a><span class="k">class</span> <span class="nc">EngineDecisionError</span><span class="p">(</span><span class="ne">RecursionError</span><span class="p">):</span>
+    <span class="s2">&quot;Raise this exception when unable to determine the engine.&quot;</span></div>
+
+<div class="viewcode-block" id="update_engine_list"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.decision_tree.update_engine_list">[docs]</a><span class="k">def</span> <span class="nf">update_engine_list</span><span class="p">(</span><span class="n">calc_param</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">choice</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">engine_data_map</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Access the possible task_param values from engine_data_map,</span>
+<span class="sd">    and updates the engine list if choice is present&quot;&quot;&quot;</span>
+
+    <span class="n">engine_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">engine</span><span class="p">,</span> <span class="n">engine_data</span> <span class="ow">in</span> <span class="n">engine_data_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">param_dict</span> <span class="o">=</span> <span class="n">engine_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calc_param</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">param_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;values&#39;</span> <span class="ow">in</span> <span class="n">param_dict</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="n">param_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;metadata&#39;</span><span class="ow">in</span> <span class="n">param_dict</span><span class="p">:</span>
+                <span class="n">meta_data</span> <span class="o">=</span> <span class="n">param_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;metadata&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>                    
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="n">_values</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">value1</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="n">values</span> <span class="o">=</span> <span class="n">value2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                                <span class="n">_values</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+                            <span class="n">values</span> <span class="o">=</span> <span class="n">_values</span>          
+            <span class="k">if</span>  <span class="n">values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                    <span class="n">engine_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">engine_list</span></div>
+
+<div class="viewcode-block" id="get_choice_engines"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.decision_tree.get_choice_engines">[docs]</a><span class="k">def</span> <span class="nf">get_choice_engines</span><span class="p">(</span><span class="n">calc_param</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span><span class="n">engine_data_map</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of tuples of the form (calc_param_option, list of compatible engines)</span>
+<span class="sd">    in order of decreasing priority&quot;&quot;&quot;</span>
+
+    <span class="n">param_list</span> <span class="o">=</span> <span class="n">priority_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">calc_param</span><span class="p">)</span>
+    <span class="n">_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_list</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">param_list</span><span class="p">:</span>
+            <span class="n">engine_list</span> <span class="o">=</span> <span class="n">update_engine_list</span><span class="p">(</span><span class="n">calc_param</span><span class="p">,</span><span class="n">item</span><span class="p">,</span> <span class="n">engine_data_map</span><span class="p">)</span>            
+            <span class="n">choice_engine_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">engine_list</span><span class="p">)</span>
+            <span class="n">_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choice_engine_pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_list</span></div>
+
+<span class="c1">#--------------------------------------------------------------------------------------</span>
+
+<span class="n">calc_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;basis_type&quot;</span><span class="p">:</span> <span class="n">get_choice_engines</span><span class="p">(</span><span class="s2">&quot;basis_type&quot;</span><span class="p">,</span><span class="n">engine_data_base</span><span class="p">),</span>
+    <span class="s2">&quot;xc&quot;</span><span class="p">:</span> <span class="n">get_choice_engines</span><span class="p">(</span><span class="s2">&quot;xc&quot;</span><span class="p">,</span><span class="n">engine_data_base</span><span class="p">),</span>
+    <span class="s2">&quot;basis&quot;</span><span class="p">:</span> <span class="n">get_choice_engines</span><span class="p">(</span><span class="s2">&quot;basis&quot;</span><span class="p">,</span><span class="n">engine_data_base</span><span class="p">),</span>
+    <span class="s2">&quot;boxshape&quot;</span><span class="p">:</span> <span class="n">get_choice_engines</span><span class="p">(</span><span class="s2">&quot;boxshape&quot;</span><span class="p">,</span><span class="n">engine_data_base</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="decide_engine"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.decision_tree.decide_engine">[docs]</a><span class="k">def</span> <span class="nf">decide_engine</span><span class="p">(</span><span class="n">workflow_type</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> 
+                  <span class="n">decision_priority</span><span class="p">:</span><span class="nb">list</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;basis_type&quot;</span><span class="p">,</span> <span class="s2">&quot;xc&quot;</span><span class="p">,</span><span class="s2">&quot;basis&quot;</span><span class="p">,</span> <span class="s2">&quot;boxshape&quot;</span><span class="p">]</span> <span class="p">,</span> 
+                  <span class="n">decision_param_dict</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="n">calc_params</span><span class="p">,</span>
+                  <span class="n">available_engines</span><span class="p">:</span><span class="nb">list</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;gpaw&quot;</span><span class="p">,</span><span class="s2">&quot;nwchem&quot;</span><span class="p">,</span> <span class="s2">&quot;octopus&quot;</span><span class="p">]):</span>
+    
+    <span class="n">compatible_engines</span> <span class="o">=</span> <span class="n">workflow_compatibility</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">workflow_type</span><span class="p">)</span>
+    <span class="n">incompatible_engines</span> <span class="o">=</span> <span class="p">[</span><span class="n">engine</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">ls_integrated_engines</span> 
+                            <span class="k">if</span> <span class="n">engine</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">compatible_engines</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">available_engines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">incompatible_engines</span><span class="p">:</span>
+            <span class="n">available_engines</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">engine_list</span> <span class="o">=</span> <span class="n">available_engines</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">decision_priority</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">choice_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">decision_priority</span><span class="p">:</span>
+        <span class="n">param_list</span> <span class="o">=</span> <span class="n">decision_param_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">param_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">param_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">param_list</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">choice</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                <span class="n">common</span> <span class="o">=</span> <span class="p">[</span><span class="n">engine</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">engine_list</span> <span class="k">if</span> <span class="n">engine</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">common</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">engine_list</span> <span class="o">=</span> <span class="n">common</span>
+                    <span class="n">choice_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+                    <span class="k">break</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">engine_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">priority_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">engine_priorities</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span> <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">engine_list</span><span class="p">]</span>
+        <span class="n">index_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">priority_index</span><span class="p">)</span>
+        <span class="n">engine_choice</span> <span class="o">=</span> <span class="n">engine_priorities</span><span class="p">[</span><span class="n">index_min</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">engine_choice</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">EngineDecisionError</span><span class="p">(</span><span class="s2">&quot;Error in deciding engine&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="choose_engine"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.decision_tree.choose_engine">[docs]</a><span class="k">def</span> <span class="nf">choose_engine</span><span class="p">(</span><span class="n">input_param</span><span class="p">:</span><span class="nb">dict</span><span class="p">)</span><span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    
+    <span class="n">basis_type</span> <span class="o">=</span> <span class="n">input_param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;basis_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">basis_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">EngineDecisionError</span><span class="p">(</span><span class="s2">&quot;Basis type is not defined.&quot;</span><span class="p">)</span>
+
+    <span class="n">boxshape</span> <span class="o">=</span> <span class="n">input_param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;boxshape&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">boxshape</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;lcao&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">boxshape</span> <span class="o">==</span> <span class="s2">&quot;parallelepiped&quot;</span><span class="p">:</span>
+                <span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;gpaw&quot;</span>
+                <span class="k">return</span> <span class="n">engine</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">EngineDecisionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Box shape:</span><span class="si">{</span><span class="n">boxshape</span><span class="si">}</span><span class="s2"> is not supported in LCAO basis type.&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;fd&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">boxshape</span> <span class="o">==</span> <span class="s2">&quot;parallelepiped&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;gpaw&#39;</span><span class="p">,</span> <span class="s1">&#39;octopus&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">boxshape</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;minimum&quot;</span><span class="p">,</span><span class="s2">&quot;sphere&quot;</span><span class="p">,</span><span class="s2">&quot;cylinder&quot;</span><span class="p">]</span> <span class="p">:</span> 
+                <span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;octopus&quot;</span>
+            <span class="k">return</span> <span class="n">engine</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;pw&quot;</span><span class="p">:</span>
+            <span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;gpaw&quot;</span>
+        <span class="k">elif</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span>
+            <span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;nwchem&quot;</span>
+            <span class="k">return</span> <span class="n">engine</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

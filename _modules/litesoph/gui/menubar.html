@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -137,8 +139,9 @@
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
 
 
-<div class="viewcode-block" id="GenericMainMenu"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.menubar.GenericMainMenu">[docs]</a><span class="k">class</span> <span class="nc">GenericMainMenu</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">):</span>
+<div class="viewcode-block" id="GenericMainMenu"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.menubar.GenericMainMenu">[docs]</a><span class="k">class</span> <span class="nc">GenericMainMenu</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;The Application&#39;s main menu&quot;&quot;&quot;</span>
+
 
   <span class="n">accelerators</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;file_open&#39;</span><span class="p">:</span> <span class="s1">&#39;Ctrl+O&#39;</span><span class="p">,</span>
@@ -168,7 +171,14 @@
     <span class="n">menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span>
       <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select file…&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;FileSelect&gt;&gt;&#39;</span><span class="p">),</span>
       <span class="c1">#image=self.icons.get(&#39;file&#39;), compound=tk.LEFT</span>
+
   <span class="p">)</span>
+  <span class="k">def</span> <span class="nf">_add_new_Workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menu</span><span class="p">):</span>
+
+        <span class="n">menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;New Workflow…&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="p">(</span><span class="n">actions</span><span class="o">.</span><span class="n">CREATE_NEW_WORKFLOW</span><span class="p">),</span>
+        <span class="c1">#image=self.icons.get(&#39;file&#39;), compound=tk.LEFT</span>
+    <span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">_add_new_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menu</span><span class="p">):</span>
 
@@ -246,7 +256,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">_bind_accelerators</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">styles</span><span class="p">)</span>
 
-<div class="viewcode-block" id="GenericMainMenu.show_about"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.menubar.GenericMainMenu.show_about">[docs]</a>  <span class="k">def</span> <span class="nf">show_about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GenericMainMenu.show_about"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.menubar.GenericMainMenu.show_about">[docs]</a>  <span class="k">def</span> <span class="nf">show_about</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Show the about dialog&quot;&quot;&quot;</span>
 
     <span class="n">about_message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -275,7 +285,7 @@
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keybinds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="p">(</span><span class="n">sequence</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="LinuxMainMenu"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.menubar.LinuxMainMenu">[docs]</a><span class="k">class</span> <span class="nc">LinuxMainMenu</span><span class="p">(</span><span class="n">GenericMainMenu</span><span class="p">):</span>
+<div class="viewcode-block" id="LinuxMainMenu"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.menubar.LinuxMainMenu">[docs]</a><span class="k">class</span> <span class="nc">LinuxMainMenu</span><span class="p">(</span><span class="n">GenericMainMenu</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;Differences for Linux:</span>
 
 <span class="sd">    - Edit menu for autofill options</span>
@@ -294,6 +304,7 @@
   <span class="k">def</span> <span class="nf">_build_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">styles</span><span class="p">)</span>
 <span class="c1">#    self._add_file_open(self._menus[&#39;File&#39;])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_new_Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_add_new_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_add_open_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add_separator</span><span class="p">()</span>
@@ -324,7 +335,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">menu</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MacOsMainMenu"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.menubar.MacOsMainMenu">[docs]</a><span class="k">class</span> <span class="nc">MacOsMainMenu</span><span class="p">(</span><span class="n">GenericMainMenu</span><span class="p">):</span>
+<div class="viewcode-block" id="MacOsMainMenu"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.menubar.MacOsMainMenu">[docs]</a><span class="k">class</span> <span class="nc">MacOsMainMenu</span><span class="p">(</span><span class="n">GenericMainMenu</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  Differences for MacOS:</span>
 
@@ -361,6 +372,9 @@
 
     <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1">#    self._add_file_open(self._menus[&#39;File&#39;])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_new_Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_new_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_add_open_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;File&#39;</span><span class="p">])</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">_menus</span><span class="p">[</span><span class="s1">&#39;Edit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
@@ -381,7 +395,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">menu</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_main_menu_for_os"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.menubar.get_main_menu_for_os">[docs]</a><span class="k">def</span> <span class="nf">get_main_menu_for_os</span><span class="p">(</span><span class="n">os_name</span><span class="p">):</span>
+<div class="viewcode-block" id="get_main_menu_for_os"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.menubar.get_main_menu_for_os">[docs]</a><span class="k">def</span> <span class="nf">get_main_menu_for_os</span><span class="p">(</span><span class="n">os_name</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;Return the menu class appropriate to the given OS&quot;&quot;&quot;</span>
   <span class="n">menus</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;Linux&#39;</span><span class="p">:</span> <span class="n">LinuxMainMenu</span><span class="p">,</span>
@@ -402,7 +416,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

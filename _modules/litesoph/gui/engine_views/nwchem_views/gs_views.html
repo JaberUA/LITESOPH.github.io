@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -77,16 +79,16 @@
 <span class="kn">from</span> <span class="nn">litesoph.gui.visual_parameter</span> <span class="kn">import</span> <span class="n">myfont</span><span class="p">,</span> <span class="n">myfont1</span><span class="p">,</span> <span class="n">myfont2</span><span class="p">,</span> <span class="n">label_design</span><span class="p">,</span> <span class="n">myfont15</span>
 
 <span class="kn">from</span> <span class="nn">litesoph.gui.engine_views</span> <span class="kn">import</span> <span class="n">EngineViews</span>
-<span class="kn">from</span> <span class="nn">litesoph.simulations.models</span> <span class="kn">import</span> <span class="n">NWchemModel</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.models</span> <span class="kn">import</span> <span class="n">NWchemModel</span>
 
 
-<div class="viewcode-block" id="NWGSPage"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage">[docs]</a><span class="k">class</span> <span class="nc">NWGSPage</span><span class="p">(</span><span class="n">EngineViews</span><span class="p">):</span>
+<div class="viewcode-block" id="NWGSPage"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage">[docs]</a><span class="k">class</span> <span class="nc">NWGSPage</span><span class="p">(</span><span class="n">EngineViews</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gspage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gspage</span> <span class="o">=</span> <span class="n">gspage</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_para</span> <span class="o">=</span> <span class="n">NWchemModel</span><span class="o">.</span><span class="n">ground_state</span>
 
-<div class="viewcode-block" id="NWGSPage.show_system_tab"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_system_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_system_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<div class="viewcode-block" id="NWGSPage.show_system_tab"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_system_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_system_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Creates widgets for system tab inputs&quot;&quot;&quot;</span>
 
         <span class="n">myFont</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
@@ -133,7 +135,7 @@
         <span class="n">multiplicity_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="NWGSPage.show_cal_tab"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_cal_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_cal_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<div class="viewcode-block" id="NWGSPage.show_cal_tab"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_cal_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_cal_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
         <span class="n">nw_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">borderwidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">nw_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
         
@@ -161,7 +163,7 @@
         <span class="n">em_frame</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">em_frame</span><span class="o">.</span><span class="n">grid_rowconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NWGSPage.show_advance_tab"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_advance_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_advance_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<div class="viewcode-block" id="NWGSPage.show_advance_tab"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.show_advance_tab">[docs]</a>    <span class="k">def</span> <span class="nf">show_advance_tab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
         
         <span class="n">nwchem_conv</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">borderwidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">nwchem_conv</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
@@ -214,12 +216,12 @@
         <span class="c1">#self.entry_proj.place(x=280,y=10)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entry_grd</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NWGSPage.create_input_widgets"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.create_input_widgets">[docs]</a>    <span class="k">def</span> <span class="nf">create_input_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="NWGSPage.create_input_widgets"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.create_input_widgets">[docs]</a>    <span class="k">def</span> <span class="nf">create_input_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_system_tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gspage</span><span class="o">.</span><span class="n">system_frame</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_cal_tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gspage</span><span class="o">.</span><span class="n">calculation_frame</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_advance_tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gspage</span><span class="o">.</span><span class="n">advanced_info_frame</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="NWGSPage.get_parameters"><a class="viewcode-back" href="../../../../../litesoph/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.get_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="NWGSPage.get_parameters"><a class="viewcode-back" href="../../../../../litesoph_modules/litesoph.gui.engine_views.nwchem_views.html#litesoph.gui.engine_views.nwchem_views.gs_views.NWGSPage.get_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="n">inp_dict_nw</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;dft&#39;</span><span class="p">:{</span><span class="s1">&#39;xc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="s1">&#39;xc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
                     <span class="s1">&#39;convergence&#39;</span><span class="p">:{</span><span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
@@ -242,7 +244,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

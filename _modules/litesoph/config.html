@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -88,7 +90,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="get_path"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.get_path">[docs]</a><span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="get_path"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.get_path">[docs]</a><span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking for </span><span class="si">{}</span><span class="s2">....&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;which&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -99,7 +101,7 @@
         <span class="k">return</span> <span class="kc">None</span></div>
     
 
-<div class="viewcode-block" id="create_default_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.create_default_config">[docs]</a><span class="k">def</span> <span class="nf">create_default_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<div class="viewcode-block" id="create_default_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.create_default_config">[docs]</a><span class="k">def</span> <span class="nf">create_default_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">sections</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">valve</span> <span class="ow">in</span> <span class="n">sections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">config</span><span class="o">.</span><span class="n">add_section</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">valve</span><span class="p">:</span>
@@ -109,7 +111,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">option</span> <span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="write_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.write_config">[docs]</a><span class="k">def</span> <span class="nf">write_config</span><span class="p">():</span>
+<div class="viewcode-block" id="write_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.write_config">[docs]</a><span class="k">def</span> <span class="nf">write_config</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; makes a ~/.litesoph directory to store app data.</span>
 <span class="sd">        and writes lsconfig.ini with guess values. &quot;&quot;&quot;</span>
 
@@ -138,7 +140,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done.&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="check_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.check_config">[docs]</a><span class="k">def</span> <span class="nf">check_config</span><span class="p">(</span><span class="n">lsconfig</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="check_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.check_config">[docs]</a><span class="k">def</span> <span class="nf">check_config</span><span class="p">(</span><span class="n">lsconfig</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;lsroot&quot;</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">lsroot</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">lsconfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;lsroot&quot;</span> <span class="p">))</span>
@@ -155,7 +157,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">vis_tool</span></div>
 
-<div class="viewcode-block" id="read_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.read_config">[docs]</a><span class="k">def</span> <span class="nf">read_config</span><span class="p">():</span>
+<div class="viewcode-block" id="read_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.read_config">[docs]</a><span class="k">def</span> <span class="nf">read_config</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Reads the lsconfig.ini file and retrun configparser.&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">config_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
@@ -165,7 +167,7 @@
     <span class="n">lsconfig</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lsconfig</span></div>
 
-<div class="viewcode-block" id="set_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.set_config">[docs]</a><span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="set_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.set_config">[docs]</a><span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; updates lsconfig object and writes it to lsconfig.ini file&quot;&quot;&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -185,7 +187,7 @@
 
 
 
-<div class="viewcode-block" id="get_mpi_command"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.get_mpi_command">[docs]</a><span class="k">def</span> <span class="nf">get_mpi_command</span><span class="p">(</span><span class="n">engine_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">configs</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">):</span>
+<div class="viewcode-block" id="get_mpi_command"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.get_mpi_command">[docs]</a><span class="k">def</span> <span class="nf">get_mpi_command</span><span class="p">(</span><span class="n">engine_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">configs</span><span class="p">:</span> <span class="n">ConfigParser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;returns mpi command from lsconfig.&quot;&quot;&quot;</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="n">engine_name</span> <span class="o">+</span> <span class="s1">&#39;_mpi&#39;</span>
@@ -203,14 +205,14 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please set path to mpi in </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="remove_empty_value"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.remove_empty_value">[docs]</a><span class="k">def</span> <span class="nf">remove_empty_value</span><span class="p">(</span><span class="n">config_items</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_empty_value"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.remove_empty_value">[docs]</a><span class="k">def</span> <span class="nf">remove_empty_value</span><span class="p">(</span><span class="n">config_items</span><span class="p">):</span>
     <span class="nb">dict</span> <span class="o">=</span><span class="p">{}</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">config_items</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">val</span><span class="p">:</span>
             <span class="nb">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
     <span class="k">return</span> <span class="nb">dict</span></div>
 
-<div class="viewcode-block" id="none2emptystr"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.none2emptystr">[docs]</a><span class="k">def</span> <span class="nf">none2emptystr</span><span class="p">(</span><span class="n">input_dict</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+<div class="viewcode-block" id="none2emptystr"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.none2emptystr">[docs]</a><span class="k">def</span> <span class="nf">none2emptystr</span><span class="p">(</span><span class="n">input_dict</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
     <span class="n">rdict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">input_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
@@ -221,7 +223,7 @@
 
 <span class="c1">######### convert config file to dictionary #########</span>
 
-<div class="viewcode-block" id="config_to_dict"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.config_to_dict">[docs]</a><span class="k">def</span> <span class="nf">config_to_dict</span><span class="p">(</span><span class="n">infile</span><span class="p">):</span>
+<div class="viewcode-block" id="config_to_dict"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.config_to_dict">[docs]</a><span class="k">def</span> <span class="nf">config_to_dict</span><span class="p">(</span><span class="n">infile</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;converts configparser to dictionary object &quot;&quot;&quot;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
@@ -232,7 +234,7 @@
 
 <span class="c1">################## convert dictionary to config file #############</span>
 
-<div class="viewcode-block" id="dict_to_config"><a class="viewcode-back" href="../../litesoph/litesoph.html#litesoph.config.dict_to_config">[docs]</a><span class="k">def</span> <span class="nf">dict_to_config</span><span class="p">(</span><span class="n">input_dict</span><span class="p">,</span> <span class="n">configfilename</span><span class="p">):</span>
+<div class="viewcode-block" id="dict_to_config"><a class="viewcode-back" href="../../litesoph_modules/litesoph.html#litesoph.config.dict_to_config">[docs]</a><span class="k">def</span> <span class="nf">dict_to_config</span><span class="p">(</span><span class="n">input_dict</span><span class="p">,</span> <span class="n">configfilename</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;converts dictionary to configfile  object &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
@@ -250,7 +252,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

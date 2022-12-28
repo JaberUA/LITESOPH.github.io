@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.gui.project_controller &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.gui.project_controller</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.gui.project_controller</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.visual_parameter</span> <span class="kn">import</span> <span class="n">myfont</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.user_data</span> <span class="kn">import</span> <span class="n">get_remote_profile</span><span class="p">,</span> <span class="n">update_proj_list</span><span class="p">,</span> <span class="n">update_remote_profile_list</span>
+
+<span class="kn">from</span> <span class="nn">litesoph.gui.navigation</span> <span class="kn">import</span> <span class="n">ProjectTreeNavigation</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.task_controller</span> <span class="kn">import</span> <span class="n">TaskController</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.workflow_navigation</span> <span class="kn">import</span> <span class="n">WorkflowNavigation</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.views</span> <span class="kn">import</span> <span class="n">WorkManagerPage</span><span class="p">,</span> <span class="n">CreateWorkflowPage</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui</span> <span class="kn">import</span> <span class="n">actions</span>
+<span class="kn">from</span> <span class="nn">litesoph.gui.workflow_controller</span> <span class="kn">import</span> <span class="n">WorkflowController</span><span class="p">,</span> <span class="n">WorkflowModeController</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.project_manager</span> <span class="kn">import</span> <span class="n">ProjectManager</span><span class="p">,</span> <span class="n">WorkflowSetupError</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_classes</span> <span class="kn">import</span> <span class="n">ProjectInfo</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.workflows_data</span> <span class="kn">import</span> <span class="n">predefined_workflow</span>
+
+
+<div class="viewcode-block" id="ProjectController"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController">[docs]</a><span class="k">class</span> <span class="nc">ProjectController</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_frame</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">input_frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">main_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view_panel</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">view_panel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_navigation_view</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_tree_view</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">project_tree_view</span>
+
+<div class="viewcode-block" id="ProjectController.open_project"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.open_project">[docs]</a>    <span class="k">def</span> <span class="nf">open_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_manager</span><span class="p">:</span> <span class="n">ProjectManager</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_event_callbacks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span> <span class="o">=</span> <span class="n">project_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_list</span> <span class="o">=</span> <span class="n">project_manager</span><span class="o">.</span><span class="n">workflow_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_tree_view</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">project_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">open_workflow</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_bind_event_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">event_callbacks</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">actions</span><span class="o">.</span><span class="n">CREATE_NEW_WORKFLOW</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_workflow_window</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">event</span><span class="p">,</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">event_callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>          
+
+<div class="viewcode-block" id="ProjectController.open_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.open_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">open_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">create_workflow_frames</span><span class="p">()</span>
+        <span class="n">workflow_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">current_workflow_info</span>
+        <span class="k">if</span> <span class="n">workflow_info</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">workflow_info</span><span class="o">.</span><span class="n">user_defined</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_create_workflow_navigation</span><span class="p">(</span><span class="n">workflow_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">workflow_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_workflow_controller</span><span class="p">(</span><span class="n">workflow_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span> <span class="o">=</span> <span class="n">workflow_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">open_workflow</span><span class="p">(</span><span class="n">workflow_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="p">)</span>
+            <span class="k">return</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">WorkManagerPage</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">workflow_list</span> <span class="o">=</span> <span class="n">get_predefined_workflow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">button_select_geom</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_get_geometry_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">button_view</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_visualize</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="p">,</span> <span class="s1">&#39;entry_workflow&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">entry_workflow</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_predefined_workflow</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">_var</span><span class="p">[</span><span class="s1">&#39;workflow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">trace_add</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_workflow_ui</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">proceed_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_workflow</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProjectController.create_workflow_ui"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.create_workflow_ui">[docs]</a>    <span class="k">def</span> <span class="nf">create_workflow_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        
+        <span class="n">workflow_option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;select_wf_option&#39;</span><span class="p">)</span>
+        <span class="n">check_show_workflow</span> <span class="o">=</span> <span class="p">(</span><span class="n">workflow_option</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">check_show_workflow</span><span class="p">:</span>
+            <span class="n">workflow</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;workflow&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">workflow</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_create_workflow_navigation</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">_create_workflow_navigation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">workflow_frame</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+                <span class="n">widget</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_navigation_view</span> <span class="o">=</span> <span class="n">WorkflowNavigation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">workflow_frame</span><span class="p">,</span> <span class="n">get_workflow_block</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        
+<div class="viewcode-block" id="ProjectController.create_new_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.create_new_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">create_new_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">workflow_label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_create_window</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;workflow_name&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">new_workflow</span><span class="p">(</span><span class="n">workflow_label</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">WorkflowSetupError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Error creating workflow&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_create_window</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">open_workflow</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ProjectController.open_existing_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.open_existing_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">open_existing_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="ProjectController.remove_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.remove_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">remove_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="ProjectController.create_workflow_window"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.create_workflow_window">[docs]</a>    <span class="k">def</span> <span class="nf">create_workflow_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_create_window</span> <span class="o">=</span> <span class="n">CreateWorkflowPage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_create_window</span><span class="o">.</span><span class="n">create_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_new_workflow</span><span class="p">)</span>   </div>
+    
+    <span class="k">def</span> <span class="nf">_on_get_geometry_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;creates dialog to get geometry file and copies the file to project directory as coordinate.xyz&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">geometry_file</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">initialdir</span><span class="o">=</span><span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select File&quot;</span><span class="p">,</span> <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot; Text Files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.xyz&quot;</span><span class="p">)])</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">geometry_file</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">add_geometry</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">geometry_file</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">show_upload_label</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_on_visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Calls an user specified visualization tool &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">visualize_geometry</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Cannot visualize molecule.&quot;</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="n">e</span><span class="p">)</span> 
+    
+    <span class="k">def</span> <span class="nf">_get_workflow_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;user_defined&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">WorkflowController</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">predefined_workflow</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="n">WorkflowModeController</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Workflow: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not implemented&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ProjectController.start_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.ProjectController.start_workflow">[docs]</a>    <span class="k">def</span> <span class="nf">start_workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">):</span>
+        <span class="n">workflow_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">current_workflow_info</span>
+        <span class="n">param_view</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+            
+        <span class="n">param</span> <span class="o">=</span><span class="p">{}</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;environment&#39;</span><span class="p">,</span> <span class="s1">&#39;charge&#39;</span><span class="p">,</span> <span class="s1">&#39;multiplicity&#39;</span><span class="p">,</span> <span class="s1">&#39;engine&#39;</span><span class="p">]:</span>
+            <span class="n">param</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_view</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        
+        <span class="n">workflow_type</span> <span class="o">=</span> <span class="n">param_view</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;workflow&#39;</span><span class="p">)</span>
+        <span class="n">workflow_option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workmanager_page</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;select_wf_option&#39;</span><span class="p">)</span>
+        <span class="n">check_user_workflow</span> <span class="o">=</span> <span class="p">(</span><span class="n">workflow_option</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">check_user_workflow</span><span class="p">:</span>
+            <span class="n">workflow_type</span> <span class="o">=</span> <span class="s2">&quot;user_defined&quot;</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow_navigation_view</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">workflow_navigation_view</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">workflow_type</span> <span class="o">=</span> <span class="n">get_workflow_type</span><span class="p">(</span><span class="n">workflow_type</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">workflow_info</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="n">workflow_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_workflow_controller</span><span class="p">(</span><span class="n">workflow_info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span> <span class="o">=</span> <span class="n">workflow_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">open_workflow</span><span class="p">(</span><span class="n">workflow_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">workflow_controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_workflow_controller</span><span class="p">(</span><span class="n">workflow_type</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">workflow_controller</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span> <span class="o">=</span> <span class="n">workflow_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">start_workflow</span><span class="p">(</span><span class="n">workflow_type</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> 
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow_controller</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workflow_manager</span><span class="p">)</span></div></div>
+    
+        
+<div class="viewcode-block" id="get_predefined_workflow"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.get_predefined_workflow">[docs]</a><span class="k">def</span> <span class="nf">get_predefined_workflow</span><span class="p">():</span>
+
+    <span class="n">workflows</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">workflow</span> <span class="ow">in</span> <span class="n">predefined_workflow</span><span class="p">:</span>
+        <span class="n">workflows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predefined_workflow</span><span class="p">[</span><span class="n">workflow</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">workflows</span></div>
+
+<div class="viewcode-block" id="get_workflow_block"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.get_workflow_block">[docs]</a><span class="k">def</span> <span class="nf">get_workflow_block</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">workflow</span> <span class="o">=</span> <span class="n">get_workflow_type</span><span class="p">(</span><span class="n">workflow</span><span class="p">)</span>
+
+    <span class="n">workflow_branch</span> <span class="o">=</span>  <span class="n">predefined_workflow</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">workflow</span><span class="p">)[</span><span class="s1">&#39;blocks&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">workflow_branch</span></div>
+
+<div class="viewcode-block" id="get_workflow_type"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.project_controller.get_workflow_type">[docs]</a><span class="k">def</span> <span class="nf">get_workflow_type</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">workflow</span> <span class="ow">in</span> <span class="n">predefined_workflow</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">predefined_workflow</span><span class="p">[</span><span class="n">workflow</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">workflow_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">workflow</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

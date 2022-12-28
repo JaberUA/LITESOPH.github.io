@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -70,7 +72,7 @@
   <h1>Source code for litesoph.post_processing.mo_population</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<div class="viewcode-block" id="extract_pop_window"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.mo_population.extract_pop_window">[docs]</a><span class="k">def</span> <span class="nf">extract_pop_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">popl_file</span><span class="p">,</span> <span class="n">homo_index</span><span class="p">,</span> <span class="n">below_homo</span><span class="p">,</span> <span class="n">above_lumo</span><span class="p">):</span>
+<div class="viewcode-block" id="extract_pop_window"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.mo_population.extract_pop_window">[docs]</a><span class="k">def</span> <span class="nf">extract_pop_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">popl_file</span><span class="p">,</span> <span class="n">homo_index</span><span class="p">,</span> <span class="n">below_homo</span><span class="p">,</span> <span class="n">above_lumo</span><span class="p">):</span>
         <span class="n">pop_data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">homo_index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
@@ -81,7 +83,7 @@
         <span class="n">pop_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pop_data</span><span class="p">)</span>
         <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">popl_file</span><span class="p">,</span> <span class="n">pop_data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="get_occ_unocc"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.mo_population.get_occ_unocc">[docs]</a><span class="k">def</span> <span class="nf">get_occ_unocc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">energy_col</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">occupancy_col</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="get_occ_unocc"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.mo_population.get_occ_unocc">[docs]</a><span class="k">def</span> <span class="nf">get_occ_unocc</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">energy_col</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">occupancy_col</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">occ</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">unocc</span> <span class="o">=</span> <span class="p">[]</span>
     
@@ -93,7 +95,7 @@
         
     <span class="k">return</span> <span class="n">occ</span><span class="p">,</span> <span class="n">unocc</span></div>
 
-<div class="viewcode-block" id="get_energy_window"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.mo_population.get_energy_window">[docs]</a><span class="k">def</span> <span class="nf">get_energy_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">energy_file</span><span class="p">,</span> <span class="n">below_homo</span><span class="p">,</span> <span class="n">above_lumo</span><span class="p">):</span>
+<div class="viewcode-block" id="get_energy_window"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.mo_population.get_energy_window">[docs]</a><span class="k">def</span> <span class="nf">get_energy_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">energy_file</span><span class="p">,</span> <span class="n">below_homo</span><span class="p">,</span> <span class="n">above_lumo</span><span class="p">):</span>
     
     <span class="n">occ</span><span class="p">,</span> <span class="n">unocc</span> <span class="o">=</span> <span class="n">get_occ_unocc</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">r_occ</span> <span class="o">=</span> <span class="n">occ</span><span class="p">[</span><span class="o">-</span><span class="n">below_homo</span><span class="p">:</span> <span class="p">]</span>
@@ -102,7 +104,7 @@
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r_occ</span><span class="p">,</span> <span class="n">r_unocc</span><span class="p">):</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.6e}</span><span class="s2">  </span><span class="si">{:.6e}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">occ</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">occ</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span></div>
 
-<div class="viewcode-block" id="calc_population_diff"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.mo_population.calc_population_diff">[docs]</a><span class="k">def</span> <span class="nf">calc_population_diff</span><span class="p">(</span><span class="n">homo_index</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">infile</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<div class="viewcode-block" id="calc_population_diff"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.mo_population.calc_population_diff">[docs]</a><span class="k">def</span> <span class="nf">calc_population_diff</span><span class="p">(</span><span class="n">homo_index</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">infile</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Calculates and writes change in population of KS states from population file&quot;&quot;&quot;</span>
     
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
@@ -111,7 +113,7 @@
         <span class="n">data</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span>
     <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="create_states_index"><a class="viewcode-back" href="../../../litesoph/litesoph.post_processing.html#litesoph.post_processing.mo_population.create_states_index">[docs]</a><span class="k">def</span> <span class="nf">create_states_index</span><span class="p">(</span><span class="n">num_below_homo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">num_above_lumo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">homo_index</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="create_states_index"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.post_processing.html#litesoph.post_processing.mo_population.create_states_index">[docs]</a><span class="k">def</span> <span class="nf">create_states_index</span><span class="p">(</span><span class="n">num_below_homo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">num_above_lumo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">homo_index</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Creates the states to index dictionary&quot;&quot;&quot;</span>
     
     <span class="n">index_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -138,7 +140,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

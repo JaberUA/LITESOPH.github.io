@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -74,7 +76,7 @@
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 
-<div class="viewcode-block" id="Fourier"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier">[docs]</a><span class="k">class</span> <span class="nc">Fourier</span><span class="p">:</span>
+<div class="viewcode-block" id="Fourier"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier">[docs]</a><span class="k">class</span> <span class="nc">Fourier</span><span class="p">:</span>
 
       <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">delt</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
           
@@ -83,7 +85,7 @@
           <span class="bp">self</span><span class="o">.</span><span class="n">delt</span> <span class="o">=</span> <span class="n">delt</span>
           <span class="bp">self</span><span class="o">.</span><span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   
       
-<div class="viewcode-block" id="Fourier.window"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.window">[docs]</a>      <span class="k">def</span> <span class="nf">window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Fourier.window"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.window">[docs]</a>      <span class="k">def</span> <span class="nf">window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
           
           <span class="n">wfn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nt</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
           <span class="n">wtyp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wintype</span>
@@ -101,7 +103,7 @@
           <span class="n">fwin</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
           <span class="k">return</span> <span class="n">wfn</span></div>
           	  
-<div class="viewcode-block" id="Fourier.transform"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.transform">[docs]</a>      <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">wtyp</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="Fourier.transform"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.transform">[docs]</a>      <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">wtyp</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 
           <span class="n">fxn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nt</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
           <span class="k">if</span> <span class="ow">not</span> <span class="n">wtyp</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -114,7 +116,7 @@
           
           <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">freqs</span><span class="p">,</span> <span class="n">fw</span></div>
       
-<div class="viewcode-block" id="Fourier.smooth"><a class="viewcode-back" href="../../../../litesoph/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.smooth">[docs]</a>      <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">nfr</span><span class="p">):</span>
+<div class="viewcode-block" id="Fourier.smooth"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.post_processing.mo_population_correlation.html#litesoph.post_processing.mo_population_correlation.fourier.Fourier.smooth">[docs]</a>      <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">nfr</span><span class="p">):</span>
          
           <span class="n">win</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">hann</span><span class="p">(</span><span class="n">nfr</span><span class="p">)</span>
           <span class="n">fil</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="n">win</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
@@ -130,7 +132,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

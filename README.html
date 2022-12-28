@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LITESOPH &mdash; LITESOPH 0.1 documentation</title>
+  <title>About LITESOPH &mdash; LITESOPH 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simulations of Photo-Physical Properties" href="Simulations.html" />
-    <link rel="prev" title="Welcome to LITESOPH’s documentation!" href="index.html" /> 
+    <link rel="next" title="Current Features" href="Current_Feature.html" />
+    <link rel="prev" title="Welcome to LITESOPH’s Documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,19 +38,22 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">LITESOPH</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About LITESOPH</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#engines-interfaced-with-litesoph">Engines Interfaced with LITESOPH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-the-source-code-of-litesoph">Getting the source code of LITESOPH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-lsconfig-file">Example lsconfig file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -68,7 +71,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>LITESOPH</li>
+      <li>About LITESOPH</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,8 +81,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="litesoph">
-<h1>LITESOPH<a class="headerlink" href="#litesoph" title="Permalink to this headline"></a></h1>
+  <section id="about-litesoph">
+<h1>About LITESOPH<a class="headerlink" href="#about-litesoph" title="Permalink to this headline"></a></h1>
+<p>The LITESOPH project is aimed at developing a comprehensive toolkit to launch, monitor, manage and analyse
+large-scale simulations of photo-induced phenomena in a high-performance computing (HPC) environment.
+It is designed to serve the needs of computational researchers interested in solar energy conversion
+applications (photovoltaics, water-splitting catalysts, solar fuels, etc.), opto-electronic materials,
+photochemistry and photobiology. The toolkit consists of several Python-based layers driven by popular
+and open-source TDDFT codes like OCTOPUS, GPAW and NWChem.</p>
+<p>The project is currently funded by <a class="reference external" href="https://www.meity.gov.in/">MeitY</a> through the National Supercomputing Mission’s “Applications for
+Materials and Computational Chemistry” initiative.</p>
 <section id="engines-interfaced-with-litesoph">
 <span id="engines"></span><h2>Engines Interfaced with LITESOPH<a class="headerlink" href="#engines-interfaced-with-litesoph" title="Permalink to this headline"></a></h2>
 <p>There are three engines implimented in <span class="xref std std-ref">LITESOPH</span>. The details of these engines with their Installation Instruction are given below:</p>
@@ -135,6 +146,15 @@ Properties and relativistic effects
 </ul>
 </div></blockquote>
 </section>
+<section id="getting-the-source-code-of-litesoph">
+<h2>Getting the source code of LITESOPH<a class="headerlink" href="#getting-the-source-code-of-litesoph" title="Permalink to this headline"></a></h2>
+<p>You can get the source from a zip-file or from Git:</p>
+<p><strong>Zip-file:</strong> You can get the source as a zip-file for the latest stable release (<a class="reference download external" download="" href="https://github.com/LITESOPH/litesoph/archive/refs/heads/main.zip"><code class="xref download docutils literal notranslate"><span class="pre">litesoph-main.zip</span></code></a>)</p>
+<p><strong>Git clone:</strong> Alternatively, you can get the source for the latest stable release from github</p>
+<p>$ git clone -b main <a class="reference external" href="https://github.com/LITESOPH/litesoph.git">https://github.com/LITESOPH/litesoph.git</a></p>
+<p>Install it using the following command</p>
+<p>$ pip install &lt;path-to-litesoph&gt;</p>
+</section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
 <p>After installing above Requirements and Engines, you are ready to install LITESOPH using the following commands:</p>
@@ -145,11 +165,13 @@ Properties and relativistic effects
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
-<dl>
-<dt>To create lsconfig file:</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>litesoph config -c
+<p>To create <a class="reference internal" href="#lsconfig"><span class="std std-ref">lsconfig file</span></a>:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>litesoph config -c
 </pre></div>
 </div>
-</dd>
+</div></blockquote>
+<dl>
 <dt>To edit lsconfig file:</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>litesoph config -e
 </pre></div>
 </div>
@@ -157,7 +179,8 @@ Properties and relativistic effects
 </dl>
 </section>
 <section id="example-lsconfig-file">
-<h2>Example lsconfig file<a class="headerlink" href="#example-lsconfig-file" title="Permalink to this headline"></a></h2>
+<span id="lsconfig"></span><h2>Example lsconfig file<a class="headerlink" href="#example-lsconfig-file" title="Permalink to this headline"></a></h2>
+<p>Here is an example of lsconfig file.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[path]</span>
 <span class="go">lsproject = &lt;litesoph project path&gt;</span>
 <span class="go">lsroot = &lt;installation path of litesoph&gt;</span>
@@ -195,15 +218,15 @@ Properties and relativistic effects
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to LITESOPH’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Simulations.html" class="btn btn-neutral float-right" title="Simulations of Photo-Physical Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to LITESOPH’s Documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Current_Feature.html" class="btn btn-neutral float-right" title="Current Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

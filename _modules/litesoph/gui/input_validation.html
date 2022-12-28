@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -74,14 +76,14 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<div class="viewcode-block" id="Onlydigits"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Onlydigits">[docs]</a><span class="k">class</span> <span class="nc">Onlydigits</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="Onlydigits"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Onlydigits">[docs]</a><span class="k">class</span> <span class="nc">Onlydigits</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
         <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
         <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validate_digit</span><span class="p">),</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span>
         <span class="p">)</span>
-<div class="viewcode-block" id="Onlydigits.validate_digit"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Onlydigits.validate_digit">[docs]</a>    <span class="k">def</span> <span class="nf">validate_digit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<div class="viewcode-block" id="Onlydigits.validate_digit"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Onlydigits.validate_digit">[docs]</a>    <span class="k">def</span> <span class="nf">validate_digit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
       <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
         <span class="k">return</span> <span class="kc">True</span> 
       <span class="k">elif</span> <span class="nb">input</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -89,24 +91,24 @@
       <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span></div></div>
 
-<div class="viewcode-block" id="Onechar"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Onechar">[docs]</a><span class="k">class</span> <span class="nc">Onechar</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="Onechar"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Onechar">[docs]</a><span class="k">class</span> <span class="nc">Onechar</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
         <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
         <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validate_len</span><span class="p">),</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span>
         <span class="p">)</span>
-<div class="viewcode-block" id="Onechar.validate_len"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Onechar.validate_len">[docs]</a>    <span class="k">def</span> <span class="nf">validate_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<div class="viewcode-block" id="Onechar.validate_len"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Onechar.validate_len">[docs]</a>    <span class="k">def</span> <span class="nf">validate_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
       <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span></div></div>
 
-<div class="viewcode-block" id="Validatedconv"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Validatedconv">[docs]</a><span class="k">class</span> <span class="nc">Validatedconv</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="Validatedconv"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Validatedconv">[docs]</a><span class="k">class</span> <span class="nc">Validatedconv</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
         <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
         <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">),</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span>
         <span class="p">)</span>
-<div class="viewcode-block" id="Validatedconv.validate"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Validatedconv.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">input_number</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Validatedconv.validate"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Validatedconv.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">input_number</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+.\d+e[-+]\d+&quot;</span><span class="p">,</span> <span class="n">input_number</span><span class="p">))</span>
 
       <span class="n">input_number</span> <span class="o">=</span> <span class="s2">&quot;5.0e-8&quot;</span>
@@ -116,7 +118,7 @@
       <span class="n">valid</span> <span class="o">=</span> <span class="n">is_valid</span><span class="p">(</span><span class="n">input_number</span><span class="p">)</span>
       <span class="k">return</span> <span class="kc">False</span></div></div>
  
-<div class="viewcode-block" id="Decimalentry"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Decimalentry">[docs]</a><span class="k">class</span> <span class="nc">Decimalentry</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="Decimalentry"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Decimalentry">[docs]</a><span class="k">class</span> <span class="nc">Decimalentry</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -125,13 +127,13 @@
         <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
         <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">),</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span>
         <span class="p">)</span>
-<div class="viewcode-block" id="Decimalentry.validate"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Decimalentry.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+<div class="viewcode-block" id="Decimalentry.validate"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Decimalentry.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span> 
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span></div></div>
 
-<div class="viewcode-block" id="Fourchar"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.Fourchar">[docs]</a><span class="k">class</span> <span class="nc">Fourchar</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="Fourchar"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.Fourchar">[docs]</a><span class="k">class</span> <span class="nc">Fourchar</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
@@ -142,7 +144,7 @@
       <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">proposed</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span></div>
 
 
-<div class="viewcode-block" id="EntryPattern"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.EntryPattern">[docs]</a><span class="k">class</span> <span class="nc">EntryPattern</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
+<div class="viewcode-block" id="EntryPattern"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.EntryPattern">[docs]</a><span class="k">class</span> <span class="nc">EntryPattern</span><span class="p">(</span><span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
@@ -150,7 +152,7 @@
         <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">),</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="EntryPattern.validate"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.input_validation.EntryPattern.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_number</span><span class="p">):</span>
+<div class="viewcode-block" id="EntryPattern.validate"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.input_validation.EntryPattern.validate">[docs]</a>  <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_number</span><span class="p">):</span>
     <span class="c1"># valid =  bool(re.match(r&quot;0{1}\d*(e[+-])0{1}\d{0,3}$&quot;, str(input_number)))</span>
     
     <span class="n">valid</span> <span class="o">=</span>  <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;0</span><span class="si">{1}</span><span class="s2">\d*e[+-]?0</span><span class="si">{1}</span><span class="s2">\d{0,3}$&quot;</span><span class="p">,</span> <span class="n">input_number</span><span class="p">))</span>
@@ -165,7 +167,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

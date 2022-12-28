@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.gui.defaults_handler &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.gui.defaults_handler</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.gui.defaults_handler</h1><div class="highlight"><pre>
+<span></span>
+<span class="n">ground_state_map</span> <span class="o">=</span> <span class="p">{</span>    
+    <span class="s2">&quot;basis&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;lcao&quot;</span><span class="p">:</span><span class="s2">&quot;basis:lcao&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span><span class="s2">&quot;basis:gaussian&quot;</span>        
+        <span class="p">},</span>    
+    <span class="s2">&quot;box_dim&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;parallelepiped&#39;</span><span class="p">:{</span>
+            <span class="s2">&quot;xlength&quot;</span><span class="p">:</span><span class="s2">&quot;box_length_x&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ylength&quot;</span><span class="p">:</span><span class="s2">&quot;box_length_y&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;zlength&quot;</span><span class="p">:</span><span class="s2">&quot;box length_z&quot;</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;sphere&#39;</span><span class="p">:{</span>                
+                <span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="s2">&quot;radius&quot;</span>
+                <span class="p">},</span>
+            <span class="s1">&#39;cylinder&#39;</span><span class="p">:{</span>
+                <span class="s2">&quot;xlength&quot;</span><span class="p">:</span><span class="s2">&quot;cylinder_length&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="s2">&quot;radius&quot;</span><span class="p">},</span>
+            <span class="s1">&#39;minimum&#39;</span><span class="p">:{</span>
+                <span class="s2">&quot;radius&quot;</span><span class="p">:</span><span class="s2">&quot;radius&quot;</span><span class="p">}</span>
+            <span class="p">},</span>
+    <span class="c1"># &quot;xc&quot;:&quot;xc&quot;,</span>
+    <span class="c1"># &quot;basis_type&quot;:&quot;basis_type&quot;,</span>
+    <span class="c1"># &quot;box_shape&quot;:&quot;box_shape&quot;,</span>
+    <span class="c1"># &quot;max_itr&quot;: &quot;max_itr&quot;,</span>
+    <span class="c1"># &quot;energy_conv&quot;: &quot;energy_conv&quot;,</span>
+    <span class="c1"># &quot;density_conv&quot;:&quot;density_conv&quot;,</span>
+    <span class="c1"># &quot;spin&quot;:&quot;spin&quot; ,</span>
+    <span class="c1"># &quot;spacing&quot;:&quot;spacing&quot;,   </span>
+    <span class="c1"># &quot;vacuum&quot;: &quot;vacuum&quot;,</span>
+    <span class="c1"># &quot;smearing&quot;: &quot;smearing&quot;,</span>
+    <span class="c1"># &quot;mixing&quot;: &quot;mixing&quot;,</span>
+    <span class="c1"># &quot;bands&quot;: &quot;bands&quot;,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="update_gs_defaults"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.defaults_handler.update_gs_defaults">[docs]</a><span class="k">def</span> <span class="nf">update_gs_defaults</span><span class="p">(</span><span class="n">task_default</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Updates the default dict for GS gui widgets&quot;&quot;&quot;</span>  
+    
+    <span class="n">task_param_map</span> <span class="o">=</span> <span class="n">ground_state_map</span>
+    <span class="n">basis_type</span> <span class="o">=</span> <span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;basis_type&quot;</span><span class="p">)</span>
+    <span class="n">box_shape</span> <span class="o">=</span> <span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;boxshape&quot;</span><span class="p">)</span>
+
+    <span class="n">gui_default_dict</span> <span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;xc&quot;</span><span class="p">:</span><span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xc&#39;</span><span class="p">)}</span>
+    <span class="k">if</span> <span class="n">basis_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">gui_default_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s2">&quot;basis_type&quot;</span><span class="p">:</span> <span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;basis_type&#39;</span><span class="p">)})</span>
+        <span class="k">if</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;lcao&quot;</span><span class="p">:</span>
+            <span class="n">gui_basis_key</span> <span class="o">=</span> <span class="n">task_param_map</span><span class="p">[</span><span class="s2">&quot;basis&quot;</span><span class="p">][</span><span class="s2">&quot;lcao&quot;</span><span class="p">]</span>
+            <span class="n">gui_default_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>                                 
+            <span class="nb">str</span><span class="p">(</span><span class="n">gui_basis_key</span><span class="p">):</span> <span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;basis&#39;</span><span class="p">),</span>
+        <span class="p">})</span>
+        <span class="k">elif</span> <span class="n">basis_type</span> <span class="o">==</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">:</span>
+            <span class="n">gui_basis_key</span> <span class="o">=</span> <span class="n">task_param_map</span><span class="p">[</span><span class="s2">&quot;basis&quot;</span><span class="p">][</span><span class="s2">&quot;gaussian&quot;</span><span class="p">]</span>
+            <span class="n">gui_default_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>                                 
+            <span class="nb">str</span><span class="p">(</span><span class="n">gui_basis_key</span><span class="p">):</span> <span class="n">task_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;basis&#39;</span><span class="p">),</span>
+        <span class="p">})</span>
+        
+    <span class="k">if</span> <span class="n">box_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">gui_default_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;boxshape&quot;</span><span class="p">:</span> <span class="n">box_shape</span><span class="p">})</span>
+      
+    <span class="k">return</span> <span class="n">gui_default_dict</span></div>
+
+<div class="viewcode-block" id="update_td_delta_defaults"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.defaults_handler.update_td_delta_defaults">[docs]</a><span class="k">def</span> <span class="nf">update_td_delta_defaults</span><span class="p">(</span><span class="n">td_default</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="n">pol_list</span> <span class="o">=</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;polarization&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">pol_list</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span>
+        <span class="n">pol_dir</span> <span class="o">=</span> <span class="s2">&quot;X&quot;</span>         
+    <span class="k">elif</span> <span class="n">pol_list</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span>
+        <span class="n">pol_dir</span> <span class="o">=</span> <span class="s2">&quot;Y&quot;</span>   
+    <span class="k">elif</span> <span class="n">pol_list</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="p">:</span>
+        <span class="n">pol_dir</span> <span class="o">=</span> <span class="s2">&quot;Z&quot;</span> 
+
+    <span class="n">spectrum_check</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">ksd_check</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">population_check</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="s2">&quot;spectrum&quot;</span> <span class="ow">in</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">):</span>
+        <span class="n">spectrum_check</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="s2">&quot;ksd&quot;</span> <span class="ow">in</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">):</span>
+        <span class="n">ksd_check</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="s2">&quot;mo_population&quot;</span> <span class="ow">in</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">):</span>
+        <span class="n">population_check</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="n">gui_default_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;laser_strength&#39;</span><span class="p">:</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;strength&#39;</span><span class="p">),</span> 
+        <span class="s1">&#39;time_step&#39;</span><span class="p">:</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time_step&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;number_of_steps&#39;</span><span class="p">:</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;number_of_steps&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;output_freq&#39;</span><span class="p">:</span> <span class="n">td_default</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;output_freq&#39;</span><span class="p">),</span>
+        <span class="s2">&quot;pol_dir&quot;</span><span class="p">:</span> <span class="n">pol_dir</span><span class="p">,</span>
+        <span class="s2">&quot;spectrum&quot;</span><span class="p">:</span> <span class="n">spectrum_check</span><span class="p">,</span>
+        <span class="s2">&quot;ksd&quot;</span><span class="p">:</span> <span class="n">ksd_check</span><span class="p">,</span>
+        <span class="s2">&quot;mo_population&quot;</span><span class="p">:</span> <span class="n">population_check</span><span class="p">,</span>
+        
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">gui_default_dict</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -68,7 +70,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for litesoph.gui.logpanel</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="LogPanelManager"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager">[docs]</a><span></span><span class="k">class</span> <span class="nc">LogPanelManager</span><span class="p">:</span>
+<div class="viewcode-block" id="LogPanelManager"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager">[docs]</a><span></span><span class="k">class</span> <span class="nc">LogPanelManager</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">app</span>
         <span class="n">builder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span>
@@ -85,10 +87,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">btn_messages_label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">btn_messages</span><span class="o">.</span><span class="n">cget</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unread</span> <span class="o">=</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="LogPanelManager.pwindow_configure"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.pwindow_configure">[docs]</a>    <span class="k">def</span> <span class="nf">pwindow_configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="LogPanelManager.pwindow_configure"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.pwindow_configure">[docs]</a>    <span class="k">def</span> <span class="nf">pwindow_configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mainpw_sash_pos</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="LogPanelManager.update_sash"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.update_sash">[docs]</a>    <span class="k">def</span> <span class="nf">update_sash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;show&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="LogPanelManager.update_sash"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.update_sash">[docs]</a>    <span class="k">def</span> <span class="nf">update_sash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;show&#39;</span><span class="p">):</span>
         <span class="n">pwh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mainpw</span><span class="o">.</span><span class="n">winfo_height</span><span class="p">()</span>
         <span class="n">gch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bpanel</span><span class="o">.</span><span class="n">winfo_reqheight</span><span class="p">()</span>
         <span class="n">gbh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gbuttons</span><span class="o">.</span><span class="n">winfo_height</span><span class="p">()</span>
@@ -104,7 +106,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">mainpw_sash_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mainpw</span><span class="o">.</span><span class="n">sashpos</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mainpw</span><span class="o">.</span><span class="n">sashpos</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">newpos</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LogPanelManager.on_bpanel_button_clicked"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.on_bpanel_button_clicked">[docs]</a>    <span class="k">def</span> <span class="nf">on_bpanel_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="LogPanelManager.on_bpanel_button_clicked"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.on_bpanel_button_clicked">[docs]</a>    <span class="k">def</span> <span class="nf">on_bpanel_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buttonsvar</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;messages&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unread</span> <span class="o">=</span> <span class="mi">0</span>
@@ -129,7 +131,7 @@
         <span class="n">tktext</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;disabled&#39;</span><span class="p">)</span>
         <span class="n">tktext</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LogPanelManager.log_message"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.log_message">[docs]</a>    <span class="k">def</span> <span class="nf">log_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<div class="viewcode-block" id="LogPanelManager.log_message"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.logpanel.LogPanelManager.log_message">[docs]</a>    <span class="k">def</span> <span class="nf">log_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">buttonsvar</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;messages&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unread</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="c1"># log panel is not visible, update label</span>
@@ -146,7 +148,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

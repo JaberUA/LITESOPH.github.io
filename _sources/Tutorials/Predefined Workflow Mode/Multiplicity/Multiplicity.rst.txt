@@ -2,4 +2,4 @@
 
 Multiplicity
 =============
-Enter the Multiplicity of the molecular system.(**Default** is 1)
+Enter the spin-multiplicity of the molecular system.(**Default** is 1)

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.engines.nwchem.spectrum_task &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../nwchem.html">litesoph.engines.nwchem</a> &raquo;</li>
+      <li>litesoph.engines.nwchem.spectrum_task</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.engines.nwchem.spectrum_task</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.nwchem_task</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BaseNwchemTask</span><span class="p">,</span>
+                        <span class="n">tt</span><span class="p">,</span>
+                        <span class="n">plot_spectrum</span><span class="p">,</span>
+                        <span class="n">get_new_directory</span><span class="p">,</span>
+                        <span class="n">get_pol_and_tag</span><span class="p">,</span>
+                        <span class="n">assemable_job_cmd</span><span class="p">,</span>
+                        <span class="n">NWChem</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="ComputeSpectrum"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum">[docs]</a><span class="k">class</span> <span class="nc">ComputeSpectrum</span><span class="p">(</span><span class="n">BaseNwchemTask</span><span class="p">):</span>
+
+
+<div class="viewcode-block" id="ComputeSpectrum.create_engine"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum.create_engine">[docs]</a>    <span class="k">def</span> <span class="nf">create_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+        <span class="n">task_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s1">&#39;nwchem&#39;</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">=</span> <span class="n">get_new_directory</span><span class="p">(</span><span class="n">task_dir</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network_done_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="s1">&#39;Done&#39;</span>
+
+
+        <span class="n">outfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;txt_out&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nwchem</span> <span class="o">=</span> <span class="n">NWChem</span><span class="p">(</span><span class="n">outfile</span><span class="o">=</span><span class="n">outfile</span><span class="p">,</span> 
+                        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_spectrum_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">False</span> <span class="p">):</span>
+
+        <span class="n">td_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;txt_out&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">get_pol_and_tag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">remote</span><span class="p">:</span>
+            <span class="n">path_python</span> <span class="o">=</span> <span class="s1">&#39;python3&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path_python</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">python_path</span>
+
+        <span class="n">nw_rtparse</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span><span class="s1">&#39;nwchem_read_rt.py&#39;</span><span class="p">)</span>
+        <span class="n">spectrum_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;spectrum.py&#39;</span><span class="p">)</span>
+        
+        <span class="n">dm_cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_python</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">nw_rtparse</span><span class="si">}</span><span class="s1"> -x dipole -p </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="si">}</span><span class="s1"> -t </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">td_out</span><span class="si">}</span><span class="s1"> &gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="si">}</span><span class="s1">.dat&#39;</span>
+
+        <span class="n">spec_cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_python</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">spectrum_file</span><span class="si">}</span><span class="s1"> dipole.dat spec_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="si">}</span><span class="s1">.dat&#39;</span>
+        
+        <span class="k">return</span> <span class="n">spec_cmd</span>
+
+<div class="viewcode-block" id="ComputeSpectrum.compute_spectrum"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum.compute_spectrum">[docs]</a>    <span class="k">def</span> <span class="nf">compute_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span><span class="p">)</span>
+        
+        <span class="n">td_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;txt_out&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">get_pol_and_tag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dipole_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="s1">&#39;dipole.dat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectra_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;spec_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="si">}</span><span class="s1">.dat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;spectrum_file&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectra_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;dm_file&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dipole_file</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nwchem</span><span class="o">.</span><span class="n">get_td_dipole</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dipole_file</span><span class="p">,</span> <span class="n">td_out</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">polarization</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">raise</span></div>
+        <span class="c1">#else:</span>
+        <span class="c1">#    photoabsorption_spectrum(self.dipole_file, self.spectra_file,)</span>
+
+<div class="viewcode-block" id="ComputeSpectrum.create_job_script"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum.create_job_script">[docs]</a>    <span class="k">def</span> <span class="nf">create_job_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">remote_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+                
+        <span class="n">job_script</span> <span class="o">=</span> <span class="n">assemable_job_cmd</span><span class="p">(</span><span class="n">cd_path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span><span class="p">),</span> <span class="n">extra_block</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_spectrum_cmd</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">remote_path</span><span class="p">)))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_script</span> <span class="o">=</span> <span class="n">job_script</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_script</span></div>
+    
+<div class="viewcode-block" id="ComputeSpectrum.prepare_input"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum.prepare_input">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_spectrum</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_job_script</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_job_script</span><span class="p">()</span></div>
+            
+<div class="viewcode-block" id="ComputeSpectrum.plot"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeSpectrum.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectra_file</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;spec_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pol</span><span class="si">}</span><span class="s2">.png&quot;</span>
+        <span class="n">plot_spectrum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectra_file</span><span class="p">,</span><span class="n">img</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Energy(eV)&quot;</span><span class="p">,</span><span class="s2">&quot;Strength&quot;</span><span class="p">,</span><span class="n">xlimit</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_input</span><span class="p">[</span><span class="s1">&#39;e_min&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_input</span><span class="p">[</span><span class="s1">&#39;e_max&#39;</span><span class="p">]))</span></div></div>
+
+
+
+<div class="viewcode-block" id="ComputeAvgSpectrum"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum">[docs]</a><span class="k">class</span> <span class="nc">ComputeAvgSpectrum</span><span class="p">(</span><span class="n">BaseNwchemTask</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ComputeAvgSpectrum.create_engine"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.create_engine">[docs]</a>    <span class="k">def</span> <span class="nf">create_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+        <span class="n">task_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_dir</span> <span class="o">/</span> <span class="s1">&#39;nwchem&#39;</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">=</span> <span class="n">get_new_directory</span><span class="p">(</span><span class="n">task_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">network_done_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="s1">&#39;Done&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">averaged_spec_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span> <span class="o">/</span> <span class="s1">&#39;averaged_spec.dat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;spectrum_file&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">averaged_spec_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spectrum_files</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spectrum_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;spectrum_file&#39;</span><span class="p">]))</span></div>
+        
+<div class="viewcode-block" id="ComputeAvgSpectrum.copmute_average"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.copmute_average">[docs]</a>    <span class="k">def</span> <span class="nf">copmute_average</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">spec_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">time_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spectrum_files</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">time_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">spec_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">spec_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">spec_data</span><span class="p">))</span>
+        <span class="n">averaged_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">spec_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">spec_avg_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">time_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">averaged_data</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">averaged_spec_file</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">spec_avg_data</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ComputeAvgSpectrum.get_engine_log"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.get_engine_log">[docs]</a>    <span class="k">def</span> <span class="nf">get_engine_log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>        </div>
+
+<div class="viewcode-block" id="ComputeAvgSpectrum.run_job_local"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.run_job_local">[docs]</a>    <span class="k">def</span> <span class="nf">run_job_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">copmute_average</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;returncode&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                                        <span class="s1">&#39;output&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;error&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)})</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_info</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;returncode&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                        <span class="s1">&#39;output&#39;</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;error&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="ComputeAvgSpectrum.prepare_input"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.prepare_input">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">create_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_dir</span><span class="p">)</span></div>
+        
+            
+<div class="viewcode-block" id="ComputeAvgSpectrum.plot"><a class="viewcode-back" href="../../../../litesoph_modules/litesoph.engines.nwchem.html#litesoph.engines.nwchem.spectrum_task.ComputeAvgSpectrum.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">averaged_spec_file</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+        <span class="n">plot_spectrum</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">averaged_spec_file</span><span class="p">),</span>
+                        <span class="nb">str</span><span class="p">(</span><span class="n">img</span><span class="p">),</span>
+                        <span class="mi">0</span><span class="p">,</span>
+                        <span class="mi">1</span><span class="p">,</span> 
+                        <span class="s2">&quot;Energy (in eV)&quot;</span><span class="p">,</span> 
+                        <span class="s2">&quot;Strength(in /eV)&quot;</span><span class="p">,</span>
+                        <span class="n">xlimit</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_input</span><span class="p">[</span><span class="s1">&#39;e_min&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_input</span><span class="p">[</span><span class="s1">&#39;e_max&#39;</span><span class="p">]))</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

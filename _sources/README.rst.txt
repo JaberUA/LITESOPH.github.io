@@ -1,6 +1,16 @@
 ============================
- LITESOPH
+ About LITESOPH
 ============================
+The LITESOPH project is aimed at developing a comprehensive toolkit to launch, monitor, manage and analyse 
+large-scale simulations of photo-induced phenomena in a high-performance computing (HPC) environment. 
+It is designed to serve the needs of computational researchers interested in solar energy conversion 
+applications (photovoltaics, water-splitting catalysts, solar fuels, etc.), opto-electronic materials, 
+photochemistry and photobiology. The toolkit consists of several Python-based layers driven by popular 
+and open-source TDDFT codes like OCTOPUS, GPAW and NWChem.
+
+The project is currently funded by `MeitY <https://www.meity.gov.in/>`_ through the National Supercomputing Mission's "Applications for 
+Materials and Computational Chemistry" initiative.
+
 .. _engines:
 
 Engines Interfaced with LITESOPH
@@ -76,6 +86,20 @@ Before installing LITESOPH, the following modules or packages are required:
   * scp_
   * Rsync_
 
+Getting the source code of LITESOPH
+========================================
+You can get the source from a zip-file or from Git:
+
+**Zip-file:** You can get the source as a zip-file for the latest stable release (:download:`litesoph-main.zip <https://github.com/LITESOPH/litesoph/archive/refs/heads/main.zip>`)
+
+**Git clone:** Alternatively, you can get the source for the latest stable release from github
+
+$ git clone -b main https://github.com/LITESOPH/litesoph.git
+
+Install it using the following command
+
+$ pip install <path-to-litesoph>
+
 Installation
 =============================================================================================================
 After installing above Requirements and Engines, you are ready to install LITESOPH using the following commands:
@@ -88,7 +112,8 @@ After installing above Requirements and Engines, you are ready to install LITESO
 
 Configuration
 ===============
-To create lsconfig file:
+To create :ref:`lsconfig file <lsconfig>`:
+
   .. code-block:: console
 
     $ litesoph config -c
@@ -98,8 +123,11 @@ To edit lsconfig file:
 
     $ litesoph config -e
 
+.. _lsconfig:
+
 Example lsconfig file
 ===============================
+Here is an example of lsconfig file.
 
 .. code-block:: console
 

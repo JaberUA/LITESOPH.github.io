@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -70,11 +72,11 @@
   <h1>Source code for litesoph.visualization.visualize_geometry</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">subprocess</span>
 
-<div class="viewcode-block" id="VisualizationFailed"><a class="viewcode-back" href="../../../litesoph/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizationFailed">[docs]</a><span class="k">class</span> <span class="nc">VisualizationFailed</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+<div class="viewcode-block" id="VisualizationFailed"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizationFailed">[docs]</a><span class="k">class</span> <span class="nc">VisualizationFailed</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Raised when geometry rendering fails &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="VisualizeGeometry"><a class="viewcode-back" href="../../../litesoph/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizeGeometry">[docs]</a><span class="k">class</span> <span class="nc">VisualizeGeometry</span><span class="p">:</span>
+<div class="viewcode-block" id="VisualizeGeometry"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizeGeometry">[docs]</a><span class="k">class</span> <span class="nc">VisualizeGeometry</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lsconfig_vis_tools</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">lsconfig_vis_tools</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vmd&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -84,7 +86,7 @@
             <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;vmd&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vis_tool</span> <span class="o">=</span> <span class="n">path</span>
 
-<div class="viewcode-block" id="VisualizeGeometry.render"><a class="viewcode-back" href="../../../litesoph/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizeGeometry.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry_file</span><span class="p">):</span>
+<div class="viewcode-block" id="VisualizeGeometry.render"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.visualization.html#litesoph.visualization.visualize_geometry.VisualizeGeometry.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry_file</span><span class="p">):</span>
         <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vis_tool</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">geometry_file</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span><span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -100,7 +102,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

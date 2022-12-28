@@ -35,11 +35,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../README.html">LITESOPH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Physical Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
 </ul>
 
@@ -78,7 +80,7 @@
 
 <span class="n">remote_machine_profile</span> <span class="o">=</span> <span class="n">user_data_dir</span> <span class="o">/</span> <span class="s1">&#39;remote_profile.txt&#39;</span>
 
-<div class="viewcode-block" id="update_proj_list"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.user_data.update_proj_list">[docs]</a><span class="k">def</span> <span class="nf">update_proj_list</span><span class="p">(</span><span class="n">project</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="update_proj_list"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.user_data.update_proj_list">[docs]</a><span class="k">def</span> <span class="nf">update_proj_list</span><span class="p">(</span><span class="n">project</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Added new projects to the list with timestamp. if the project exists it updates the timestamp.&quot;&quot;&quot;</span>
     <span class="n">proj</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">proj_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -108,7 +110,7 @@
             <span class="n">wf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
         
-<div class="viewcode-block" id="update_remote_profile_list"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.user_data.update_remote_profile_list">[docs]</a><span class="k">def</span> <span class="nf">update_remote_profile_list</span><span class="p">(</span><span class="n">profile</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="update_remote_profile_list"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.user_data.update_remote_profile_list">[docs]</a><span class="k">def</span> <span class="nf">update_remote_profile_list</span><span class="p">(</span><span class="n">profile</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;It adds new profile to the list. If the profile is already present it&#39;s moved to the top. &quot;&quot;&quot;</span>
 
     <span class="n">line</span>  <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">profile</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;remote_path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -130,7 +132,7 @@
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">profile_list</span><span class="p">:</span>
             <span class="n">wf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="get_remote_profile"><a class="viewcode-back" href="../../../litesoph/litesoph.gui.html#litesoph.gui.user_data.get_remote_profile">[docs]</a><span class="k">def</span> <span class="nf">get_remote_profile</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<div class="viewcode-block" id="get_remote_profile"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.gui.html#litesoph.gui.user_data.get_remote_profile">[docs]</a><span class="k">def</span> <span class="nf">get_remote_profile</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">remote_machine_profile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -158,7 +160,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2022, LITESOPH members and team.
-      <span class="lastupdated">Last updated on Tue, 29 Nov 2022 23:59:39.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
       </span></p>
   </div>
 

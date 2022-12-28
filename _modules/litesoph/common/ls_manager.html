@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>litesoph.common.ls_manager &mdash; LITESOPH 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> LITESOPH
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">About LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Current_Feature.html">Current Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Upcoming_Feature.html">Upcoming Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Simulations.html">Simulations of Photo-Induced Properties using LITESOPH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Tutorials/Tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Issues.html">Issues or Bugs!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Developer_Guideline.html">Developer Guideline</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LITESOPH</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>litesoph.common.ls_manager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for litesoph.common.ls_manager</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">litesoph.common.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">create_dir</span><span class="p">,</span> <span class="n">PROJECT_DATA_FILE_NAME</span><span class="p">,</span>
+                                    <span class="n">PROJECT_DATA_FILE_RELATIVE_PATH</span><span class="p">,</span>
+                                    <span class="n">PROJECT_INFO_DIR_NAME</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">litesoph.config</span> <span class="kn">import</span> <span class="n">config_file</span><span class="p">,</span> <span class="n">config_to_dict</span><span class="p">,</span> <span class="n">dict_to_config</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.data_sturcture.data_classes</span> <span class="kn">import</span> <span class="n">ProjectInfo</span>
+<span class="kn">from</span> <span class="nn">litesoph.common.project_manager</span> <span class="kn">import</span> <span class="n">ProjectManager</span>
+
+
+<div class="viewcode-block" id="ProjectSetupError"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.ProjectSetupError">[docs]</a><span class="k">class</span> <span class="nc">ProjectSetupError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when unable to create new project.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="LSManager"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager">[docs]</a><span class="k">class</span> <span class="nc">LSManager</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_data_file_relative_path</span> <span class="o">=</span> <span class="n">PROJECT_DATA_FILE_RELATIVE_PATH</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_info_dir_name</span> <span class="o">=</span> <span class="n">PROJECT_INFO_DIR_NAME</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_project</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_project_status</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_task</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_config</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LSManager.read_config"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Reads the lsconfig file and converts it into dict.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config_to_dict</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LSManager.new_project"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.new_project">[docs]</a>    <span class="k">def</span> <span class="nf">new_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProjectManager</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;&quot; Creates Project directory  and instantiates ProjectInfo and project manager</span>
+<span class="sd">         then return project manager. &quot;&quot;&quot;</span>
+
+        <span class="n">project_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">project_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">ProjectSetupError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path:</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span><span class="si">}</span><span class="s2"> doesn&#39;t exists.&quot;</span><span class="p">)</span>
+        
+        <span class="n">project_path</span> <span class="o">=</span> <span class="n">project_path</span> <span class="o">/</span> <span class="n">name</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">create_dir</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span>
+            <span class="n">info_dir</span> <span class="o">=</span> <span class="n">project_path</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_info_dir_name</span>
+            <span class="n">create_dir</span><span class="p">(</span><span class="n">info_dir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProjectSetupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Project: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span><span class="si">}</span><span class="s1">. Unable to create directory. Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="n">project_info</span> <span class="o">=</span> <span class="n">ProjectInfo</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span> <span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span> <span class="n">project_path</span><span class="p">,</span>
+                                    <span class="n">description</span><span class="o">=</span> <span class="n">description</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">project_data_file</span> <span class="o">=</span> <span class="n">project_path</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_data_file_relative_path</span>
+
+        <span class="c1"># with open(project_data_file, &#39;w+&#39;) as f:</span>
+        <span class="c1">#     project_info.save(f)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span> <span class="o">=</span> <span class="n">ProjectManager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_info</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append_project</span><span class="p">(</span><span class="n">project_info</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span></div>
+
+    
+<div class="viewcode-block" id="LSManager.open_project"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.open_project">[docs]</a>    <span class="k">def</span> <span class="nf">open_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ProjectManager</span><span class="p">:</span>
+
+        <span class="n">project_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">project_data_file</span> <span class="o">=</span> <span class="n">project_path</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_data_file_relative_path</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">project_data_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">ProjectSetupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Project:</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span><span class="si">}</span><span class="s1"> does not exists.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">project_data_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">project_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ProjectSetupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Project:</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span><span class="si">}</span><span class="s1">. Unable to read project data from Json. Error:</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">project_info</span> <span class="o">=</span> <span class="n">ProjectInfo</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">project_data</span><span class="p">)</span>        
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProjectSetupError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Project:</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span><span class="si">}</span><span class="s1">. Unable to load project data. Error:</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">project_info</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span> <span class="o">=</span> <span class="n">ProjectManager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_info</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_project</span><span class="p">(</span><span class="n">project_info</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span></div>
+
+<div class="viewcode-block" id="LSManager.list"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.list">[docs]</a>    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="LSManager.get_summary"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.get_summary">[docs]</a>    <span class="k">def</span> <span class="nf">get_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+    
+<div class="viewcode-block" id="LSManager.remove"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="LSManager.save"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;project_manager&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_manager</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></div>
+        <span class="c1"># for project in self.project_list:</span>
+        <span class="c1">#     file = project.path / self.project_data_file_relative_path</span>
+        <span class="c1">#     with open(file, &#39;w&#39;) as f:</span>
+        <span class="c1">#         project.save(f)</span>
+
+<div class="viewcode-block" id="LSManager.get_project_summary"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.get_project_summary">[docs]</a>    <span class="k">def</span> <span class="nf">get_project_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_project</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">summary_of_current_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_project_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LSManager.append_project"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.LSManager.append_project">[docs]</a>    <span class="k">def</span> <span class="nf">append_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_info</span><span class="p">:</span> <span class="n">ProjectInfo</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">project</span><span class="o">.</span><span class="n">uuid</span> <span class="o">==</span>  <span class="n">project_info</span><span class="o">.</span><span class="n">uuid</span><span class="p">:</span>
+                <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project_info</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_change_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="s2">&quot;changes current working directory&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="summary_of_current_project"><a class="viewcode-back" href="../../../litesoph_modules/litesoph.common.html#litesoph.common.ls_manager.summary_of_current_project">[docs]</a><span class="k">def</span> <span class="nf">summary_of_current_project</span><span class="p">(</span><span class="n">project_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Summary of all the tasks performed.&quot;</span><span class="p">]</span>
+
+    <span class="n">engine_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">project_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">non_engine</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">engine_list</span><span class="p">:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">engine_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">engine</span> <span class="ow">in</span> <span class="n">non_engine</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Engine: </span><span class="si">{</span><span class="n">engine</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">task_list</span> <span class="o">=</span> <span class="n">project_data</span><span class="p">[</span><span class="n">engine</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">task_list</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">task</span> <span class="ow">in</span>  <span class="nb">enumerate</span><span class="p">(</span><span class="n">task_list</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">project_data</span><span class="p">[</span><span class="n">engine</span><span class="p">][</span><span class="n">task</span><span class="p">][</span><span class="s1">&#39;done&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     </span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    
+                
+                <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;No tasks have been performed yet.&quot;</span><span class="p">)</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">state</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LITESOPH members and team.
+      <span class="lastupdated">Last updated on Tue, 06 Dec 2022 10:42:37.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
